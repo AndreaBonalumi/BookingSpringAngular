@@ -1,0 +1,46 @@
+ <div id="search-data">
+   <label for="seleziona-colonna">Seleziona una colonna per la ricerca: </label>
+   <div class="search">
+    <select id="seleziona-colonna" [(ngModel)]="searchColumn" style="margin-right: 10px; width: 25%">
+      <option *ngFor="let colonna of tableConfig.search.columns">{{colonna}}</option>
+    </select>
+    <input type="text" [(ngModel)]="searchText" placeholder="cerca" style="margin-right: 10px; width: 60%"/>
+     <app-my-button [config]="{icon: 'search', class: 'secondary', text: 'Cerca'}" (emitter)="filtra()"></app-my-button>
+   </div>
+
+   <ng-container *ngFor="let azione of tableConfig.actions">
+    <a routerLink="/{{azione.buttonAction.text}}">
+      <app-my-button *ngIf="azione.onTop"
+                     (emitter)="emitter(azione.buttonAction.text)"
+                     [config]="azione.buttonAction">
+      </app-my-button>
+    </a>
+   </ng-container>
+ </div>
+
+<table>
+  <thead>
+  <tr>
+    <th *ngFor="let colonna of tableConfig.headers" (click)="ordinamento(colonna.key)">
+      {{colonna.label}}
+      <i *ngIf = "colonna.key === tableConfig.order.colonna">{{iconaOrdinamento}}</i>
+    </th>
+  </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let riga of parzialData">
+      <td *ngFor="let colonna of tableConfig.headers">{{riga[colonna.key]}}</td>
+      <td *ngFor="let azione of tableConfig.actions">
+        <a routerLink="/{{azione.buttonAction.text}}/{{riga.id}}">
+          <app-my-button *ngIf="(azione.hidden === undefined || !azione.hidden(riga)) && !azione.onTop"
+                         [config]="azione.buttonAction">
+          </app-my-button>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+ <app-tool-pagination [table]="tableConfig" [totalItems]="totalItems" [start]="start" (emit)="changePagination($event)"></app-tool-pagination>
+<router-outlet></router-outlet>
