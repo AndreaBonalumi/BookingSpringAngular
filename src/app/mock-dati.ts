@@ -2,17 +2,15 @@ import { MyTableConfig} from "./interfaces/my-table-config";
 import { MyTableActionEnum} from "./interfaces/my-table-action-enum";
 import {User} from "./interfaces/user";
 import {Car} from "./interfaces/car";
+import {Booking} from "./interfaces/booking";
+import {MyHeaders} from "./interfaces/my-headers";
 export const TABLE : MyTableConfig = {
-  headers: [
-    {key: 'id', label: 'ID'},
-    {key: 'label', label: 'Nome'},
-    {key: 'role', label: 'Ruolo'}
-  ],
+  headers: [],
   order: {
     colonna: 'id',
     verso: 'asc',
   },
-  search: {columns: ['label', 'role']},
+  search: {columns: []},
   pagination: {itemPerPage: 3, itemPerPageOption: [2, 5, 7, 4, 3]},
   actions: [
     { onTop: true,
@@ -37,13 +35,6 @@ export const TABLE : MyTableConfig = {
       },
       hidden: (item: any): boolean => {
         return item['role'] == 'admin';
-      },
-    },
-    { onTop: false,
-      buttonAction: {
-        text: 'Cambia ruolo',
-        icon: 'arrow-downward',
-        class: 'primary'
       },
     },
   ],
@@ -73,25 +64,88 @@ export const USERS: User[] = [
     nPatente: "",
   },
 ]
-export const CARS: Car[] = [
+export const CARS: Car[] = [];
+export const CARSFILL: Car[] = [
   {
     id: 1,
     brand: "Lamborghini",
     model: "Huracan",
-    color: "orange",
-    description: "bella",
+    color: "Orange",
+    description: "1",
     link: "",
+    created: "",
     year: 2023,
-    created: ""
   },
   {
     id: 2,
-    brand: "Fiat",
-    model: "500",
-    color: "gray",
-    description: "100cc 3 porte",
+    brand: "Lamborghini",
+    model: "Huracan",
+    color: "Orange",
+    description: "2",
     link: "",
-    year: 2011,
-    created: ""
+    created: "",
+    year: 2023,
   },
+  {
+    id: 3,
+    brand: "Lamborghini",
+    model: "Huracan",
+    color: "Orange",
+    description: "3",
+    link: "",
+    created: "",
+    year: 2023,
+  },
+  {
+    id: 4,
+    brand: "Lamborghini",
+    model: "Huracan",
+    color: "Orange",
+    description: "4",
+    link: "",
+    created: "",
+    year: 2023,
+  },
+  {
+    id: 5,
+    brand: "Lamborghini",
+    model: "Huracan",
+    color: "Orange",
+    description: "5",
+    link: "",
+    created: "",
+    year: 2023,
+  },
+  {
+    id: 6,
+    brand: "Lamborghini",
+    model: "Huracan",
+    color: "Orange",
+    description: "6",
+    link: "",
+    created: "",
+    year: 2023,
+  },
+];
+export const BOOKINGS: Booking[] = [];
+export const userHeaders: MyHeaders[] = [
+  {key: "firstName", label: "Nome"},
+  {key: "lastName", label: "Cognome"},
+  {key: "username", label: "Username"},
+  {key: "email", label: "E-mail"},
+  {key: "admin", label: "Admin"},
+  {key: "nPatente", label: "Patente"},
 ]
+;export const carHeaders: MyHeaders[] = [
+  {key: "brand", label: "Marca"},
+  {key: "model", label: "Modello"},
+  {key: "color", label: "Colore"},
+  {key: "description", label: "Descrizione"},
+  {key: "link", label: "Link foto"},
+  {key: "year", label: "Anno"},
+];
+export const bookingHeaders: MyHeaders[] = [
+  {key: "dateBookingStart", label: "Inizio"},
+  {key: "dateBookingEnd", label: "Fine"},
+  {key: "Car", label: "Macchina"},
+];

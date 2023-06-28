@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import {ButtonInterface} from "../../../../../button-custom/src/app/buttonInterface";
 import {MyTableConfig} from "../../interfaces/my-table-config";
+import {ConfigButton} from "../../interfaces/config-button";
 @Component({
   selector: 'app-tool-pagination',
   templateUrl: './tool-pagination.component.html',
@@ -21,12 +22,12 @@ export class ToolPaginationComponent implements AfterContentChecked{
   pagination !: number;
   paginaCorrente !: number;
   arrayPagine : number[] = [];
-  button_next: ButtonInterface = {
+  button_next: ConfigButton = {
     text: 'Next',
     icon: 'map',
     class: 'primary'
   }
-  button_back: ButtonInterface = {
+  button_back: ConfigButton = {
     text: 'Back',
     icon: 'map',
     class: 'primary'

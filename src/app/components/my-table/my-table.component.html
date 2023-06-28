@@ -2,10 +2,12 @@
    <label for="seleziona-colonna">Seleziona una colonna per la ricerca: </label>
    <div class="search">
     <select id="seleziona-colonna" [(ngModel)]="searchColumn" style="margin-right: 10px; width: 25%">
-      <option *ngFor="let colonna of tableConfig.search.columns">{{colonna}}</option>
+      <ng-container *ngFor="let colonna of tableConfig.search.columns">
+        <option value="{{colonna.key}}">{{colonna.label}}</option>
+      </ng-container>
     </select>
     <input type="text" [(ngModel)]="searchText" placeholder="cerca" style="margin-right: 10px; width: 60%"/>
-     <app-my-button [config]="{icon: 'search', class: 'secondary', text: 'Cerca'}" (emitter)="filtra()"></app-my-button>
+     <app-my-button [config]="{icon: 'search', class: 'secondary', text: 'Cerca'}"></app-my-button>
    </div>
 
    <ng-container *ngFor="let azione of tableConfig.actions">
@@ -18,10 +20,10 @@
    </ng-container>
  </div>
 
-<table>
+<table class="table">
   <thead>
   <tr>
-    <th *ngFor="let colonna of tableConfig.headers" (click)="ordinamento(colonna.key)">
+    <th class="col" *ngFor="let colonna of tableConfig.headers" (click)="ordinamento(colonna.key)">
       {{colonna.label}}
       <i *ngIf = "colonna.key === tableConfig.order.colonna">{{iconaOrdinamento}}</i>
     </th>
@@ -29,7 +31,7 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let riga of parzialData">
+    <tr *ngFor="let riga of data | filter: searchText: searchColumn | order: tableConfig.order.verso: tableConfig.order.colonna | pagination: start: end: tableConfig.pagination.itemPerPage">
       <td *ngFor="let colonna of tableConfig.headers">{{riga[colonna.key]}}</td>
       <td *ngFor="let azione of tableConfig.actions">
         <a routerLink="/{{azione.buttonAction.text}}/{{riga.id}}">

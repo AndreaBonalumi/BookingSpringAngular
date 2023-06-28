@@ -5,8 +5,7 @@
 
   <ng-container *ngFor="let i of arrayPagine">
     <ng-container *ngIf="i >= (paginaCorrente - 2) && i <= (paginaCorrente + 2)">
-      <app-my-button *ngIf="!(i == paginaCorrente)" [config]="{icon: 'circle', text: i.toString(), class: 'secondary'}" (emitter)="changePagination(i)"></app-my-button>
-      <app-my-button *ngIf="i == paginaCorrente" [config]="{icon: 'circle-fill', text: i.toString(), class: 'secondary'}"></app-my-button>
+      <app-my-button [config]="{icon: i != paginaCorrente ? 'circle' : 'circle-fill', text: i.toString(), class: 'secondary'}" (emitter)="changePagination(i)"></app-my-button>
     </ng-container>
   </ng-container>
 
@@ -14,6 +13,7 @@
 
   <app-my-button [isDisabled]="start >= (totalItems - table.pagination.itemPerPage)" (emitter)="next()" [config]="button_next"></app-my-button>
 
+  <br/><br/>
   <div class="search">
     <label for="seleziona-pagina" style="margin-right: 10px"> item per pagina: </label>
     <select id="seleziona-pagina" [(ngModel)]="table.pagination.itemPerPage" style="width: 50%">
