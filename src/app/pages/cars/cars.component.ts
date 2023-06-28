@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {carHeaders, CARSFILL} from "../../mock-dati";
+import {carHeaders} from "../../mock-dati";
 
 @Component({
   selector: 'app-cars',
@@ -8,6 +8,6 @@ import {carHeaders, CARSFILL} from "../../mock-dati";
 })
 export class CarsComponent {
 
-  cars = CARSFILL;
+  cars = [];
   headers = carHeaders;
 }

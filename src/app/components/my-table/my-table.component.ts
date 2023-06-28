@@ -2,7 +2,7 @@ import {
   AfterContentChecked,
   ChangeDetectorRef,
   Component,
-  EventEmitter, Input, IterableDiffer, IterableDiffers,
+  EventEmitter, Input,
   OnInit,
   Output,
 } from '@angular/core';
@@ -25,14 +25,10 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
   searchColumn: string = '';
   start : number = 0;
   end !: number;
-  totalItems : number = 0;
-  currentPage !: number;
   constructor(private cdr: ChangeDetectorRef) {}
   ngOnInit() {
-    this.currentPage = 1
     this.tableConfig.headers = this.headers;
     this.tableConfig.search.columns = this.headers;
-    this.totalItems = this.data.length;
     this.end = this.start + this.tableConfig.pagination.itemPerPage
     if (this.tableConfig.order.verso == 'asc') {
       this.iconaOrdinamento = '↓'
@@ -57,7 +53,6 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
     }
   }
   changePagination(currentPage: number): void {
-    this.currentPage = currentPage
     this.start = (currentPage - 1) * this.tableConfig.pagination.itemPerPage
     this.end = this.start + this.tableConfig.pagination.itemPerPage
   }
