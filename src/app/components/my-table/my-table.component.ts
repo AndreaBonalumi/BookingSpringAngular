@@ -58,6 +58,7 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
   }
   changePagination(currentPage: number): void {
     this.currentPage = currentPage
+    this.start = (currentPage - 1) * this.tableConfig.pagination.itemPerPage
     this.end = this.start + this.tableConfig.pagination.itemPerPage
   }
   ngAfterContentChecked(): void {
