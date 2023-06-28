@@ -7,6 +7,7 @@
   </ng-container>
   <ng-container *ngIf="!userLogger.admin && bookings">
     <div class="container text-secondary">
+      <h1>Lista prenotazioni:</h1>
       <app-my-table [data]="bookings" [headers]="headers"></app-my-table>
     </div>
   </ng-container>

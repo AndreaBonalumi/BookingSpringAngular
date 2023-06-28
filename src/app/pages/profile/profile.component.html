@@ -2,7 +2,7 @@
   <div class="container text-primary">
       <div class="form-group">
         <ng-container *ngFor="let field of userField">
-          <label>{{field.label}}: {{user[field.key]}}</label><br/><br/>
+          <span>{{field.label}}: {{user[field.key]}}</span><br/><br/>
         </ng-container>
       </div>
     <app-my-button [config]="editButton"></app-my-button>

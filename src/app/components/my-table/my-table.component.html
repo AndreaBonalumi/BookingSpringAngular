@@ -31,7 +31,7 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let riga of data | filter: searchText: searchColumn | order: tableConfig.order.verso: tableConfig.order.colonna | pagination: start: end: tableConfig.pagination.itemPerPage">
+    <tr *ngFor="let riga of data | filter: searchText: searchColumn | order: tableConfig.order.verso: tableConfig.order.colonna | pagination: start: end: tableConfig.pagination.itemPerPage: data[0]">
       <td *ngFor="let colonna of tableConfig.headers">{{riga[colonna.key]}}</td>
       <td *ngFor="let azione of tableConfig.actions">
         <a routerLink="/{{azione.buttonAction.text}}/{{riga.id}}">
