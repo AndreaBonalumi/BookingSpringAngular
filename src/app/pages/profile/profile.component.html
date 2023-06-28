@@ -1,8 +1,10 @@
-<div class="container text-primary">
-  <ng-container *ngFor="let field in userField">
-    <div class="form-group">
-
-    </div>
-  </ng-container>
-  <app-my-button [config]="editButton"></app-my-button>
-</div>
+<ng-container *ngIf="user">
+  <div class="container text-primary">
+      <div class="form-group">
+        <ng-container *ngFor="let field of userField">
+          <label>{{field.label}}: {{user[field.key]}}</label><br/><br/>
+        </ng-container>
+      </div>
+    <app-my-button [config]="editButton"></app-my-button>
+  </div>
+</ng-container>
