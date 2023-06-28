@@ -4,8 +4,8 @@ export interface User {
   lastName: string;
   username: string;
   password: string;
-  created: Date;
-  birthday: Date;
+  created: string;
+  birthday: string;
   admin: boolean;
   nPatente: string;
 }

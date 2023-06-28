@@ -8,5 +8,5 @@ import {User} from "../../interfaces/user";
 })
 export class UserBookingComponent {
 
-  @Input() user: User | undefined;
+  @Input() user !: User;
 }

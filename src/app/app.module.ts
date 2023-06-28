@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import {RouterLink, RouterOutlet} from "@angular/router";
+
 import { ManageBookingComponent } from './pages/manage-booking/manage-booking.component';
 import { ManageUserComponent } from './pages/manage-user/manage-user.component';
 import { ManageCarComponent } from './pages/manage-car/manage-car.component';
@@ -17,7 +20,7 @@ import {FormsModule} from "@angular/forms";
 import { CarsComponent } from './pages/cars/cars.component';
 import { UserBookingComponent } from './pages/user-booking/user-booking.component';
 import { LoginComponent } from './pages/login/login.component';
-import {RouterLink, RouterOutlet} from "@angular/router";
+import { ManageComponent } from './components/manage/manage.component';
 
 @NgModule({
   declarations: [
@@ -36,12 +39,14 @@ import {RouterLink, RouterOutlet} from "@angular/router";
     CarsComponent,
     UserBookingComponent,
     LoginComponent,
+    ManageComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterOutlet,
-    RouterLink
+    RouterLink,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

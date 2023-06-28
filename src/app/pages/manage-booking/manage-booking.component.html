@@ -1,1 +1,15 @@
-<p>manage-booking works!</p>
+<div class="container" [ngClass]="user.admin ? 'text-primary' : 'text-secondary'">
+  <h1>Gestisci prenotazione</h1>
+  <form method="get">
+    <label for="start">Data inizio: </label>
+    <input id="start" type="date" required>
+    <label for="end">Data fine: </label>
+    <input id="end" type="date" required>
+  </form>
+
+  <ng-container *ngIf="cars != null">
+    <form method="post">
+      <app-my-table (emit)="saveBooking($event)"></app-my-table>
+    </form>
+  </ng-container>
+</div>

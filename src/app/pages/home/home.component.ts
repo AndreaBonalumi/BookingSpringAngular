@@ -8,5 +8,5 @@ import {User} from "../../interfaces/user";
 })
 export class HomeComponent {
 
-  @Input() userLogger: User | undefined;
+  @Input() userLogger !: User;
 }

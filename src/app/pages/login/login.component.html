@@ -1,1 +1,10 @@
-<p>login works!</p>
+<div class="container text-secondary">
+  <h1>Accedi per entrare</h1>
+  <form method="post">
+    <label for="username">Username: </label>
+    <input id="username" type="text" required />
+    <label for="password">Password: </label>
+    <input id="password" type="password" required />
+    <app-my-button [config]="{icon: 'box-arrow-in-right', class: 'btn btn-primary', text: 'Login'}"></app-my-button>
+  </form>
+</div>

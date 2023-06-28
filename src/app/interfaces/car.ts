@@ -5,6 +5,6 @@ export interface Car {
   color: string;
   description: string;
   link: string;
-  created: Date;
-  year: Date;
+  created: string;
+  year: number;
 }

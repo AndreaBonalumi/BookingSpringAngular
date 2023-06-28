@@ -1,0 +1,10 @@
+<div class="container text-secondary">
+  <form>
+    <ng-container *ngFor="let field in fields">
+      <label for="{{field.key}}">{{field.value}}</label>
+      <input id="{{field.key}}" type="text" name="{{field.key}}" />
+    </ng-container>
+    <app-my-button [config]="{icon: 'pencil-square', class: 'btn btn-primary', text: 'salva'}"></app-my-button>
+  </form>
+
+</div>

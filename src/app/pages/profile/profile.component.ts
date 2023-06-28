@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {User} from "../../interfaces/user";
+import {ConfigButton} from "../../interfaces/config-button";
 
 @Component({
   selector: 'app-profile',
@@ -6,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-
+  @Input() user !: User;
+  @Input() userField !: string[];
+  editButton: ConfigButton = {
+    icon: "pencil-square",
+    class: "btn btn-primary",
+    text: "Modifica"
+  }
 }

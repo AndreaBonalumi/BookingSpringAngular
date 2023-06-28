@@ -3,8 +3,8 @@ import {Car} from "./car";
 
 export interface Booking {
   id: number;
-  dateBookingStart: Date;
-  dateBookingEnd: Date;
+  dateBookingStart: string;
+  dateBookingEnd: string;
   user: User;
-  cat: Car;
+  car: Car;
 }
