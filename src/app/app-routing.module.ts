@@ -13,11 +13,11 @@ let routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
   {path: 'cars', component: CarsComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'manageUser/:id', component: ManageUserComponent},
-  {path: 'manageCar/:id', component: ManageCarComponent},
-  {path: 'manageBooking/:id', component: ManageBookingComponent},
-  {path: 'bookings', component: UserBookingComponent},
+  {path: 'profile/id', component: ProfileComponent},
+  {path: ':id/manageUser/:idUser', component: ManageUserComponent},
+  {path: ':id/manageCar/:idCar', component: ManageCarComponent},
+  {path: ':id/manageBooking/:idBooking', component: ManageBookingComponent},
+  {path: 'bookings/:idUser', component: UserBookingComponent},
   {path: 'login', component: LoginComponent}
   ];
 

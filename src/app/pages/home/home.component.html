@@ -1,12 +1,13 @@
-<!-- <ng-container *ngIf="userLogger.admin">
-  <div class="container text-primary">
-    <h1>Utenti:</h1>
-    <app-my-table [data]="['user1', 'user2']"></app-my-table>
-  </div>
+<ng-container *ngIf="userLogger">
+  <ng-container *ngIf="userLogger.admin && users">
+    <div class="container text-primary">
+      <h1>Utenti:</h1>
+      <app-my-table [data]="users" [headers]="headers"></app-my-table>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!userLogger.admin && bookings">
+    <div class="container text-secondary">
+      <app-my-table [data]="bookings" [headers]="headers"></app-my-table>
+    </div>
+  </ng-container>
 </ng-container>
-<ng-container *ngIf="!userLogger.admin">
-  <div class="container text-secondary">
-    <app-my-table [data]="['booking1', 'booking2']"></app-my-table>
-  </div>
-</ng-container> -->
-<p>home works!</p>

@@ -1,6 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../../interfaces/user";
 import {ActivatedRoute, Router} from "@angular/router";
+import {DatiService} from "../../services/dati.service";
+import {Car} from "../../interfaces/car";
+import {Booking} from "../../interfaces/booking";
+import {MyHeaders} from "../../interfaces/my-headers";
+import {bookingHeaders, userHeaders} from "../../mock-dati";
 
 @Component({
   selector: 'app-home',
@@ -9,15 +14,25 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class HomeComponent implements OnInit{
 
-  @Input() userLogger !: User;
-
-  constructor(private router: Router, private activeRoute: ActivatedRoute) {}
+  userLogger !: User;
+  id !: string | null;
+  users ?: User[];
+  bookings ?: Booking[];
+  headers !: MyHeaders[];
+  constructor(private router: Router, private activeRoute: ActivatedRoute, private datiService: DatiService) {}
   ngOnInit() {
 
-    let id = this.activeRoute.snapshot.paramMap.get("id")
+    //this.id = this.activeRoute.snapshot.paramMap.get("id")
 
-    if (this.userLogger === undefined || this.userLogger === null) {
-      this.router.navigate(['login'])
-    }
+    this.datiService.getUserById("1").subscribe(user => {
+      this.userLogger = user
+      if (this.userLogger.admin) {
+        this.datiService.getUsers().subscribe(users => this.users = users)
+        this.headers = userHeaders;
+      } else {
+        this.datiService.getUserBookings("1").subscribe(userBookings => this.bookings = userBookings)
+        this.headers = bookingHeaders;
+      }
+    })
   }
 }

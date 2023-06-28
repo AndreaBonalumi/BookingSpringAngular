@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import {MyTableConfig} from "../interfaces/my-table-config";
-import {TABLE} from "../mock-dati";
 import {HttpClient} from "@angular/common/http";
 import {HttpParams } from "@angular/common/http";
 import {Observable} from "rxjs";
@@ -18,16 +16,16 @@ export class DatiService {
      params = params.append("password", password)
      return this.http.get(url, {params: params})
   }
-  getUserById(id: number): Observable<any> {
-     const url = `${this.apiUrl}/users/${id.toString()}`;
+  getUserById(id: string): Observable<any> {
+     const url = `${this.apiUrl}/users/${id}`;
      return this.http.get(url)
   }
-   getCarById(id: number): Observable<any> {
-     const url = `${this.apiUrl}/cars/${id.toString()}`;
+   getCarById(id: string): Observable<any> {
+     const url = `${this.apiUrl}/cars/${id}`;
      return this.http.get(url)
    }
-   getBookingById(id: number): Observable<any> {
-     const url = `${this.apiUrl}/bookings/${id.toString()}`;
+   getBookingById(id: string): Observable<any> {
+     const url = `${this.apiUrl}/bookings/${id}`;
      return this.http.get(url)
    }
    getUsers(): Observable<any> {
@@ -42,8 +40,9 @@ export class DatiService {
      const url = `${this.apiUrl}/bookings`;
      return this.http.get(url)
    }
-   getUserBookings(id: number) {
-     const url = `${this.apiUrl}/users/${id.toString()}/bookings`
+   getUserBookings(id: string): Observable<any> {
+     const url = `${this.apiUrl}/users/${id}/bookings`
+     return this.http.get(url)
    }
 
 }

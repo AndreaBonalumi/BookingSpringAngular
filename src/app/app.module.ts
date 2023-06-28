@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {RouterLink, RouterOutlet} from "@angular/router";
 
+import { HttpClientModule } from "@angular/common/http";
+
 import { ManageBookingComponent } from './pages/manage-booking/manage-booking.component';
 import { ManageUserComponent } from './pages/manage-user/manage-user.component';
 import { ManageCarComponent } from './pages/manage-car/manage-car.component';
@@ -47,6 +49,7 @@ import { ManageComponent } from './components/manage/manage.component';
     RouterOutlet,
     RouterLink,
     AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
