@@ -1,4 +1,6 @@
-<div class="container">
-  <h1>Gestisci Utente</h1>
-  <app-manage [fields]="formUser" (emit)="manageUser($event)"></app-manage>
-</div>
+<ng-container *ngIf="user">
+  <div class="container">
+    <h1>Gestisci Utente</h1>
+    <app-manage [fields]="formUser" (emit)="manageUser($event)"></app-manage>
+  </div>
+</ng-container>

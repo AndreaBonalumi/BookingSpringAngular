@@ -9,5 +9,6 @@ import {MyHeaders} from "../../interfaces/my-headers";
 export class ManageComponent {
 
   @Input() fields !: MyHeaders[];
+  @Input() item !: any
   @Output() emit: EventEmitter<any> = new EventEmitter<any>()
 }

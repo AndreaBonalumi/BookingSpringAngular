@@ -17,22 +17,16 @@ export class ManageUserComponent {
   constructor(private router: Router, private datiService: DatiService) {
   }
 
-  manageUser(form: NgForm) {
-    this.datiService.getUserByUsername(form.value.username).subscribe(user => {
+  manageUser(user: User) {
+    this.datiService.getUserByUsername(user.username).subscribe(user => {
 
-      this.user.username = form.value.username
-      this.user.password = form.value.password
-      this.user.firstName = form.value.firstName
-      this.user.lastName = form.value.lastName
-      this.user.nPatente = form.value.nPatente
-      this.user.birthday = form.value.birthday
-      this.user.email = form.value.username + '.' + form.value.lastName + '@si2001.it'
-      this.user.created = 'today'
+      this.user.email = user.username + '.' + user.lastName + '@si2001.it'
       this.user.admin = false;
 
       if (user.size > 0) {
         this.datiService.editUser(user).subscribe(() => this.router.navigate(['home']))
       } else {
+        this.user.created = 'today'
         this.datiService.insertUser(user).subscribe(() => this.router.navigate(['home']))
       }
     })

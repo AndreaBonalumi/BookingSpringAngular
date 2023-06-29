@@ -1,4 +1,6 @@
-<div class="container">
-  <h1>Gestisci auto</h1>
-  <app-manage [fields]="carFields" (emit)="manageCar($event)"></app-manage>
-</div>
+<ng-container *ngIf="car">
+  <div class="container">
+    <h1>Gestisci auto</h1>
+    <app-manage [fields]="carFields" (emit)="manageCar($event)"></app-manage>
+  </div>
+</ng-container>
