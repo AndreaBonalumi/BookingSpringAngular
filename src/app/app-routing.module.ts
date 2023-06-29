@@ -14,10 +14,10 @@ let routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'cars', component: CarsComponent},
   {path: 'profile', component: ProfileComponent},
-  {path: 'manageUser/:idUser', component: ManageUserComponent},
-  {path: 'manageCar/:idCar', component: ManageCarComponent},
-  {path: 'manageBooking/:idBooking', component: ManageBookingComponent},
-  {path: 'bookings/:idUser', component: UserBookingComponent},
+  {path: 'manageUser/:id', component: ManageUserComponent},
+  {path: 'manageCar/:id', component: ManageCarComponent},
+  {path: 'manageBooking/:id', component: ManageBookingComponent},
+  {path: 'bookings/:id', component: UserBookingComponent},
   {path: 'login', component: LoginComponent}
   ];
 

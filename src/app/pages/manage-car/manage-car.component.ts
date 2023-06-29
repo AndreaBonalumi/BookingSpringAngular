@@ -19,9 +19,25 @@ export class ManageCarComponent implements OnInit{
   }
   ngOnInit() {
     let id = this.activeRoute.snapshot.paramMap.get("id")
-    this.datiService.getCarById(id!).subscribe(car => this.car = car)
-  }
+    if (id === '-1') {
+      this.car = new class implements Car {
+        [key: string]: any;
 
+        brand: string = '';
+        color: string = '';
+        created: string = '';
+        description: string = '';
+        id: string = '';
+        link: string = '';
+        model: string = '';
+        year: number = 0;
+      }
+    } else {
+      this.datiService.getCarById(id!).subscribe(car => {
+        this.car = car
+      })
+    }
+  }
   manageCar(car: Car) {
      this.datiService.getCarById(car.id).subscribe(car => {
 

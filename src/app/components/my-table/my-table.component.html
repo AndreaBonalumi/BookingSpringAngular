@@ -11,12 +11,10 @@
    </div>
 
    <ng-container *ngFor="let azione of tableConfig.actions">
-    <a routerLink="/{{azione.buttonAction.text}}">
-      <app-my-button *ngIf="azione.onTop"
-                     (emitter)="emitter(azione.buttonAction.text)"
-                     [config]="azione.buttonAction">
-      </app-my-button>
-    </a>
+     <app-my-button *ngIf="azione.onTop"
+                    (emitter)="emitButton.emit([azione.buttonAction.text])"
+                    [config]="azione.buttonAction">
+     </app-my-button>
    </ng-container>
  </div>
 

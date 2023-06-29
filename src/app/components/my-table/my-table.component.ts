@@ -61,8 +61,4 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
   ngAfterContentChecked(): void {
     this.cdr.detectChanges()
   }
-  emitter(azione: string, dato ?: MyHeaders): void {
-    const e = {key: azione, dato: dato}
-    this.emitButton.emit(e)
-  }
 }

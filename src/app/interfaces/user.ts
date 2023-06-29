@@ -1,6 +1,6 @@
 export interface User {
   [key: string]: any
-  id: number;
+  id: string;
   firstName: string;
   lastName: string;
   username: string;
