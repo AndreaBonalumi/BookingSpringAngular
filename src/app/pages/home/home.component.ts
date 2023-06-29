@@ -60,12 +60,15 @@ export class HomeComponent implements OnInit{
     }
 
     if (action[0] === MyTableActionEnum.NEW_ROW) {
+      console.log('new')
       this.router.navigate([`${route}/-1`])
     }
     if (action[0] === MyTableActionEnum.EDIT) {
+      console.log('edit')
       this.router.navigate([`${route}/${action[1]}`])
     }
     if (action[0] === MyTableActionEnum.DELETE) {
+      console.log('delete')
       if (this.userLogger.admin) {
         this.datiService.deleteUser(action[1]).subscribe(() => this.users = this.deleteInArray(this.users!, action[1]))
       } else {

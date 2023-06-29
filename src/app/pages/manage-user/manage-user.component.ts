@@ -14,11 +14,11 @@ export class ManageUserComponent implements OnInit{
 
   formUser = formUser;
   user !: User
-  constructor(private router: Router, private datiService: DatiService, private activeRoute: ActivatedRoute) {
-  }
+  id !: string | null
+  constructor(private router: Router, private datiService: DatiService, private activeRoute: ActivatedRoute) {}
   ngOnInit() {
-    let id = this.activeRoute.snapshot.paramMap.get("id")
-    if (id === '-1') {
+    this.id = this.activeRoute.snapshot.paramMap.get("id")
+    if (this.id === '-1') {
       this.user = new class implements User {
         [key: string]: any;
 
@@ -34,20 +34,17 @@ export class ManageUserComponent implements OnInit{
         username: string  = "";
       }
     } else {
-      this.datiService.getUserById(id!).subscribe(user => this.user = user)
+      this.datiService.getUserById((this.id)!).subscribe(user => this.user = user)
     }
   }
 
   manageUser(user: User) {
-    this.datiService.getUserByUsername(user.username).subscribe(user => {
-
-      this.user.email = user.username + '.' + user.lastName + '@si2001.it'
-      if (user.size > 0) {
-        this.datiService.editUser(user).subscribe(() => this.router.navigate(['home']))
-      } else {
-        this.user.created = 'today'
-        this.datiService.insertUser(user).subscribe(() => this.router.navigate(['home']))
-      }
-    })
+    if (this.id === '-1') {
+      user.created = 'today'
+      user.email = user.firstName.toLowerCase().trim() + '.' + user.lastName.toLowerCase().trim() + '@si2001.it'
+      this.datiService.insertUser(user).subscribe(() => this.router.navigate(['home']))
+    } else {
+      this.datiService.editUser(user).subscribe(() => this.router.navigate(['home']))
+    }
   }
 }

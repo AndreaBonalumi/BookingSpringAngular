@@ -43,24 +43,24 @@ export const userHeaders: MyHeaders[] = [
   {key: "nPatente", label: "Patente"},
 ];
 export const carHeaders: MyHeaders[] = [
-  {key: "brand", label: "Marca"},
-  {key: "model", label: "Modello"},
-  {key: "color", label: "Colore"},
-  {key: "description", label: "Descrizione"},
-  {key: "link", label: "Link foto"},
+  {key: "brand", label: "Marca", required: true},
+  {key: "model", label: "Modello", required: true},
+  {key: "color", label: "Colore", required: true},
+  {key: "description", label: "Descrizione", required: true},
+  {key: "link", label: "Link foto", required: false},
   {key: "year", label: "Anno"},
 ];
 export const bookingHeaders: MyHeaders[] = [
-  {key: "dateBookingStart", label: "Inizio"},
-  {key: "dateBookingEnd", label: "Fine"},
+  {key: "dateBookingStart", label: "Inizio", required: true},
+  {key: "dateBookingEnd", label: "Fine", required: true},
   {key: "Car", label: "Macchina"},
 ];
 
 export const formUser: MyHeaders[] = [
-  {key: 'firstName', label: 'Nome'},
-  {key: 'lastName', label: 'Cognome'},
-  {key: 'username', label: 'Username'},
-  {key: 'Password', label: 'Password'},
+  {key: 'firstName', label: 'Nome', required: true},
+  {key: 'lastName', label: 'Cognome', required: true},
+  {key: 'username', label: 'Username', required: true},
+  {key: 'password', label: 'Password', required: true},
   {key: 'nPatente', label: 'Patente'},
   {key: 'birthday', label: 'Data di nascita'},
 ]

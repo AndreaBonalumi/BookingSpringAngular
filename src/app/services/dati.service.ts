@@ -48,7 +48,7 @@ export class DatiService {
      return this.http.get(url)
    }
    getUserByUsername(username: string): Observable<any> {
-     const url = `${this.apiUrl}/user`
+     const url = `${this.apiUrl}/users`
      let params = new HttpParams()
      params = params.set('username', username)
      return this.http.get(url, {params})
@@ -58,35 +58,36 @@ export class DatiService {
      return this.http.post(url, user)
    }
    editUser(user: User): Observable<any> {
-     const url = `${this.apiUrl}/users`
+     const url = `${this.apiUrl}/users/${user.id}`
      return this.http.put(url, user)
    }
    insertCar(car: Car): Observable<any> {
-     const url = `${this.apiUrl}/car`
+     const url = `${this.apiUrl}/cars`
      return this.http.post(url, car)
    }
    editCar(car: Car): Observable<any> {
-     const url = `${this.apiUrl}/car`
+     const url = `${this.apiUrl}/cars/${car.id}`
      return this.http.put(url, car)
    }
    insertBooking(booking: Booking): Observable<any> {
-     const url = `${this.apiUrl}/booking`
+     const url = `${this.apiUrl}/bookings`
      return this.http.post(url, booking)
    }
    editBooking(booking: Booking): Observable<any> {
-     const url = `${this.apiUrl}/booking`
+     const url = `${this.apiUrl}/bookings/${booking.id}`
      return this.http.put(url, booking)
    }
    deleteUser(id: string): Observable<any> {
-     const url = `${this.apiUrl}/user/${id}`
+    console.log(id)
+     const url = `${this.apiUrl}/users/${id}`
      return this.http.delete(url)
    }
    deleteCar(id: string): Observable<any> {
-     const url = `${this.apiUrl}/car/${id}`
+     const url = `${this.apiUrl}/cars/${id}`
      return this.http.delete(url)
    }
    deleteBooking(id: string): Observable<any> {
-     const url = `${this.apiUrl}/booking/${id}`
+     const url = `${this.apiUrl}/bookings/${id}`
      return this.http.delete(url)
    }
 
