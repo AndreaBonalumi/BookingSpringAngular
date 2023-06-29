@@ -6,6 +6,7 @@ export interface Booking {
   id: number;
   dateBookingStart: string;
   dateBookingEnd: string;
+  status: number;
   user: User;
   car: Car;
 }

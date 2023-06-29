@@ -1,4 +1,4 @@
 <div class="container text-primary">
   <h1>Auto registrate:</h1>
-  <app-my-table [data]="cars" [headers]="headers"></app-my-table>
+  <app-my-table [data]="cars" [headers]="headers" (emitButton)="action($event)"></app-my-table>
 </div>

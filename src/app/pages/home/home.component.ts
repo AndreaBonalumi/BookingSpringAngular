@@ -6,6 +6,7 @@ import {Car} from "../../interfaces/car";
 import {Booking} from "../../interfaces/booking";
 import {MyHeaders} from "../../interfaces/my-headers";
 import {bookingHeaders, userHeaders} from "../../mock-dati";
+import {MyTableActionEnum} from "../../interfaces/my-table-action-enum";
 
 @Component({
   selector: 'app-home',
@@ -47,5 +48,36 @@ export class HomeComponent implements OnInit{
   }
   goUserBooking(id: string) {
     this.router.navigate(['bookings/' + id])
+  }
+  action(action: any[]) {
+
+    let route: string
+    if (this.userLogger.admin) {
+      route = 'manageUser'
+    }
+    else {
+      route = 'manageBooking'
+    }
+
+    if (action[0] === MyTableActionEnum.NEW_ROW) {
+      this.router.navigate([`${route}/-1`])
+    }
+    if (action[0] === MyTableActionEnum.EDIT) {
+      this.router.navigate([`${route}/${action[1]}`])
+    }
+    if (action[0] === MyTableActionEnum.DELETE) {
+      if (this.userLogger.admin) {
+        this.datiService.deleteUser(action[1]).subscribe(() => this.users = this.deleteInArray(this.users!, action[1]))
+      } else {
+        this.datiService.deleteBooking(action[1]).subscribe(() => this.bookings = this.deleteInArray(this.bookings!, action[1]))
+      }
+    }
+  }
+  deleteInArray(array: any[], id: string): any[] {
+    const index = array.findIndex(item => item.id === id)
+    if (index !== -1) {
+      array.splice(index, 1)
+    }
+    return array
   }
 }

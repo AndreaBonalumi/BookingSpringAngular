@@ -2,7 +2,7 @@
   <div class="container text-primary">
     <h1>Prenotazioni di {{user.firstName}}</h1>
     <ng-container *ngIf="bookings">
-      <app-my-table [tableConfig]="tableConfig" [data]="bookings" [headers]="headers"></app-my-table>
+      <app-my-table [tableConfig]="tableConfig" [data]="bookings" [headers]="headers" (emitButton)="action($event)"></app-my-table>
     </ng-container>
   </div>
 </ng-container>

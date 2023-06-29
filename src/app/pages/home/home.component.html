@@ -2,7 +2,9 @@
   <ng-container *ngIf="userLogger.admin && users">
     <div class="container text-primary">
       <h1>Utenti:</h1>
-      <app-my-table [data]="users" [headers]="headers" (emitRow)="goUserBooking($event)"></app-my-table>
+      <app-my-table [data]="users" [headers]="headers"
+                    (emitButton)="action($event)"
+                    (emitRow)="goUserBooking($event)"></app-my-table>
     </div>
   </ng-container>
   <ng-container *ngIf="!userLogger.admin && bookings">
