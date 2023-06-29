@@ -2,6 +2,7 @@ import { MyTableConfig} from "./interfaces/my-table-config";
 import { MyTableActionEnum} from "./interfaces/my-table-action-enum";
 import {Car} from "./interfaces/car";
 import {MyHeaders} from "./interfaces/my-headers";
+import {first} from "rxjs";
 export const TABLE : MyTableConfig = {
   headers: [],
   order: {
@@ -55,3 +56,12 @@ export const bookingHeaders: MyHeaders[] = [
   {key: "dateBookingEnd", label: "Fine"},
   {key: "Car", label: "Macchina"},
 ];
+
+export const formUser: MyHeaders[] = [
+  {key: 'firstName', label: 'Nome'},
+  {key: 'lastName', label: 'Cognome'},
+  {key: 'username', label: 'Username'},
+  {key: 'Password', label: 'Password'},
+  {key: 'nPatente', label: 'Patente'},
+  {key: 'birthday', label: 'Data di nascita'},
+]

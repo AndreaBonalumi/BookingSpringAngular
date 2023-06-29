@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {MyHeaders} from "../../interfaces/my-headers";
 
 @Component({
   selector: 'app-manage',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class ManageComponent {
 
+  @Input() fields !: MyHeaders[];
+  @Output() emit: EventEmitter<any> = new EventEmitter<any>()
 }

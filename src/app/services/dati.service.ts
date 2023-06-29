@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {HttpParams } from "@angular/common/http";
 import {Observable} from "rxjs";
+import {User} from "../interfaces/user";
+import {Car} from "../interfaces/car";
+import {Booking} from "../interfaces/booking";
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +46,48 @@ export class DatiService {
    getUserBookings(id: string): Observable<any> {
      const url = `${this.apiUrl}/users/${id}/bookings`
      return this.http.get(url)
+   }
+   getUserByUsername(username: string): Observable<any> {
+     const url = `${this.apiUrl}/user`
+     let params = new HttpParams()
+     params = params.set('username', username)
+     return this.http.get(url, {params})
+   }
+   insertUser(user: User): Observable<any> {
+     const url = `${this.apiUrl}/users`
+     return this.http.post(url, user)
+   }
+   editUser(user: User): Observable<any> {
+     const url = `${this.apiUrl}/users`
+     return this.http.put(url, user)
+   }
+   insertCar(car: Car): Observable<any> {
+     const url = `${this.apiUrl}/car`
+     return this.http.post(url, car)
+   }
+   editCar(car: Car): Observable<any> {
+     const url = `${this.apiUrl}/car`
+     return this.http.put(url, car)
+   }
+   insertBooking(booking: Booking): Observable<any> {
+     const url = `${this.apiUrl}/booking`
+     return this.http.post(url, booking)
+   }
+   editBooking(booking: Booking): Observable<any> {
+     const url = `${this.apiUrl}/booking`
+     return this.http.put(url, booking)
+   }
+   deleteUser(id: string): Observable<any> {
+     const url = `${this.apiUrl}/user/${id}`
+     return this.http.delete(url)
+   }
+   deleteCar(id: string): Observable<any> {
+     const url = `${this.apiUrl}/car/${id}`
+     return this.http.delete(url)
+   }
+   deleteBooking(id: string): Observable<any> {
+     const url = `${this.apiUrl}/booking/${id}`
+     return this.http.delete(url)
    }
 
 }
