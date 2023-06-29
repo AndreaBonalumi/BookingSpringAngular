@@ -2,7 +2,6 @@ import { MyTableConfig} from "./interfaces/my-table-config";
 import { MyTableActionEnum} from "./interfaces/my-table-action-enum";
 import {Car} from "./interfaces/car";
 import {MyHeaders} from "./interfaces/my-headers";
-import {first} from "rxjs";
 export const TABLE : MyTableConfig = {
   headers: [],
   order: {
@@ -65,3 +64,28 @@ export const formUser: MyHeaders[] = [
   {key: 'nPatente', label: 'Patente'},
   {key: 'birthday', label: 'Data di nascita'},
 ]
+export const TABLEBOOKING : MyTableConfig = {
+  headers: bookingHeaders,
+  order: {
+    colonna: 'id',
+    verso: 'asc',
+  },
+  search: {columns: bookingHeaders},
+  pagination: {itemPerPage: 3, itemPerPageOption: [2, 5, 7, 4, 3]},
+  actions: [
+    { onTop: false,
+      buttonAction: {
+        text: MyTableActionEnum.APPROVE,
+        icon: 'postcard',
+        class: 'primary'
+      },
+    },
+    { onTop: false,
+      buttonAction: {
+        text: MyTableActionEnum.DECLINE,
+        icon: 'pencil',
+        class: 'secondary'
+      },
+    },
+  ]
+}

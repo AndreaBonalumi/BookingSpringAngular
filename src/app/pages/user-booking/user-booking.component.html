@@ -1,4 +1,4 @@
 <div class="container text-primary">
   <h1>Prenotazioni di {{user.firstName}}</h1>
-  <app-my-table [data]="['booking1', 'booking2']"></app-my-table>
+  <app-my-table [tableConfig]="tableConfig" [data]="bookings" [headers]="headers"></app-my-table>
 </div>

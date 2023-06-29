@@ -20,7 +20,7 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
   @Output() emit: EventEmitter<any> = new EventEmitter<any>()
   @Input() data !: any[];
   @Input() headers !: MyHeaders[];
-  tableConfig = TABLE;
+  @Input() tableConfig = TABLE;
   iconaOrdinamento !: string;
   searchText: string = '';
   searchColumn: string = '';
