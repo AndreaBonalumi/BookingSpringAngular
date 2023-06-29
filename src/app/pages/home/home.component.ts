@@ -25,13 +25,13 @@ export class HomeComponent implements OnInit{
 
     //this.id = this.activeRoute.snapshot.paramMap.get("id")
 
-    this.datiService.getUserById("2").subscribe(user => {
+    this.datiService.getUserById("1").subscribe(user => {
       this.userLogger = user
       if (this.userLogger.admin) {
         this.datiService.getUsers().subscribe(users => this.users = users)
         this.headers = userHeaders;
       } else {
-        this.datiService.getUserBookings("2").subscribe(userBookings => {
+        this.datiService.getUserBookings("1").subscribe(userBookings => {
           this.bookings = userBookings
           for (let i in this.bookings) {
             // @ts-ignore
@@ -44,5 +44,8 @@ export class HomeComponent implements OnInit{
         this.headers = bookingHeaders;
       }
     })
+  }
+  goUserBooking(id: string) {
+    this.router.navigate(['bookings/' + id])
   }
 }

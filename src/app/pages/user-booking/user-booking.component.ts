@@ -21,6 +21,7 @@ export class UserBookingComponent implements OnInit {
   }
   ngOnInit() {
     let id = this.activeRoute.snapshot.paramMap.get("idUser")
+    this.datiService.getUserById(id!).subscribe(user => this.user = user)
     this.datiService.getUserBookings(id!).subscribe(bookings => this.bookings = bookings)
   }
 }

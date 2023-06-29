@@ -9,7 +9,7 @@
 
   <ng-container *ngIf="cars != null">
     <form method="post">
-      <app-my-table (emit)="saveBooking($event)"></app-my-table>
+      <app-my-table (emitButton)="saveBooking($event)"></app-my-table>
     </form>
   </ng-container>
 </div>

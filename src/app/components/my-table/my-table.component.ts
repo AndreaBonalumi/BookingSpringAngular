@@ -17,7 +17,8 @@ import {TABLE} from "../../mock-dati";
   styleUrls: ['./my-table.component.css']
 })
 export class MyTableComponent implements OnInit, AfterContentChecked {
-  @Output() emit: EventEmitter<any> = new EventEmitter<any>()
+  @Output() emitButton: EventEmitter<any> = new EventEmitter<any>()
+  @Output() emitRow: EventEmitter<any> = new EventEmitter<any>()
   @Input() data !: any[];
   @Input() headers !: MyHeaders[];
   @Input() tableConfig = TABLE;
@@ -62,6 +63,6 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
   }
   emitter(azione: string, dato ?: MyHeaders): void {
     const e = {key: azione, dato: dato}
-    this.emit.emit(e)
+    this.emitButton.emit(e)
   }
 }

@@ -31,20 +31,19 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let riga of data | filter: searchText: searchColumn | order: tableConfig.order.verso: tableConfig.order.colonna | pagination: start: end: tableConfig.pagination.itemPerPage: data[0]">
+    <tr *ngFor="let riga of data | filter: searchText: searchColumn | order: tableConfig.order.verso: tableConfig.order.colonna | pagination: start: end: tableConfig.pagination.itemPerPage: data[0]"
+        (click)="emitRow.emit(riga.id)">
       <td *ngFor="let colonna of tableConfig.headers">
         {{riga[colonna.key]}}
       </td>
       <td *ngFor="let azione of tableConfig.actions">
-        <a routerLink="/{{azione.buttonAction.text}}/{{riga.id}}">
-          <app-my-button *ngIf="(azione.hidden === undefined || !azione.hidden(riga)) && !azione.onTop"
-                         [config]="azione.buttonAction">
-          </app-my-button>
-        </a>
+        <app-my-button *ngIf="(azione.hidden === undefined || !azione.hidden(riga)) && !azione.onTop"
+                       (emitter)="emitButton.emit(azione.buttonAction.text)"
+                       [config]="azione.buttonAction">
+        </app-my-button>
       </td>
     </tr>
   </tbody>
 </table>
 
  <app-tool-pagination [table]="tableConfig" [totalItems]="data.length" [start]="start" (emit)="changePagination($event)"></app-tool-pagination>
-<router-outlet></router-outlet>
