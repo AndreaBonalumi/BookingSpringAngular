@@ -34,6 +34,13 @@ export class ToolPaginationComponent implements AfterContentChecked, OnChanges{
   }
 
   setUp() {
+    if (this.start >= this.totalItems) {
+      this.start -= this.table.pagination.itemPerPage
+      this.setUp()
+    }
+    if (this.start < 0) {
+      this.start = 0
+    }
     this.end = this.start + this.table.pagination.itemPerPage;
     this.pagination = Math.ceil(this.totalItems / this.table.pagination.itemPerPage)
     this.paginaCorrente = Math.floor(this.start / this.table.pagination.itemPerPage) + 1;

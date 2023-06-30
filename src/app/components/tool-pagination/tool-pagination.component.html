@@ -1,7 +1,7 @@
 <div class="search">
   <app-my-button [isDisabled]="start <= 0" (emitter)="back()" [config]="button_back"></app-my-button>
 
-  <p *ngIf="paginaCorrente > 3" style="margin-right: 10px; margin-left: 10px">...</p>
+  <span *ngIf="paginaCorrente > 3" style="margin-right: 10px; margin-left: 10px">...</span>
 
   <ng-container *ngFor="let i of arrayPagine">
     <ng-container *ngIf="i >= (paginaCorrente - 2) && i <= (paginaCorrente + 2)">
@@ -9,7 +9,7 @@
     </ng-container>
   </ng-container>
 
-  <p *ngIf="paginaCorrente < (totalItems / table.pagination.itemPerPage) - 2" style="margin-right: 10px">...</p>
+  <span *ngIf="paginaCorrente < (totalItems / table.pagination.itemPerPage) - 2" style="margin-right: 10px">...</span>
 
   <app-my-button [isDisabled]="start >= (totalItems - table.pagination.itemPerPage)" (emitter)="next()" [config]="button_next"></app-my-button>
 

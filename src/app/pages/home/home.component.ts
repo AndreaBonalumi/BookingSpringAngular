@@ -56,12 +56,12 @@ export class HomeComponent implements OnInit {
     }
     if (tableEvent.action === MyTableActionEnum.DELETE) {
       if (this.userLogger.admin) {
-        this.datiService.deleteUser(tableEvent.value).subscribe({
-          next: this.fetchUsers
+        this.datiService.deleteUser(tableEvent.value).subscribe(() => {
+          this.fetchUsers()
         })
       } else {
-        this.datiService.deleteBooking(tableEvent.value).subscribe({
-          next: this.fetchBooking
+        this.datiService.deleteBooking(tableEvent.value).subscribe(() => {
+          this.fetchBooking()
         })
       }
     }

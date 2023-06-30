@@ -30,8 +30,8 @@ export class CarsComponent implements OnInit{
     }
     if (tableEvent.action === MyTableActionEnum.DELETE) {
       this.datiService.deleteCar(tableEvent.value)
-        .subscribe( {
-          next: this.fetchCars
+        .subscribe( () => {
+          this.fetchCars()
         })
     }
   }

@@ -70,7 +70,9 @@ export class MyTableComponent implements OnInit, AfterContentChecked, OnChanges 
     }
   }
   changePagination(currentPage: number): void {
-    this.start = (currentPage - 1) * this.tableConfig.pagination.itemPerPage
+    if (this.end - this.start == this.tableConfig.pagination.itemPerPage) {
+      this.start = (currentPage - 1) * this.tableConfig.pagination.itemPerPage
+    }
     this.end = this.start + this.tableConfig.pagination.itemPerPage
   }
   emitOnlyButton(e: Event, id: TableEvent) {
