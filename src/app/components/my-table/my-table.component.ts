@@ -58,6 +58,10 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
     this.start = (currentPage - 1) * this.tableConfig.pagination.itemPerPage
     this.end = this.start + this.tableConfig.pagination.itemPerPage
   }
+  emitOnlyButton(e: Event, id: any) {
+    e.stopPropagation()
+    this.emitButton.emit((id))
+  }
   ngAfterContentChecked(): void {
     this.cdr.detectChanges()
   }

@@ -16,7 +16,7 @@ import {MyTableActionEnum} from "../../interfaces/my-table-action-enum";
 export class HomeComponent implements OnInit {
 
   userLogger !: User;
-  id: string = '2';
+  id: string = '1';
   users ?: User[];
   bookings ?: Booking[];
   headers !: MyHeaders[];
@@ -48,7 +48,6 @@ export class HomeComponent implements OnInit {
     })
   }
   goUserBooking(id: string) {
-
     this.router.navigate(['bookings/' + id])
   }
   action(action: any[]) {
@@ -69,17 +68,12 @@ export class HomeComponent implements OnInit {
     }
     if (action[0] === MyTableActionEnum.DELETE) {
       if (this.userLogger.admin) {
-        this.datiService.deleteUser(action[1]).subscribe(() => this.users = this.deleteInArray(this.users!, action[1]))
+        this.datiService.deleteUser(action[1]).subscribe(() =>
+          this.datiService.getUsers().subscribe(users => this.users = users))
       } else {
-        this.datiService.deleteBooking(action[1]).subscribe(() => this.bookings = this.deleteInArray(this.bookings!, action[1]))
+        this.datiService.deleteBooking(action[1]).subscribe(() =>
+          this.datiService.getBookingById(this.id).subscribe(bookings => this.bookings = bookings))
       }
     }
-  }
-  deleteInArray(array: any[], id: string): any[] {
-    const index = array.findIndex(item => item.id === id)
-    if (index !== -1) {
-      array.splice(index, 1)
-    }
-    return array
   }
 }

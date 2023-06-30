@@ -36,7 +36,7 @@
       </td>
       <td *ngFor="let azione of tableConfig.actions">
         <app-my-button *ngIf="(azione.hidden === undefined || !azione.hidden(riga)) && !azione.onTop"
-                       (emitter)="emitButton.emit([azione.buttonAction.text, riga.id])"
+                       (emitter)="emitOnlyButton($event, [azione.buttonAction.text, riga.id])"
                        [config]="azione.buttonAction">
         </app-my-button>
       </td>

@@ -78,7 +78,6 @@ export class DatiService {
      return this.http.put(url, booking)
    }
    deleteUser(id: string): Observable<any> {
-    console.log(id)
      const url = `${this.apiUrl}/users/${id}`
      return this.http.delete(url)
    }
