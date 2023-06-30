@@ -35,6 +35,7 @@ export class ManageBookingComponent implements OnInit{
           id: string = "";
           status: number = 0;
           userId: string = user.id;
+
         }
       })
     }
@@ -48,6 +49,9 @@ export class ManageBookingComponent implements OnInit{
   saveBooking(id: string) {
     this.booking.carId = id
     this.booking.status = 0;
-    this.datiService.insertBooking(this.booking).subscribe(() => this.router.navigate(['home']))
+    this.datiService.getCarById(id).subscribe(car => {
+      this.booking.car = car
+      this.datiService.insertBooking(this.booking).subscribe(() => this.router.navigate(['home']))
+    })
   }
 }

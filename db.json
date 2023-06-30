@@ -70,25 +70,21 @@
   "bookings": [
     {
       "id": 1,
-      "dateBookingStart": "2023-06-01",
-      "dateBookingEnd": "2023-06-08",
-      "userId": 2,
-      "carId": 1
-    },
-    {
-      "id": 2,
-      "dateBookingStart": "2023-08-05",
-      "dateBookingEnd": "2023-08-20",
-      "userId": 2,
-      "carId": 1
-    },
-    {
-      "id": 3,
       "status": 0,
-      "user": 2,
-      "dateBookingStart": "2023-06-26",
-      "dateBookingEnd": "2023-06-30",
-      "car": 3
+      "userId": 2,
+      "dateBookingStart": "2023-06-02",
+      "dateBookingEnd": "2023-06-16",
+      "carId": 3,
+      "car": {
+        "id": 3,
+        "brand": "Lamborghini",
+        "model": "Huracan",
+        "color": "Orange",
+        "description": "modifica",
+        "link": "",
+        "created": "",
+        "year": 2023
+      }
     }
   ]
 }

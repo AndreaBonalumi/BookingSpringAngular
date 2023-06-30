@@ -32,7 +32,7 @@
     <tr *ngFor="let riga of data | filter: searchText: searchColumn | order: tableConfig.order.verso: tableConfig.order.colonna | pagination: start: end: tableConfig.pagination.itemPerPage: data[0]"
         (click)="emitRow.emit(riga.id)">
       <td *ngFor="let colonna of tableConfig.headers">
-        {{riga[colonna.key]}}
+        {{getValue(riga, colonna.key)}}
       </td>
       <td *ngFor="let azione of tableConfig.actions">
         <app-my-button *ngIf="(azione.hidden === undefined || !azione.hidden(riga)) && !azione.onTop"

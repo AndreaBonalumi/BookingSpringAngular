@@ -1,4 +1,4 @@
-import {AfterContentChecked, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../../interfaces/user";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DatiService} from "../../services/dati.service";
@@ -7,7 +7,6 @@ import {Booking} from "../../interfaces/booking";
 import {MyHeaders} from "../../interfaces/my-headers";
 import {bookingHeaders, TABLEADMIN, TABLEUSER, userHeaders} from "../../mock-dati";
 import {MyTableActionEnum} from "../../interfaces/my-table-action-enum";
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,7 +15,7 @@ import {MyTableActionEnum} from "../../interfaces/my-table-action-enum";
 export class HomeComponent implements OnInit {
 
   userLogger !: User;
-  id: string = '1';
+  id: string = '2';
   users ?: User[];
   bookings ?: Booking[];
   headers !: MyHeaders[];
@@ -24,25 +23,13 @@ export class HomeComponent implements OnInit {
   tableConfig = TABLEADMIN;
   constructor(private router: Router, private activeRoute: ActivatedRoute, private datiService: DatiService) {}
   ngOnInit() {
-
-    //this.id = this.activeRoute.snapshot.paramMap.get("id")
-
     this.datiService.getUserById(this.id).subscribe(user => {
       this.userLogger = user
       if (this.userLogger.admin) {
         this.datiService.getUsers().subscribe(users => this.users = users)
         this.headers = userHeaders;
       } else {
-        this.datiService.getUserBookings(this.id).subscribe(userBookings => {
-          this.bookings = userBookings
-          for (let i in this.bookings) {
-            // @ts-ignore
-            this.datiService.getCarById(this.bookings[i].id.toString()).subscribe(cars => {
-              // @ts-ignore
-              this.bookings[i].car = cars
-            })
-          }
-        })
+        this.datiService.getUserBookings(this.id).subscribe(bookins => this.bookings = bookins)
         this.headers = bookingHeaders;
       }
     })
@@ -72,7 +59,7 @@ export class HomeComponent implements OnInit {
           this.datiService.getUsers().subscribe(users => this.users = users))
       } else {
         this.datiService.deleteBooking(action[1]).subscribe(() =>
-          this.datiService.getBookingById(this.id).subscribe(bookings => this.bookings = bookings))
+          this.datiService.getUserBookings(this.id).subscribe(bookings => this.bookings = bookings))
       }
     }
   }

@@ -11,4 +11,6 @@ export interface Booking {
   //attenzione
   userId: string;
   carId ?: string;
+  car ?: Car;
+  user ?: User;
 }

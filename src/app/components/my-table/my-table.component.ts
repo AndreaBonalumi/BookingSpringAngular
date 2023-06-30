@@ -27,6 +27,17 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
   searchColumn: string = '';
   start : number = 0;
   end !: number;
+  getValue = (obj: any, key: string) => {
+    const keys = key.split(".");
+    let value = obj;
+    for (let i = 0; i < keys.length; i++) {
+      value = value[keys[i]];
+      if (!value) {
+        break;
+      }
+    }
+    return value;
+  };
   constructor(private cdr: ChangeDetectorRef) {}
   ngOnInit() {
     this.tableConfig.headers = this.headers;
