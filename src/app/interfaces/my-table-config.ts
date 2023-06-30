@@ -4,6 +4,7 @@ import {MySearch} from "./my-search";
 import {MyPagination} from "./my-pagination";
 import {ButtonInterface} from "../../../../button-custom/src/app/buttonInterface";
 import {ConfigButton} from "./config-button";
+import {MyTableActionEnum} from "./my-table-action-enum";
 export interface MyTableConfig {
   headers: MyHeaders[];
   order: Ordinamento;
@@ -15,4 +16,5 @@ export interface ActionConfig {
   onTop: boolean;
   buttonAction: ConfigButton;
   hidden ?: Function;
+  action: MyTableActionEnum;
 }

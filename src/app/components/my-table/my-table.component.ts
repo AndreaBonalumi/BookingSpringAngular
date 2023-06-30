@@ -2,7 +2,7 @@ import {
   AfterContentChecked,
   ChangeDetectorRef,
   Component,
-  EventEmitter, Input,
+  EventEmitter, Input, OnChanges,
   OnInit,
   Output,
 } from '@angular/core';
@@ -10,23 +10,26 @@ import {MyTableConfig} from "../../interfaces/my-table-config";
 import {MyHeaders} from "../../interfaces/my-headers";
 import { DatiService } from "../../services/dati.service";
 import {TABLEADMIN} from "../../mock-dati";
+import {MyTableActionEnum} from "../../interfaces/my-table-action-enum";
 
 @Component({
   selector: 'app-my-table',
   templateUrl: './my-table.component.html',
   styleUrls: ['./my-table.component.css']
 })
-export class MyTableComponent implements OnInit, AfterContentChecked {
+export class MyTableComponent implements OnInit, AfterContentChecked, OnChanges {
   @Output() emitButton: EventEmitter<any> = new EventEmitter<any>()
   @Output() emitRow: EventEmitter<any> = new EventEmitter<any>()
   @Input() data !: any[];
   @Input() headers !: MyHeaders[];
   @Input() tableConfig = TABLEADMIN;
+
   iconaOrdinamento !: string;
   searchText: string = '';
   searchColumn: string = '';
   start : number = 0;
   end !: number;
+  totalItems !: number;
   getValue = (obj: any, key: string) => {
     const keys = key.split(".");
     let value = obj;
@@ -42,6 +45,7 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
   ngOnInit() {
     this.tableConfig.headers = this.headers;
     this.tableConfig.search.columns = this.headers;
+    this.totalItems = this.data.length
     this.end = this.start + this.tableConfig.pagination.itemPerPage
     if (this.tableConfig.order.verso == 'asc') {
       this.iconaOrdinamento = '↓'
@@ -69,11 +73,20 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
     this.start = (currentPage - 1) * this.tableConfig.pagination.itemPerPage
     this.end = this.start + this.tableConfig.pagination.itemPerPage
   }
-  emitOnlyButton(e: Event, id: any) {
+  emitOnlyButton(e: Event, id: TableEvent) {
     e.stopPropagation()
-    this.emitButton.emit((id))
+    this.emitButton.emit(id)
   }
   ngAfterContentChecked(): void {
     this.cdr.detectChanges()
   }
+
+  ngOnChanges(): void {
+    this.totalItems = this.data.length
+  }
+}
+
+export interface TableEvent {
+  action: MyTableActionEnum,
+  value ?: any
 }

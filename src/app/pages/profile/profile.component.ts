@@ -1,8 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../../interfaces/user";
 import {ConfigButton} from "../../interfaces/config-button";
 import {DatiService} from "../../services/dati.service";
-import {dateTimestampProvider} from "rxjs/internal/scheduler/dateTimestampProvider";
 import {MyHeaders} from "../../interfaces/my-headers";
 import {userHeaders} from "../../mock-dati";
 import {Router} from "@angular/router";

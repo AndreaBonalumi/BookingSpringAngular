@@ -1,7 +1,7 @@
-import { MyTableConfig} from "./interfaces/my-table-config";
-import { MyTableActionEnum} from "./interfaces/my-table-action-enum";
-import {Car} from "./interfaces/car";
+import {MyTableConfig} from "./interfaces/my-table-config";
+import {MyTableActionEnum} from "./interfaces/my-table-action-enum";
 import {MyHeaders} from "./interfaces/my-headers";
+
 export const TABLEADMIN : MyTableConfig = {
   headers: [],
   order: {
@@ -13,24 +13,27 @@ export const TABLEADMIN : MyTableConfig = {
   actions: [
     { onTop: true,
       buttonAction: {
-        text: MyTableActionEnum.NEW_ROW,
+        text: 'Nuovo',
         icon: 'postcard',
         class: 'primary'
       },
+      action: MyTableActionEnum.NEW_ROW
     },
     { onTop: false,
       buttonAction: {
-        text: MyTableActionEnum.EDIT,
+        text: 'Modifica',
         icon: 'pencil',
         class: 'secondary'
       },
+      action: MyTableActionEnum.EDIT
     },
     { onTop: false,
       buttonAction: {
-        text: MyTableActionEnum.DELETE,
+        text: 'Cancella',
         icon: 'trash3',
         class: 'secondary'
-      }
+      },
+      action: MyTableActionEnum.DELETE
     },
   ],
 }
@@ -45,17 +48,19 @@ export const TABLEUSER : MyTableConfig = {
   actions: [
     { onTop: false,
       buttonAction: {
-        text: MyTableActionEnum.EDIT,
+        text: 'Modifica',
         icon: 'pencil',
         class: 'secondary'
       },
+      action: MyTableActionEnum.EDIT
     },
     { onTop: false,
       buttonAction: {
-        text: MyTableActionEnum.DELETE,
+        text: 'Cancella',
         icon: 'trash3',
         class: 'secondary'
-      }
+      },
+      action: MyTableActionEnum.DELETE
     },
   ],
 }
@@ -102,17 +107,19 @@ export const TABLEBOOKING : MyTableConfig = {
   actions: [
     { onTop: false,
       buttonAction: {
-        text: MyTableActionEnum.APPROVE,
+        text: 'Approva',
         icon: 'postcard',
         class: 'primary'
       },
+      action: MyTableActionEnum.APPROVE
     },
     { onTop: false,
       buttonAction: {
-        text: MyTableActionEnum.DECLINE,
+        text: 'Rifiuta',
         icon: 'pencil',
         class: 'secondary'
       },
+      action: MyTableActionEnum.DECLINE
     },
   ]
 }

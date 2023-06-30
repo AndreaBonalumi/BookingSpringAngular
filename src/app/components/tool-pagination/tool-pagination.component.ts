@@ -2,10 +2,9 @@ import {
   AfterContentChecked,
   Component,
   EventEmitter,
-  Input,
+  Input, OnChanges,
   Output
 } from '@angular/core';
-import {ButtonInterface} from "../../../../../button-custom/src/app/buttonInterface";
 import {MyTableConfig} from "../../interfaces/my-table-config";
 import {ConfigButton} from "../../interfaces/config-button";
 @Component({
@@ -13,11 +12,12 @@ import {ConfigButton} from "../../interfaces/config-button";
   templateUrl: './tool-pagination.component.html',
   styleUrls: ['./tool-pagination.component.css']
 })
-export class ToolPaginationComponent implements AfterContentChecked{
+export class ToolPaginationComponent implements AfterContentChecked, OnChanges{
   @Input() table !: MyTableConfig;
   @Input() start !: number;
   @Input() totalItems !: number;
   @Output() emit : EventEmitter<number> = new EventEmitter<number>()
+
   end !: number;
   pagination !: number;
   paginaCorrente !: number;
@@ -32,6 +32,7 @@ export class ToolPaginationComponent implements AfterContentChecked{
     icon: 'map',
     class: 'primary'
   }
+
   setUp() {
     this.end = this.start + this.table.pagination.itemPerPage;
     this.pagination = Math.ceil(this.totalItems / this.table.pagination.itemPerPage)
@@ -73,5 +74,9 @@ export class ToolPaginationComponent implements AfterContentChecked{
     }
     if(!this.pagination)
       this.setUp()
+  }
+
+  ngOnChanges(): void {
+    this.setUp()
   }
 }

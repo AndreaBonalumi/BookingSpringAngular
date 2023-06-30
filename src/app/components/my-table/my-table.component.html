@@ -12,7 +12,7 @@
 
    <ng-container *ngFor="let azione of tableConfig.actions">
      <app-my-button *ngIf="azione.onTop"
-                    (emitter)="emitButton.emit([azione.buttonAction.text])"
+                    (emitter)="emitButton.emit({action: azione.action})"
                     [config]="azione.buttonAction">
      </app-my-button>
    </ng-container>
@@ -36,7 +36,7 @@
       </td>
       <td *ngFor="let azione of tableConfig.actions">
         <app-my-button *ngIf="(azione.hidden === undefined || !azione.hidden(riga)) && !azione.onTop"
-                       (emitter)="emitOnlyButton($event, [azione.buttonAction.text, riga.id])"
+                       (emitter)="emitOnlyButton($event, {action: azione.action, value: riga.id})"
                        [config]="azione.buttonAction">
         </app-my-button>
       </td>
@@ -44,4 +44,4 @@
   </tbody>
 </table>
 
- <app-tool-pagination [table]="tableConfig" [totalItems]="data.length" [start]="start" (emit)="changePagination($event)"></app-tool-pagination>
+ <app-tool-pagination [table]="tableConfig" [totalItems]="totalItems" [start]="start" (emit)="changePagination($event)"></app-tool-pagination>

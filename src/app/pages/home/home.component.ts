@@ -7,6 +7,7 @@ import {Booking} from "../../interfaces/booking";
 import {MyHeaders} from "../../interfaces/my-headers";
 import {bookingHeaders, TABLEADMIN, TABLEUSER, userHeaders} from "../../mock-dati";
 import {MyTableActionEnum} from "../../interfaces/my-table-action-enum";
+import {TableEvent} from "../../components/my-table/my-table.component";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,7 +16,7 @@ import {MyTableActionEnum} from "../../interfaces/my-table-action-enum";
 export class HomeComponent implements OnInit {
 
   userLogger !: User;
-  id: string = '2';
+  id: string = '1';
   users ?: User[];
   bookings ?: Booking[];
   headers !: MyHeaders[];
@@ -26,10 +27,10 @@ export class HomeComponent implements OnInit {
     this.datiService.getUserById(this.id).subscribe(user => {
       this.userLogger = user
       if (this.userLogger.admin) {
-        this.datiService.getUsers().subscribe(users => this.users = users)
+        this.fetchUsers()
         this.headers = userHeaders;
       } else {
-        this.datiService.getUserBookings(this.id).subscribe(bookins => this.bookings = bookins)
+        this.fetchBooking()
         this.headers = bookingHeaders;
       }
     })
@@ -37,7 +38,7 @@ export class HomeComponent implements OnInit {
   goUserBooking(id: string) {
     this.router.navigate(['bookings/' + id])
   }
-  action(action: any[]) {
+  action(tableEvent: TableEvent) {
 
     let route: string
     if (this.userLogger.admin) {
@@ -47,20 +48,28 @@ export class HomeComponent implements OnInit {
       route = this.id + '/manageBooking'
     }
 
-    if (action[0] === MyTableActionEnum.NEW_ROW) {
-      this.router.navigate([`${route}/-1`])
+    if (tableEvent.action === MyTableActionEnum.NEW_ROW) {
+      this.router.navigate([`${route}`])
     }
-    if (action[0] === MyTableActionEnum.EDIT) {
-      this.router.navigate([`${route}/${action[1]}`])
+    if (tableEvent.action === MyTableActionEnum.EDIT) {
+      this.router.navigate([`${route}/${tableEvent.value}`])
     }
-    if (action[0] === MyTableActionEnum.DELETE) {
+    if (tableEvent.action === MyTableActionEnum.DELETE) {
       if (this.userLogger.admin) {
-        this.datiService.deleteUser(action[1]).subscribe(() =>
-          this.datiService.getUsers().subscribe(users => this.users = users))
+        this.datiService.deleteUser(tableEvent.value).subscribe({
+          next: this.fetchUsers
+        })
       } else {
-        this.datiService.deleteBooking(action[1]).subscribe(() =>
-          this.datiService.getUserBookings(this.id).subscribe(bookings => this.bookings = bookings))
+        this.datiService.deleteBooking(tableEvent.value).subscribe({
+          next: this.fetchBooking
+        })
       }
     }
+  }
+  fetchBooking() {
+    this.datiService.getUserBookings(this.id).subscribe(bookings => this.bookings = bookings)
+  }
+  fetchUsers() {
+    this.datiService.getUsers().subscribe(users => this.users = users)
   }
 }

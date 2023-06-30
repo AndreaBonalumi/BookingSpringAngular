@@ -20,9 +20,9 @@
       "password": "1234",
       "email": "andrea.bonalumi@si2001.it",
       "admin": false,
-      "birthday": "admin1",
+      "birthday": "",
       "created": "admin1",
-      "nPatente": ""
+      "nPatente": "hamiltonnnn"
     }
   ],
   "cars": [
@@ -51,7 +51,7 @@
       "brand": "Lamborghini",
       "model": "Huracan",
       "color": "Orange",
-      "description": "modifica",
+      "description": "3",
       "link": "",
       "created": "",
       "year": 2023
@@ -65,6 +65,36 @@
       "link": "",
       "created": "",
       "year": 2023
+    },
+    {
+      "brand": "volkswagen",
+      "color": "nera",
+      "created": "today",
+      "description": "bella",
+      "id": 5,
+      "link": "",
+      "model": "polo",
+      "year": 0
+    },
+    {
+      "brand": "Fiat",
+      "color": "blue",
+      "created": "today",
+      "description": "descrizione mod",
+      "id": 6,
+      "link": "un link",
+      "model": "huracan",
+      "year": "20000"
+    },
+    {
+      "brand": "Honda",
+      "color": "blue and orange",
+      "created": "today",
+      "description": "1200cc 5 posti 5 porte",
+      "id": 7,
+      "link": "",
+      "model": "civic",
+      "year": "2018"
     }
   ],
   "bookings": [

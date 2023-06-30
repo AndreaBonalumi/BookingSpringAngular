@@ -15,8 +15,11 @@ let routes: Routes = [
   {path: 'cars', component: CarsComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'manageUser/:id', component: ManageUserComponent},
+  {path: 'manageUser', component: ManageUserComponent},
   {path: 'manageCar/:id', component: ManageCarComponent},
+  {path: 'manageCar', component: ManageCarComponent},
   {path: ':idUser/manageBooking/:idBooking', component: ManageBookingComponent},
+  {path: ':idUser/manageBooking', component: ManageBookingComponent},
   {path: 'bookings/:id', component: UserBookingComponent},
   {path: 'login', component: LoginComponent}
   ];

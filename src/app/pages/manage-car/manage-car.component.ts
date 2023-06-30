@@ -1,11 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {carHeaders} from "../../mock-dati";
-import {NgForm} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DatiService} from "../../services/dati.service";
 import {Car} from "../../interfaces/car";
-import {dateTimestampProvider} from "rxjs/internal/scheduler/dateTimestampProvider";
-
 @Component({
   selector: 'app-manage-car',
   templateUrl: './manage-car.component.html',
@@ -19,18 +16,16 @@ export class ManageCarComponent implements OnInit{
   }
   ngOnInit() {
     let id = this.activeRoute.snapshot.paramMap.get("id")
-    if (id === '-1') {
-      this.car = new class implements Car {
-        [key: string]: any;
-
-        brand: string = '';
-        color: string = '';
-        created: string = '';
-        description: string = '';
-        id: string = '';
-        link: string = '';
-        model: string = '';
-        year: number = 0;
+    if (id == null) {
+      this.car = {
+        brand: '',
+        color: '',
+        created: '',
+        description: '',
+        id: '',
+        link: '',
+        model: '',
+        year: 0
       }
     } else {
       this.datiService.getCarById(id!).subscribe(car => {
@@ -39,14 +34,11 @@ export class ManageCarComponent implements OnInit{
     }
   }
   manageCar(car: Car) {
-     this.datiService.getCarById(car.id).subscribe(car => {
-
-       if(car != null || car != undefined) {
+     if (car.id) {
          this.datiService.editCar(this.car).subscribe(() => this.router.navigate(['cars']))
        } else {
          this.car.created = 'today'
          this.datiService.insertCar(this.car).subscribe(() => this.router.navigate(['cars']))
        }
-     })
-  }
+     }
 }
