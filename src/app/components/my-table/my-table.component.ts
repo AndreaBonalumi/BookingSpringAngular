@@ -9,7 +9,7 @@ import {
 import {MyTableConfig} from "../../interfaces/my-table-config";
 import {MyHeaders} from "../../interfaces/my-headers";
 import { DatiService } from "../../services/dati.service";
-import {TABLE} from "../../mock-dati";
+import {TABLEADMIN} from "../../mock-dati";
 
 @Component({
   selector: 'app-my-table',
@@ -21,7 +21,7 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
   @Output() emitRow: EventEmitter<any> = new EventEmitter<any>()
   @Input() data !: any[];
   @Input() headers !: MyHeaders[];
-  @Input() tableConfig = TABLE;
+  @Input() tableConfig = TABLEADMIN;
   iconaOrdinamento !: string;
   searchText: string = '';
   searchColumn: string = '';

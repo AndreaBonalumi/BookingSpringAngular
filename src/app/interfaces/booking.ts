@@ -1,12 +1,14 @@
 import {User} from "./user";
 import {Car} from "./car";
+import {Moment} from "moment";
 
 export interface Booking {
   [key: string]: any
-  id: number;
-  dateBookingStart: string;
-  dateBookingEnd: string;
+  id: string;
+  dateBookingStart: Moment | undefined;
+  dateBookingEnd: Moment | undefined;
   status: number;
-  user: User;
-  car: Car;
+  //attenzione
+  userId: string;
+  carId ?: string;
 }

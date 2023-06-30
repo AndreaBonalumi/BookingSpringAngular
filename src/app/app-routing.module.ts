@@ -16,7 +16,7 @@ let routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'manageUser/:id', component: ManageUserComponent},
   {path: 'manageCar/:id', component: ManageCarComponent},
-  {path: 'manageBooking/:id', component: ManageBookingComponent},
+  {path: ':idUser/manageBooking/:idBooking', component: ManageBookingComponent},
   {path: 'bookings/:id', component: UserBookingComponent},
   {path: 'login', component: LoginComponent}
   ];

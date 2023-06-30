@@ -2,7 +2,7 @@ import { MyTableConfig} from "./interfaces/my-table-config";
 import { MyTableActionEnum} from "./interfaces/my-table-action-enum";
 import {Car} from "./interfaces/car";
 import {MyHeaders} from "./interfaces/my-headers";
-export const TABLE : MyTableConfig = {
+export const TABLEADMIN : MyTableConfig = {
   headers: [],
   order: {
     colonna: 'id',
@@ -18,6 +18,31 @@ export const TABLE : MyTableConfig = {
         class: 'primary'
       },
     },
+    { onTop: false,
+      buttonAction: {
+        text: MyTableActionEnum.EDIT,
+        icon: 'pencil',
+        class: 'secondary'
+      },
+    },
+    { onTop: false,
+      buttonAction: {
+        text: MyTableActionEnum.DELETE,
+        icon: 'trash3',
+        class: 'secondary'
+      }
+    },
+  ],
+}
+export const TABLEUSER : MyTableConfig = {
+  headers: [],
+  order: {
+    colonna: 'id',
+    verso: 'asc',
+  },
+  search: {columns: []},
+  pagination: {itemPerPage: 3, itemPerPageOption: [2, 5, 7, 4, 3]},
+  actions: [
     { onTop: false,
       buttonAction: {
         text: MyTableActionEnum.EDIT,
@@ -88,4 +113,14 @@ export const TABLEBOOKING : MyTableConfig = {
       },
     },
   ]
+}
+export const TABLECAR : MyTableConfig = {
+  headers: bookingHeaders,
+  order: {
+    colonna: 'id',
+    verso: 'asc',
+  },
+  search: {columns: bookingHeaders},
+  pagination: {itemPerPage: 3, itemPerPageOption: [2, 5, 7, 4, 3]},
+  actions: []
 }

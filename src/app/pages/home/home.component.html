@@ -2,7 +2,7 @@
   <ng-container *ngIf="userLogger.admin && users">
     <div class="container text-primary">
       <h1>Utenti:</h1>
-      <app-my-table [data]="users" [headers]="headers"
+      <app-my-table [data]="users" [headers]="headers" [tableConfig]="tableConfig"
                     (emitButton)="action($event)"
                     (emitRow)="goUserBooking($event)"></app-my-table>
     </div>
@@ -10,7 +10,8 @@
   <ng-container *ngIf="!userLogger.admin && bookings">
     <div class="container text-secondary">
       <h1>Lista prenotazioni:</h1>
-      <app-my-table [data]="bookings" [headers]="headers"></app-my-table>
+      <app-my-table [data]="bookings" [headers]="headers" [tableConfig]="tableConfig"
+                    (emitButton)="action($event)"></app-my-table>
     </div>
   </ng-container>
 </ng-container>

@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterContentChecked, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {User} from "../../interfaces/user";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DatiService} from "../../services/dati.service";
 import {Car} from "../../interfaces/car";
 import {Booking} from "../../interfaces/booking";
 import {MyHeaders} from "../../interfaces/my-headers";
-import {bookingHeaders, userHeaders} from "../../mock-dati";
+import {bookingHeaders, TABLEADMIN, TABLEUSER, userHeaders} from "../../mock-dati";
 import {MyTableActionEnum} from "../../interfaces/my-table-action-enum";
 
 @Component({
@@ -13,26 +13,27 @@ import {MyTableActionEnum} from "../../interfaces/my-table-action-enum";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
 
   userLogger !: User;
-  id !: string | null;
+  id: string = '2';
   users ?: User[];
   bookings ?: Booking[];
   headers !: MyHeaders[];
   cars: Car[] = [];
+  tableConfig = TABLEADMIN;
   constructor(private router: Router, private activeRoute: ActivatedRoute, private datiService: DatiService) {}
   ngOnInit() {
 
     //this.id = this.activeRoute.snapshot.paramMap.get("id")
 
-    this.datiService.getUserById("1").subscribe(user => {
+    this.datiService.getUserById(this.id).subscribe(user => {
       this.userLogger = user
       if (this.userLogger.admin) {
         this.datiService.getUsers().subscribe(users => this.users = users)
         this.headers = userHeaders;
       } else {
-        this.datiService.getUserBookings("1").subscribe(userBookings => {
+        this.datiService.getUserBookings(this.id).subscribe(userBookings => {
           this.bookings = userBookings
           for (let i in this.bookings) {
             // @ts-ignore
@@ -47,6 +48,7 @@ export class HomeComponent implements OnInit{
     })
   }
   goUserBooking(id: string) {
+
     this.router.navigate(['bookings/' + id])
   }
   action(action: any[]) {
@@ -56,19 +58,16 @@ export class HomeComponent implements OnInit{
       route = 'manageUser'
     }
     else {
-      route = 'manageBooking'
+      route = this.id + '/manageBooking'
     }
 
     if (action[0] === MyTableActionEnum.NEW_ROW) {
-      console.log('new')
       this.router.navigate([`${route}/-1`])
     }
     if (action[0] === MyTableActionEnum.EDIT) {
-      console.log('edit')
       this.router.navigate([`${route}/${action[1]}`])
     }
     if (action[0] === MyTableActionEnum.DELETE) {
-      console.log('delete')
       if (this.userLogger.admin) {
         this.datiService.deleteUser(action[1]).subscribe(() => this.users = this.deleteInArray(this.users!, action[1]))
       } else {

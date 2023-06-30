@@ -1,15 +1,16 @@
-<div class="container" [ngClass]="user.admin ? 'text-primary' : 'text-secondary'">
-  <h1>Gestisci prenotazione</h1>
-  <form method="get">
-    <label for="start">Data inizio: </label>
-    <input id="start" type="date" required>
-    <label for="end">Data fine: </label>
-    <input id="end" type="date" required>
-  </form>
-
-  <ng-container *ngIf="cars != null">
-    <form method="post">
-      <app-my-table (emitButton)="saveBooking($event)"></app-my-table>
+<ng-container *ngIf="booking">
+  <div class="container text-primary">
+    <h1>Gestisci prenotazione</h1>
+    <form #form = "ngForm">
+      <label for="start">Data inizio: </label>
+      <input id="start" type="date" name="start" [(ngModel)]="booking.dateBookingStart" required> <br/><br/>
+      <label for="end">Data fine: </label>
+      <input id="end" type="date" name="end" [(ngModel)]="booking.dateBookingEnd" required> <br/><br/>
+      <button class="btn btn-primary" type="submit" [disabled]="!form.valid" (click)="searchCars()">Cerca disponibilità</button>
     </form>
-  </ng-container>
-</div>
+
+    <ng-container *ngIf="cars">
+      <app-my-table [tableConfig]="tableConfig" [headers]="headers" [data]="cars" (emitRow)="saveBooking($event)"></app-my-table>
+    </ng-container>
+  </div>
+</ng-container>
