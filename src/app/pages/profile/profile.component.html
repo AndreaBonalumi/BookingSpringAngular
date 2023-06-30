@@ -5,6 +5,7 @@
           <span>{{field.label}}: {{user[field.key]}}</span><br/><br/>
         </ng-container>
       </div>
-    <app-my-button [config]="editButton"></app-my-button>
+    <app-my-button [config]="editButton" (emitter)="emit()"></app-my-button>
   </div>
 </ng-container>
+

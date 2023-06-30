@@ -29,10 +29,7 @@ export class CarsComponent implements OnInit{
     }
     if (action[0] === MyTableActionEnum.DELETE) {
       this.datiService.deleteCar(action[1]).subscribe(() => {
-        const index = this.cars.findIndex(item => item.id === action[1])
-        if (index !== -1) {
-          this.cars.splice(index, 1)
-        }
+        this.datiService.getCars().subscribe(cars => this.cars = cars)
       })
     }
   }

@@ -51,7 +51,7 @@
       "brand": "Lamborghini",
       "model": "Huracan",
       "color": "Orange",
-      "description": "3",
+      "description": "modifica",
       "link": "",
       "created": "",
       "year": 2023
@@ -62,26 +62,6 @@
       "model": "Huracan",
       "color": "Orange",
       "description": "4",
-      "link": "",
-      "created": "",
-      "year": 2023
-    },
-    {
-      "id": 5,
-      "brand": "Lamborghini",
-      "model": "Huracan",
-      "color": "Orange",
-      "description": "5",
-      "link": "",
-      "created": "",
-      "year": 2023
-    },
-    {
-      "id": 6,
-      "brand": "Lamborghini",
-      "model": "Huracan",
-      "color": "Orange",
-      "description": "6",
       "link": "",
       "created": "",
       "year": 2023

@@ -5,6 +5,7 @@ import {DatiService} from "../../services/dati.service";
 import {dateTimestampProvider} from "rxjs/internal/scheduler/dateTimestampProvider";
 import {MyHeaders} from "../../interfaces/my-headers";
 import {userHeaders} from "../../mock-dati";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
@@ -19,9 +20,13 @@ export class ProfileComponent implements OnInit{
     class: "btn btn-primary",
     text: "Modifica"
   }
-  constructor(private datiService: DatiService) {
+  isEdit: boolean = false
+  constructor(private datiService: DatiService, private router: Router) {
   }
   ngOnInit() {
     this.datiService.getUserById("2").subscribe(user => this.user = user)
+  }
+  emit() {
+    this.router.navigate(['manageUser/' + this.user.id])
   }
 }
