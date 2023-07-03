@@ -1,3 +1,6 @@
+import {Moment} from "moment";
+import {Dayjs} from "dayjs";
+
 export interface User {
   [key: string]: any
   id: string;
@@ -6,8 +9,8 @@ export interface User {
   username: string;
   password: string;
   email: string;
-  created: string;
-  birthday: string;
+  created ?: Moment;
+  birthday ?: Moment;
   admin: boolean;
   nPatente: string;
 }

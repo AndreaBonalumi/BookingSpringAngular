@@ -3,6 +3,7 @@ import {carHeaders} from "../../mock-dati";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DatiService} from "../../services/dati.service";
 import {Car} from "../../interfaces/car";
+import * as moment from "moment";
 @Component({
   selector: 'app-manage-car',
   templateUrl: './manage-car.component.html',
@@ -20,7 +21,6 @@ export class ManageCarComponent implements OnInit{
       this.car = {
         brand: '',
         color: '',
-        created: '',
         description: '',
         id: '',
         link: '',
@@ -37,7 +37,7 @@ export class ManageCarComponent implements OnInit{
      if (car.id) {
          this.datiService.editCar(this.car).subscribe(() => this.router.navigate(['cars']))
        } else {
-         this.car.created = 'today'
+         this.car.created = moment()
          this.datiService.insertCar(this.car).subscribe(() => this.router.navigate(['cars']))
        }
      }

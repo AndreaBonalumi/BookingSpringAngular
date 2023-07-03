@@ -5,8 +5,8 @@ import {Moment} from "moment";
 export interface Booking {
   [key: string]: any
   id: string;
-  dateBookingStart: Moment | undefined;
-  dateBookingEnd: Moment | undefined;
+  dateBookingStart ?: Moment;
+  dateBookingEnd ?: Moment;
   status: number;
   //attenzione
   userId: string;

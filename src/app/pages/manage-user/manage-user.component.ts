@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {formUser} from "../../mock-dati";
-import {NgForm} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DatiService} from "../../services/dati.service";
 import {User} from "../../interfaces/user";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-manage-user',
@@ -21,8 +21,6 @@ export class ManageUserComponent implements OnInit{
     if (this.id == null) {
       this.user = {
         admin: false,
-        birthday: "",
-        created: "",
         email: "",
         firstName: "",
         id: "",
@@ -42,7 +40,7 @@ export class ManageUserComponent implements OnInit{
     if (this.user.id) {
       this.datiService.editUser(user).subscribe(() => this.router.navigate(['home']))
     } else {
-      user.created = 'today'
+      user.created = moment()
       this.datiService.insertUser(user).subscribe(() => this.router.navigate(['home']))
     }
   }

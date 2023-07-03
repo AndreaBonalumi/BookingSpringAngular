@@ -5,6 +5,8 @@ import {Booking} from "../../interfaces/booking";
 import {DatiService} from "../../services/dati.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {carHeaders, TABLECAR} from "../../mock-dati";
+import * as dayjs from 'dayjs'
+
 
 @Component({
   selector: 'app-manage-booking',
@@ -18,6 +20,7 @@ export class ManageBookingComponent implements OnInit{
   tableConfig = TABLECAR;
   headers = carHeaders;
   booking !: Booking
+  today = dayjs()
 
   constructor(private datiService: DatiService, private router: Router, private activeroute: ActivatedRoute) {}
   ngOnInit() {

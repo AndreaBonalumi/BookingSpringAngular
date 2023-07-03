@@ -1,3 +1,5 @@
+import {Moment} from "moment";
+
 export interface Car {
   [key: string]: any
   id: string;
@@ -6,6 +8,6 @@ export interface Car {
   color: string;
   description: string;
   link: string;
-  created: string;
+  created ?: Moment;
   year: number;
 }

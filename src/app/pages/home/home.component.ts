@@ -16,7 +16,7 @@ import {TableEvent} from "../../components/my-table/my-table.component";
 export class HomeComponent implements OnInit {
 
   userLogger !: User;
-  id: string = '1';
+  id: string = '2';
   users ?: User[];
   bookings ?: Booking[];
   headers !: MyHeaders[];
