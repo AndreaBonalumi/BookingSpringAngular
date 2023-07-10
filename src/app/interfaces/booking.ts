@@ -3,10 +3,10 @@ import {StatusEnum} from "./status-enum";
 
 export interface Booking {
   [key: string]: any
-  id: bigint;
+  id ?: number;
   dateBookingStart ?: Moment;
   dateBookingEnd ?: Moment;
-  status: StatusEnum;
-  userId: bigint;
-  carId ?: bigint;
+  status ?: StatusEnum;
+  userId: number;
+  carId ?: number;
 }

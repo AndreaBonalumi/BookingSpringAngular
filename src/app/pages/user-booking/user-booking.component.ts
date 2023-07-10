@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../../interfaces/user";
 import {bookingHeaders, TABLEBOOKING} from "../../mock-dati";
-import {DatiService} from "../../services/dati.service";
 import {ActivatedRoute} from "@angular/router";
 import {Booking} from "../../interfaces/booking";
-import {MyTableActionEnum} from "../../interfaces/my-table-action-enum";
 import {TableEvent} from "../../components/my-table/my-table.component";
+import {UserService} from "../../services/user.service";
+import {BookingService} from "../../services/booking.service";
 
 @Component({
   selector: 'app-user-booking',
@@ -19,22 +19,16 @@ export class UserBookingComponent implements OnInit {
   user !: User
   bookings !: Booking[]
 
-  constructor(private datiService: DatiService, private activeRoute: ActivatedRoute) {
+  constructor(private userService: UserService, private activeRoute: ActivatedRoute, private bookingService: BookingService) {
   }
   ngOnInit() {
     let id = this.activeRoute.snapshot.paramMap.get("id")
-    this.datiService.getUserById(id!).subscribe(user => this.user = user)
-    this.datiService.getUserBookings(id!).subscribe(bookings => this.bookings = bookings)
+    this.userService.getUserById(Number(id!)).subscribe(user => this.user = user)
+    this.userService.getUserBookings(Number(id!)).subscribe(bookings => this.bookings = bookings)
   }
   action(tableEvent: TableEvent) {
-    this.datiService.getBookingById(tableEvent.value).subscribe( booking => {
-      if (tableEvent.action === MyTableActionEnum.APPROVE) {
-        booking.status = 1
-      }
-      if (tableEvent.action === MyTableActionEnum.DECLINE) {
-        booking.status = 2
-      }
-      this.datiService.editBooking(booking).subscribe(() => {
+    this.bookingService.getBookingById(tableEvent.value).subscribe( booking => {
+      this.bookingService.manageBooking(booking, tableEvent.action).subscribe(() => {
         const index = this.bookings.findIndex(item => item.id === tableEvent.value)
         if (index !== -1) {
           this.bookings.splice(index, 1)

@@ -1,13 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../../interfaces/user";
 import {ActivatedRoute, Router} from "@angular/router";
-import {DatiService} from "../../services/dati.service";
 import {Car} from "../../interfaces/car";
 import {Booking} from "../../interfaces/booking";
 import {MyHeaders} from "../../interfaces/my-headers";
-import {bookingHeaders, TABLEADMIN, TABLEUSER, userHeaders} from "../../mock-dati";
+import {bookingHeaders, TABLEADMIN, userHeaders} from "../../mock-dati";
 import {MyTableActionEnum} from "../../interfaces/my-table-action-enum";
 import {TableEvent} from "../../components/my-table/my-table.component";
+import {UserService} from "../../services/user.service";
+import {BookingService} from "../../services/booking.service";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,13 +17,14 @@ import {TableEvent} from "../../components/my-table/my-table.component";
 export class HomeComponent implements OnInit {
 
   userLogger !: User;
-  id: string = '2';
+  id: number = 1;
   users ?: User[];
   bookings ?: Booking[];
   headers !: MyHeaders[];
   cars: Car[] = [];
   tableConfig = TABLEADMIN;
-  constructor(private router: Router, private activeRoute: ActivatedRoute, private datiService: DatiService) {}
+  constructor(private router: Router, private activeRoute: ActivatedRoute,
+              private datiService: UserService, private bookingService: BookingService) {}
   ngOnInit() {
     this.datiService.getUserById(this.id).subscribe(user => {
       this.userLogger = user
@@ -60,7 +62,7 @@ export class HomeComponent implements OnInit {
           this.fetchUsers()
         })
       } else {
-        this.datiService.deleteBooking(tableEvent.value).subscribe(() => {
+        this.bookingService.deleteBooking(tableEvent.value).subscribe(() => {
           this.fetchBooking()
         })
       }

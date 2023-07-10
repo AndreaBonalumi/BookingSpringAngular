@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {carHeaders} from "../../mock-dati";
 import {Car} from "../../interfaces/car";
-import {DatiService} from "../../services/dati.service";
 import {MyTableActionEnum} from "../../interfaces/my-table-action-enum";
 import {Router} from "@angular/router";
 import {TableEvent} from "../../components/my-table/my-table.component";
+import {CarService} from "../../services/car.service";
 
 @Component({
   selector: 'app-cars',
@@ -16,7 +16,7 @@ export class CarsComponent implements OnInit{
   cars: Car[] = [];
   headers = carHeaders;
 
-  constructor(private router: Router, private datiService: DatiService) {
+  constructor(private router: Router, private carService: CarService) {
   }
   ngOnInit() {
     this.fetchCars()
@@ -29,13 +29,13 @@ export class CarsComponent implements OnInit{
       this.router.navigate([`manageCar/${tableEvent.value}`])
     }
     if (tableEvent.action === MyTableActionEnum.DELETE) {
-      this.datiService.deleteCar(tableEvent.value)
+      this.carService.deleteCar(tableEvent.value)
         .subscribe( () => {
           this.fetchCars()
         })
     }
   }
   fetchCars() {
-    this.datiService.getCars().subscribe(cars => this.cars = cars)
+    this.carService.getCars().subscribe(cars => this.cars = cars)
   }
 }

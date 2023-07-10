@@ -11,7 +11,7 @@ export class UserService {
   private apiUrl = "http://localhost:8091/api/user"
   constructor(private http: HttpClient) { }
 
-  getUserById(id: string): Observable<any> {
+  getUserById(id: number): Observable<any> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get(url)
   }
@@ -19,7 +19,7 @@ export class UserService {
     const url = `${this.apiUrl}/all`;
     return this.http.get(url)
   }
-  getUserBookings(id: string): Observable<any> {
+  getUserBookings(id: number): Observable<any> {
     const url = `${this.apiUrl}/detail/${id}`
     return this.http.get(url)
   }
@@ -27,11 +27,7 @@ export class UserService {
     const url = `${this.apiUrl}/insert`
     return this.http.post(url, user)
   }
-  editUser(user: User): Observable<any> {
-    const url = `${this.apiUrl}/edit`
-    return this.http.put(url, user)
-  }
-  deleteUser(id: string): Observable<any> {
+  deleteUser(id: number): Observable<any> {
     const url = `${this.apiUrl}/delete/${id}`
     return this.http.delete(url)
   }

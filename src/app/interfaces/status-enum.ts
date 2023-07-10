@@ -1,5 +1,5 @@
 export enum StatusEnum {
-  APPROVE,
-  DECLINE,
-  ToAPPROVE
+  APPROVE = "Approvata",
+  DECLINE = "Rifiutata",
+  ToAPPROVE = "In approvazione"
 }

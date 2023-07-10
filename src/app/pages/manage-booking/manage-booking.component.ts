@@ -2,11 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {User} from "../../interfaces/user";
 import {Car} from "../../interfaces/car";
 import {Booking} from "../../interfaces/booking";
-import {DatiService} from "../../services/dati.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {carHeaders, TABLECAR} from "../../mock-dati";
 import * as dayjs from 'dayjs'
-
+import {BookingService} from "../../services/booking.service";
+import {UserService} from "../../services/user.service";
+import {CarService} from "../../services/car.service";
 
 @Component({
   selector: 'app-manage-booking',
@@ -22,39 +23,32 @@ export class ManageBookingComponent implements OnInit{
   booking !: Booking
   today = dayjs()
 
-  constructor(private datiService: DatiService, private router: Router, private activeroute: ActivatedRoute) {}
+  constructor(private bookingService: BookingService,
+              private userService: UserService,
+              private carService: CarService,
+              private router: Router, private activeroute: ActivatedRoute) {}
   ngOnInit() {
     let idBooking = this.activeroute.snapshot.paramMap.get("idBooking")
     if(idBooking != null) {
-      this.datiService.getBookingById(idBooking!).subscribe(booking => this.booking = booking)
+      this.bookingService.getBookingById(Number(idBooking!)).subscribe(booking => this.booking = booking)
     } else {
       let idUser = this.activeroute.snapshot.paramMap.get("idUser")
-      this.datiService.getUserById(idUser!).subscribe(user => {
+      this.userService.getUserById(Number(idUser!)).subscribe(user => {
         this.booking = {
           dateBookingEnd: undefined,
           dateBookingStart: undefined,
-          id: "",
-          status:  0,
           userId: user.id
-
         }
       })
     }
   }
   searchCars() {
-    this.datiService.getCars().subscribe(cars => {
+    this.bookingService.getCarsByDate(this.booking.dateBookingStart!, this.booking.dateBookingEnd!).subscribe(cars => {
       this.cars = cars
     })
   }
-  saveBooking(id: string) {
+  saveBooking(id: number) {
     this.booking.carId = id
-    this.booking.status = 0;
-    this.datiService.getCarById(id).subscribe(car => {
-      this.booking.car = car
-      if (this.booking.id)
-        this.datiService.editBooking(this.booking).subscribe(() => this.router.navigate(['home']))
-      else
-        this.datiService.insertBooking(this.booking).subscribe(() => this.router.navigate(['home']))
-    })
+    this.bookingService.insertBooking(this.booking).subscribe(() => this.router.navigate(['home']))
   }
 }

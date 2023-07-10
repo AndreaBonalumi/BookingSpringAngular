@@ -10,7 +10,8 @@ export class CarService {
 
   private apiUrl = "http://localhost:8091/api/car"
   constructor(private http: HttpClient) { }
-  getCarById(id: string): Observable<any> {
+
+  getCarById(id: number): Observable<any> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get(url)
   }
@@ -22,11 +23,7 @@ export class CarService {
     const url = `${this.apiUrl}/insert`
     return this.http.post(url, car)
   }
-  editCar(car: Car): Observable<any> {
-    const url = `${this.apiUrl}/edit`
-    return this.http.put(url, car)
-  }
-  deleteCar(id: string): Observable<any> {
+  deleteCar(id: number): Observable<any> {
     const url = `${this.apiUrl}/delete/${id}`
     return this.http.delete(url)
   }

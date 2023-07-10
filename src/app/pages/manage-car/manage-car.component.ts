@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {carHeaders} from "../../mock-dati";
 import {ActivatedRoute, Router} from "@angular/router";
-import {DatiService} from "../../services/dati.service";
 import {Car} from "../../interfaces/car";
-import * as moment from "moment";
+import {CarService} from "../../services/car.service";
 @Component({
   selector: 'app-manage-car',
   templateUrl: './manage-car.component.html',
@@ -13,32 +12,28 @@ export class ManageCarComponent implements OnInit{
 
   carFields = carHeaders;
   car !: Car
-  constructor(private router: Router, private datiService: DatiService, private activeRoute: ActivatedRoute) {
+  constructor(private router: Router, private carService: CarService, private activeRoute: ActivatedRoute) {
   }
   ngOnInit() {
     let id = this.activeRoute.snapshot.paramMap.get("id")
     if (id == null) {
       this.car = {
+        plate: '',
         brand: '',
         color: '',
         description: '',
-        id: '',
         link: '',
         model: '',
-        year: 0
+        year: undefined
+
       }
     } else {
-      this.datiService.getCarById(id!).subscribe(car => {
+      this.carService.getCarById(Number(id!)).subscribe(car => {
         this.car = car
       })
     }
   }
   manageCar(car: Car) {
-     if (car.id) {
-         this.datiService.editCar(this.car).subscribe(() => this.router.navigate(['cars']))
-       } else {
-         this.car.created = moment()
-         this.datiService.insertCar(this.car).subscribe(() => this.router.navigate(['cars']))
-       }
-     }
+    this.carService.insertCar(car).subscribe(() => this.router.navigate(['cars']))
+  }
 }

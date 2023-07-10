@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../../interfaces/user";
 import {ConfigButton} from "../../interfaces/config-button";
-import {DatiService} from "../../services/dati.service";
 import {MyHeaders} from "../../interfaces/my-headers";
 import {userHeaders} from "../../mock-dati";
 import {Router} from "@angular/router";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-profile',
@@ -20,10 +20,10 @@ export class ProfileComponent implements OnInit{
     text: "Modifica"
   }
   isEdit: boolean = false
-  constructor(private datiService: DatiService, private router: Router) {
+  constructor(private userService: UserService, private router: Router) {
   }
   ngOnInit() {
-    this.datiService.getUserById("2").subscribe(user => this.user = user)
+    this.userService.getUserById(2).subscribe(user => this.user = user)
   }
   emit() {
     this.router.navigate(['manageUser/' + this.user.id])
