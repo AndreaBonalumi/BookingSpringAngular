@@ -85,16 +85,6 @@
       "link": "",
       "model": "ree",
       "year": 0
-    },
-    {
-      "brand": "toyota",
-      "color": "blu",
-      "description": "hibrid",
-      "id": 8,
-      "link": "",
-      "model": "chr",
-      "year": 0,
-      "created": "2023-07-03T08:04:20.970Z"
     }
   ],
   "bookings": [
