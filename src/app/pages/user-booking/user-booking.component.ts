@@ -29,7 +29,7 @@ export class UserBookingComponent implements OnInit {
   action(tableEvent: TableEvent) {
     this.bookingService.getBookingById(tableEvent.value).subscribe( booking => {
       this.bookingService.manageBooking(booking, tableEvent.action).subscribe(() => {
-        const index = this.bookings.findIndex(item => item.id === tableEvent.value)
+        const index = this.bookings.findIndex(item => item === tableEvent.value)
         if (index !== -1) {
           this.bookings.splice(index, 1)
         }

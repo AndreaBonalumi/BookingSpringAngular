@@ -3,7 +3,7 @@ import {StatusEnum} from "./status-enum";
 
 export interface Booking {
   [key: string]: any
-  id ?: number;
+  idBooking ?: number;
   dateBookingStart ?: Moment;
   dateBookingEnd ?: Moment;
   status ?: StatusEnum;

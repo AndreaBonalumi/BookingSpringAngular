@@ -75,9 +75,9 @@ export class MyTableComponent implements OnInit, AfterContentChecked, OnChanges 
     }
     this.end = this.start + this.tableConfig.pagination.itemPerPage
   }
-  emitOnlyButton(e: Event, id: TableEvent) {
+  emitOnlyButton(e: Event, tableEvent: TableEvent) {
     e.stopPropagation()
-    this.emitButton.emit(id)
+    this.emitButton.emit(tableEvent)
   }
   ngAfterContentChecked(): void {
     this.cdr.detectChanges()

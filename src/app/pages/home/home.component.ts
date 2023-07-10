@@ -24,9 +24,9 @@ export class HomeComponent implements OnInit {
   cars: Car[] = [];
   tableConfig = TABLEADMIN;
   constructor(private router: Router, private activeRoute: ActivatedRoute,
-              private datiService: UserService, private bookingService: BookingService) {}
+              private userService: UserService, private bookingService: BookingService) {}
   ngOnInit() {
-    this.datiService.getUserById(this.id).subscribe(user => {
+    this.userService.getUserById(this.id).subscribe(user => {
       this.userLogger = user
       if (this.userLogger.admin) {
         this.fetchUsers()
@@ -37,11 +37,10 @@ export class HomeComponent implements OnInit {
       }
     })
   }
-  goUserBooking(id: string) {
-    this.router.navigate(['bookings/' + id])
+  goUserBooking(row: any) {
+    this.router.navigate(['bookings/' + row.idUser])
   }
   action(tableEvent: TableEvent) {
-
     let route: string
     if (this.userLogger.admin) {
       route = 'manageUser'
@@ -54,24 +53,24 @@ export class HomeComponent implements OnInit {
       this.router.navigate([`${route}`])
     }
     if (tableEvent.action === MyTableActionEnum.EDIT) {
-      this.router.navigate([`${route}/${tableEvent.value}`])
+      if (this.userLogger.admin){
+        this.router.navigate([`${route}/${tableEvent.value.idUser}`])
+      } else {
+        this.router.navigate([`${route}/${tableEvent.value.idBooking}`])
+      }
     }
     if (tableEvent.action === MyTableActionEnum.DELETE) {
       if (this.userLogger.admin) {
-        this.datiService.deleteUser(tableEvent.value).subscribe(() => {
-          this.fetchUsers()
-        })
+        this.userService.deleteUser(tableEvent.value.idUser).subscribe(() => this.fetchUsers())
       } else {
-        this.bookingService.deleteBooking(tableEvent.value).subscribe(() => {
-          this.fetchBooking()
-        })
+        this.bookingService.deleteBooking(tableEvent.value.idBooking).subscribe(() => this.fetchBooking())
       }
     }
   }
   fetchBooking() {
-    this.datiService.getUserBookings(this.id).subscribe(bookings => this.bookings = bookings)
+    this.userService.getUserBookings(this.id).subscribe(bookings => this.bookings = bookings)
   }
   fetchUsers() {
-    this.datiService.getUsers().subscribe(users => this.users = users)
+    this.userService.getUsers().subscribe(users => this.users = users)
   }
 }

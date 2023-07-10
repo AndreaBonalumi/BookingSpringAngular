@@ -26,10 +26,10 @@ export class CarsComponent implements OnInit{
       this.router.navigate(['manageCar'])
     }
     if (tableEvent.action === MyTableActionEnum.EDIT) {
-      this.router.navigate([`manageCar/${tableEvent.value}`])
+      this.router.navigate([`manageCar/${tableEvent.value.idCar}`])
     }
     if (tableEvent.action === MyTableActionEnum.DELETE) {
-      this.carService.deleteCar(tableEvent.value)
+      this.carService.deleteCar(tableEvent.value.idCar)
         .subscribe( () => {
           this.fetchCars()
         })

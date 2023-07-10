@@ -1,7 +1,7 @@
 import {Moment} from "moment";
 export interface User {
   [key: string]: any
-  id ?: number;
+  idUser ?: number;
   firstName: string;
   lastName: string;
   username: string;

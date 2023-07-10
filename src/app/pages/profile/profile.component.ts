@@ -26,6 +26,6 @@ export class ProfileComponent implements OnInit{
     this.userService.getUserById(2).subscribe(user => this.user = user)
   }
   emit() {
-    this.router.navigate(['manageUser/' + this.user.id])
+    this.router.navigate(['manageUser/' + this.user.idUser])
   }
 }
