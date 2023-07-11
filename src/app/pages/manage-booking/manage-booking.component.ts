@@ -35,20 +35,21 @@ export class ManageBookingComponent implements OnInit{
       let idUser = this.activeroute.snapshot.paramMap.get("idUser")
       this.userService.getUserById(Number(idUser!)).subscribe(user => {
         this.booking = {
-          dateBookingEnd: undefined,
-          dateBookingStart: undefined,
-          userId: user.id
+          end: undefined,
+          start: undefined,
+          user: user
         }
       })
     }
   }
   searchCars() {
-    this.bookingService.getCarsByDate(this.booking.dateBookingStart!, this.booking.dateBookingEnd!).subscribe(cars => {
+    this.bookingService.getCarsByDate(this.booking.start!, this.booking.end!).subscribe(cars => {
       this.cars = cars
     })
   }
-  saveBooking(id: number) {
-    this.booking.carId = id
+  saveBooking(car: Car) {
+    this.booking.car = car
+    console.log(this.booking)
     this.bookingService.insertBooking(this.booking).subscribe(() => this.router.navigate(['home']))
   }
 }

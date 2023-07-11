@@ -1,12 +1,14 @@
 import {Moment} from "moment";
 import {StatusEnum} from "./status-enum";
+import {User} from "./user";
+import {Car} from "./car";
 
 export interface Booking {
   [key: string]: any
   idBooking ?: number;
-  dateBookingStart ?: Moment;
-  dateBookingEnd ?: Moment;
+  start ?: Moment;
+  end ?: Moment;
   status ?: StatusEnum;
-  userId: number;
-  carId ?: number;
+  user: User;
+  car ?: Car;
 }
