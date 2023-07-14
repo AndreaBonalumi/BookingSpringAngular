@@ -84,6 +84,7 @@ export const carHeaders: MyHeaders[] = [
 export const bookingHeaders: MyHeaders[] = [
   {key: "start", label: "Inizio", required: true},
   {key: "end", label: "Fine", required: true},
+  {key: "status", label: "Stato"},
   {key: "car.brand", label: "Marca"},
   {key: "car.model", label: "Modello"},
   {key: "car.color", label: "colore"},

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {User} from "../interfaces/user";
+import {Auth} from "../interfaces/auth";
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,9 @@ export class UserService {
   deleteUser(id: number): Observable<any> {
     const url = `${this.apiUrl}/delete/${id}`
     return this.http.delete(url)
+  }
+  authenticate(auth: Auth): Observable<any> {
+    const url = `${this.apiUrl}/authenticate`
+    return this.http.post(url, auth)
   }
 }

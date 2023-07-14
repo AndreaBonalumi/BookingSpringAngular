@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {RouterLink, RouterOutlet} from "@angular/router";
 
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { ManageBookingComponent } from './pages/manage-booking/manage-booking.component';
 import { ManageUserComponent } from './pages/manage-user/manage-user.component';
@@ -18,11 +18,12 @@ import { ToolPaginationComponent } from "./components/tool-pagination/tool-pagin
 import { FilterPipe } from "./pipes/filter.pipe";
 import { OrdinamentoPipe } from "./pipes/ordinamento.pipe";
 import { PaginationPipe } from "./pipes/pagination.pipe";
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 import { CarsComponent } from './pages/cars/cars.component';
 import { UserBookingComponent } from './pages/user-booking/user-booking.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ManageComponent } from './components/manage/manage.component';
+import { JwtInterceptor } from "./injectables/jwt.interceptor";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,13 @@ import { ManageComponent } from './components/manage/manage.component';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
