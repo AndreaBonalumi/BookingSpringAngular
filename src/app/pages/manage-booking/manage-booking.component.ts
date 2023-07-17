@@ -32,14 +32,17 @@ export class ManageBookingComponent implements OnInit{
     if(idBooking != null) {
       this.bookingService.getBookingById(Number(idBooking!)).subscribe(booking => this.booking = booking)
     } else {
-      let idUser = this.activeroute.snapshot.paramMap.get("idUser")
-      this.userService.getUserById(Number(idUser!)).subscribe(user => {
-        this.booking = {
-          end: undefined,
-          start: undefined,
-          user: user
-        }
-      })
+      this.userService.getByUsername(localStorage.getItem("username") ? localStorage.getItem("username")! : "")
+        .subscribe({
+          next: user => {
+            this.booking = {
+              end: undefined,
+              start: undefined,
+              user: user
+            }
+          },
+          error: err => localStorage.clear()
+        })
     }
   }
   searchCars() {

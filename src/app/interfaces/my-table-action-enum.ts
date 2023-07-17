@@ -1,3 +1,3 @@
 export enum MyTableActionEnum {
-  NEW_ROW= 'new', EDIT = 'edit', DELETE = 'delete', APPROVE = 'approve', DECLINE = 'decline'
+  NEW_ROW= 'new', EDIT = 'edit', DELETE = 'delete', APPROVE = 'approved', DECLINE = 'decline'
 }

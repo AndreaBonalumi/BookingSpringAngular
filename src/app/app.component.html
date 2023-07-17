@@ -1,8 +1,16 @@
-<nav style="margin: 20px;">
-  <a routerLink=""> <app-my-button [config]="{icon: 'airplane', class: 'primary', text: 'Home'}"></app-my-button></a>
-  <ng-container *ngIf="true">
-    <a routerLink="cars"><app-my-button [config]="{icon: 'book', class: 'secondary', text: 'Parco Auto'}"></app-my-button></a>
-  </ng-container>
-  <a routerLink="profile"><app-my-button [config]="{icon: 'book', class: 'primary', text: 'Profilo'}"></app-my-button></a>
-</nav>
-<router-outlet></router-outlet>
+<ng-container *ngIf="username && user">
+  <nav style="margin: 20px;">
+    <a routerLink="home"> <app-my-button [config]="{icon: 'airplane', class: 'primary', text: 'Home'}"></app-my-button></a>
+    <ng-container *ngIf="user.admin">
+      <a routerLink="cars"><app-my-button [config]="{icon: 'book', class: 'secondary', text: 'Parco Auto'}"></app-my-button></a>
+    </ng-container>
+    <a routerLink="profile"><app-my-button [config]="{icon: 'book', class: 'primary', text: 'Profilo'}"></app-my-button></a>
+    <app-my-button (emitter)="logout()"
+      [config]="{icon: 'box-arrow-right', class: 'secondary', text: 'Logout'}"></app-my-button>
+  </nav>
+  <router-outlet></router-outlet>
+</ng-container>
+
+<ng-container *ngIf="!(username && user)">
+  <app-login></app-login>
+</ng-container>

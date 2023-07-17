@@ -24,6 +24,10 @@ export class UserService {
     const url = `${this.apiUrl}/detail/${id}`
     return this.http.get(url)
   }
+  getByUsername(username: string): Observable<any> {
+    const url = `${this.apiUrl}/username/${username}`
+    return this.http.get(url)
+  }
   insertUser(user: User): Observable<any> {
     const url = `${this.apiUrl}/insert`
     return this.http.post(url, user)

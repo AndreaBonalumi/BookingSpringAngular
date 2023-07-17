@@ -3,7 +3,7 @@
     <ng-container *ngFor="let field of fields">
       <div class="form-group">
         <label for="{{field.key}}">{{field.label}}</label>
-        <input class="input" id="{{field.key}}" type="text" name="{{field.key}}"
+        <input class="input" id="{{field.key}}" [type]="field.type ? field.type : 'text'" name="{{field.key}}"
                [(ngModel)]="item[field.key]"
                [required]="field.required ? field.required : false" />
         <br/><br/>

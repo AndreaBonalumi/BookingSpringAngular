@@ -17,25 +17,36 @@ import {BookingService} from "../../services/booking.service";
 export class HomeComponent implements OnInit {
 
   userLogger !: User;
-  id: number = 3;
   users ?: User[];
+  username !: string | null
   bookings ?: Booking[];
   headers !: MyHeaders[];
   cars: Car[] = [];
   tableConfig = TABLEADMIN;
-  constructor(private router: Router, private activeRoute: ActivatedRoute,
-              private userService: UserService, private bookingService: BookingService) {}
+  constructor(private router: Router,
+              private activeRoute: ActivatedRoute,
+              private userService: UserService,
+              private bookingService: BookingService) {}
   ngOnInit() {
-    this.userService.getUserById(this.id).subscribe(user => {
-      this.userLogger = user
-      if (this.userLogger.admin) {
-        this.fetchUsers()
-        this.headers = userHeaders;
-      } else {
-        this.fetchBooking()
-        this.headers = bookingHeaders;
+    this.username = localStorage.getItem("username") + ""
+
+    this.userService.getByUsername(this.username).subscribe(
+      {
+        next: user => {
+          this.userLogger = user
+          if (this.userLogger.admin) {
+            this.fetchUsers()
+            this.headers = userHeaders;
+          } else {
+            this.fetchBooking()
+            this.headers = bookingHeaders;
+          }
+        },
+        error: err => {
+          localStorage.clear()
+        }
       }
-    })
+      )
   }
   goUserBooking(row: any) {
     this.router.navigate(['bookings/' + row.idUser])
@@ -46,7 +57,7 @@ export class HomeComponent implements OnInit {
       route = 'manageUser'
     }
     else {
-      route = this.id + '/manageBooking'
+      route = this.userLogger.idUser + '/manageBooking'
     }
 
     if (tableEvent.action === MyTableActionEnum.NEW_ROW) {
@@ -68,7 +79,7 @@ export class HomeComponent implements OnInit {
     }
   }
   fetchBooking() {
-    this.userService.getUserBookings(this.id).subscribe(bookings => this.bookings = bookings)
+    this.userService.getUserBookings(this.userLogger.idUser!).subscribe(bookings => this.bookings = bookings)
   }
   fetchUsers() {
     this.userService.getUsers().subscribe(users => this.users = users)

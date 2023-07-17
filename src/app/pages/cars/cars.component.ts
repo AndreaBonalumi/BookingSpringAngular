@@ -36,6 +36,12 @@ export class CarsComponent implements OnInit{
     }
   }
   fetchCars() {
-    this.carService.getCars().subscribe(cars => this.cars = cars)
+    this.carService.getCars().subscribe({
+      next: cars => this.cars = cars,
+      error: err => {
+        console.log(err)
+        localStorage.clear()
+      }
+    })
   }
 }

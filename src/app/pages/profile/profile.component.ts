@@ -19,11 +19,14 @@ export class ProfileComponent implements OnInit{
     class: "btn btn-primary",
     text: "Modifica"
   }
-  isEdit: boolean = false
   constructor(private userService: UserService, private router: Router) {
   }
   ngOnInit() {
-    this.userService.getUserById(2).subscribe(user => this.user = user)
+    let username = localStorage.getItem("username")
+    this.userService.getByUsername(username ? username : "").subscribe({
+      next: user => this.user = user,
+      error: err => localStorage.clear()
+    })
   }
   emit() {
     this.router.navigate(['manageUser/' + this.user.idUser])

@@ -28,11 +28,16 @@ export class ManageUserComponent implements OnInit{
         username: ""
       }
     } else {
-      this.userService.getUserById(Number(this.id)!).subscribe(user => this.user = user)
+      this.userService.getUserById(Number(this.id)!).subscribe({
+        next: user => this.user = user,
+        error: err => localStorage.clear()
+      })
     }
   }
 
   manageUser(user: User) {
-    this.userService.insertUser(user).subscribe(() => this.router.navigate(['home']))
+    this.userService.insertUser(user).subscribe({
+      next: () => this.router.navigate(['home'])
+    })
   }
 }

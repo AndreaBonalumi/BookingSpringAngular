@@ -10,7 +10,7 @@ import {UserBookingComponent} from "./pages/user-booking/user-booking.component"
 import {LoginComponent} from "./pages/login/login.component";
 
 let routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   {path: 'cars', component: CarsComponent},
   {path: 'profile', component: ProfileComponent},

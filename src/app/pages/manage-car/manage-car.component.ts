@@ -28,12 +28,16 @@ export class ManageCarComponent implements OnInit{
 
       }
     } else {
-      this.carService.getCarById(Number(id!)).subscribe(car => {
-        this.car = car
+      this.carService.getCarById(Number(id!)).subscribe({
+        next: car => this.car = car,
+        error: err => localStorage.clear()
       })
     }
   }
   manageCar(car: Car) {
-    this.carService.insertCar(car).subscribe(() => this.router.navigate(['cars']))
+    this.carService.insertCar(car).subscribe({
+      next: () => this.router.navigate(['cars']),
+      error: err => localStorage.clear()
+    })
   }
 }

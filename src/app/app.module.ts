@@ -23,7 +23,7 @@ import { CarsComponent } from './pages/cars/cars.component';
 import { UserBookingComponent } from './pages/user-booking/user-booking.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ManageComponent } from './components/manage/manage.component';
-import { JwtInterceptor } from "./injectables/jwt.interceptor";
+import { JwtInterceptor } from "./iterceptor/jwt.interceptor";
 
 @NgModule({
   declarations: [

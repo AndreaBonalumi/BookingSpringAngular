@@ -13,20 +13,22 @@ export class LoginComponent implements OnInit {
     username: '',
     password: ''
   }
-  token: string = ''
   constructor(private userService: UserService, private route: Router) {
   }
   ngOnInit() {
-    if (localStorage.getItem("jwtToken")) {
+    if (localStorage.getItem("jwtToken") != null ||
+      localStorage.getItem("jwtToken") != "" ||
+      localStorage.getItem("jwtToken") != undefined)
+    {
       this.route.navigate(['home'])
     }
   }
 
   login() {
-    this.userService.authenticate(this.auth).subscribe(respone => {
+    this.userService.authenticate(this.auth).subscribe(response => {
 
-      this.token = respone
-      localStorage.setItem('jwtToken', this.token)
+      localStorage.setItem('jwtToken', response.jwt)
+      localStorage.setItem('username', response.username)
 
       this.route.navigate(['home'])
     });
