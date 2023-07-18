@@ -2,7 +2,6 @@ import {MyTableConfig} from "./interfaces/my-table-config";
 import {MyTableActionEnum} from "./interfaces/my-table-action-enum";
 import {MyHeaders} from "./interfaces/my-headers";
 import * as dayjs from "dayjs";
-import {Dayjs} from "dayjs";
 import {Booking} from "./interfaces/booking";
 
 export const TABLE : MyTableConfig = {
@@ -29,7 +28,9 @@ export const TABLE : MyTableConfig = {
         class: 'secondary'
       },
       action: MyTableActionEnum.EDIT,
-      hidden: (booking: Booking): boolean => {
+      hidden: (booking: any): boolean => {
+        if (booking.start == null)
+          return false
         let today = dayjs()
         return !today.add(2, 'day').isBefore(booking.start!.toString());
       }
@@ -41,7 +42,9 @@ export const TABLE : MyTableConfig = {
         class: 'secondary'
       },
       action: MyTableActionEnum.DELETE,
-      hidden: (booking: Booking): boolean => {
+      hidden: (booking: any): boolean => {
+        if (booking.start == null)
+          return false
         let today = dayjs()
         return !today.add(2, 'day').isBefore(booking.start!.toString());
       }
@@ -53,7 +56,6 @@ export const userHeaders: MyHeaders[] = [
   {key: "lastName", label: "Cognome"},
   {key: "username", label: "Username"},
   {key: "email", label: "E-mail"},
-  {key: "admin", label: "Admin"},
   {key: "drivingLicense", label: "Patente"},
 ];
 export const carHeaders: MyHeaders[] = [
