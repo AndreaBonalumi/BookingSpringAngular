@@ -9,7 +9,7 @@ import {
 import {MyTableConfig} from "../../interfaces/my-table-config";
 import {MyHeaders} from "../../interfaces/my-headers";
 import { DatiService } from "../../services/dati.service";
-import {TABLEADMIN} from "../../mock-dati";
+import {TABLE} from "../../mock-dati";
 import {MyTableActionEnum} from "../../interfaces/my-table-action-enum";
 
 @Component({
@@ -22,7 +22,7 @@ export class MyTableComponent implements OnInit, AfterContentChecked, OnChanges 
   @Output() emitRow: EventEmitter<any> = new EventEmitter<any>()
   @Input() data !: any[];
   @Input() headers !: MyHeaders[];
-  @Input() tableConfig = TABLEADMIN;
+  @Input() tableConfig = TABLE;
 
   iconaOrdinamento !: string;
   searchText: string = '';

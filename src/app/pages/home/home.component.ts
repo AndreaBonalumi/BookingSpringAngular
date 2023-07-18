@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Car} from "../../interfaces/car";
 import {Booking} from "../../interfaces/booking";
 import {MyHeaders} from "../../interfaces/my-headers";
-import {bookingHeaders, TABLEADMIN, userHeaders} from "../../mock-dati";
+import {bookingHeaders, TABLE, userHeaders} from "../../mock-dati";
 import {MyTableActionEnum} from "../../interfaces/my-table-action-enum";
 import {TableEvent} from "../../components/my-table/my-table.component";
 import {UserService} from "../../services/user.service";
@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   bookings ?: Booking[];
   headers !: MyHeaders[];
   cars: Car[] = [];
-  tableConfig = TABLEADMIN;
+  tableConfig = TABLE;
   constructor(private router: Router,
               private activeRoute: ActivatedRoute,
               private userService: UserService,

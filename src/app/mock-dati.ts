@@ -1,8 +1,11 @@
 import {MyTableConfig} from "./interfaces/my-table-config";
 import {MyTableActionEnum} from "./interfaces/my-table-action-enum";
 import {MyHeaders} from "./interfaces/my-headers";
+import * as dayjs from "dayjs";
+import {Dayjs} from "dayjs";
+import {Booking} from "./interfaces/booking";
 
-export const TABLEADMIN : MyTableConfig = {
+export const TABLE : MyTableConfig = {
   headers: [],
   order: {
     colonna: 'id',
@@ -25,7 +28,11 @@ export const TABLEADMIN : MyTableConfig = {
         icon: 'pencil',
         class: 'secondary'
       },
-      action: MyTableActionEnum.EDIT
+      action: MyTableActionEnum.EDIT,
+      hidden: (booking: Booking): boolean => {
+        let today = dayjs()
+        return !today.add(2, 'day').isBefore(booking.start!.toString());
+      }
     },
     { onTop: false,
       buttonAction: {
@@ -33,34 +40,11 @@ export const TABLEADMIN : MyTableConfig = {
         icon: 'trash3',
         class: 'secondary'
       },
-      action: MyTableActionEnum.DELETE
-    },
-  ],
-}
-export const TABLEUSER : MyTableConfig = {
-  headers: [],
-  order: {
-    colonna: 'id',
-    verso: 'asc',
-  },
-  search: {columns: []},
-  pagination: {itemPerPage: 3, itemPerPageOption: [2, 5, 7, 4, 3]},
-  actions: [
-    { onTop: false,
-      buttonAction: {
-        text: 'Modifica',
-        icon: 'pencil',
-        class: 'secondary'
-      },
-      action: MyTableActionEnum.EDIT
-    },
-    { onTop: false,
-      buttonAction: {
-        text: 'Cancella',
-        icon: 'trash3',
-        class: 'secondary'
-      },
-      action: MyTableActionEnum.DELETE
+      action: MyTableActionEnum.DELETE,
+      hidden: (booking: Booking): boolean => {
+        let today = dayjs()
+        return !today.add(2, 'day').isBefore(booking.start!.toString());
+      }
     },
   ],
 }
