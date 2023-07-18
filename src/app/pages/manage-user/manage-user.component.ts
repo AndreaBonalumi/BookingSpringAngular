@@ -18,15 +18,19 @@ export class ManageUserComponent implements OnInit{
   ngOnInit() {
     this.id = this.activeRoute.snapshot.paramMap.get("id")
     if (this.id == null) {
-      this.user = {
-        admin: false,
-        email: "",
-        firstName: "",
-        lastName: "",
-        drivingLicense: "",
-        password: "",
-        username: ""
-      }
+      this.userService.getUsername().subscribe(user => {
+        this.user = {
+          admin: false,
+          email: "",
+          firstName: "",
+          lastName: "",
+          drivingLicense: "",
+          password: "",
+          username: "",
+          createdBy: user.idUser
+        }
+      })
+
     } else {
       this.userService.getUserById(Number(this.id)!).subscribe({
         next: user => this.user = user,
@@ -36,7 +40,6 @@ export class ManageUserComponent implements OnInit{
   }
 
   manageUser(user: User) {
-    console.log(user)
     this.userService.insertUser(user).subscribe({
       next: () => this.router.navigate(['home'])
     })

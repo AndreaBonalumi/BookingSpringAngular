@@ -10,4 +10,5 @@ export interface User {
   birthday ?: Moment;
   admin: boolean;
   drivingLicense ?: string;
+  createdBy ?: number;
 }

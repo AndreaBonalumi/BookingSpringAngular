@@ -30,7 +30,7 @@ export class UserBookingComponent implements OnInit {
       },
       error: err => {
         console.log(err)
-        sessionStorage.clear()
+        localStorage.clear()
       }
     })
 

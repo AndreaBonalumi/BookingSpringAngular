@@ -3,7 +3,7 @@
     <h1>Gestisci prenotazione</h1>
     <form #form = "ngForm">
       <label for="start">Data inizio: </label>
-      <input id="start" type="date" name="start" [(ngModel)]="booking.start" [min]="today.add(2, 'day')" [max]="booking.end" required> <br/><br/>
+      <input id="start" type="date" name="start" [(ngModel)]="booking.start" [min]="today.add(2, 'day').format('YYYY-MM-DD')" [max]="booking.end" required> <br/><br/>
       <label for="end">Data fine: </label>
       <input id="end" type="date" name="end" [(ngModel)]="booking.end" [min]="booking.start" required> <br/><br/>
       <button class="btn btn-primary" type="submit" [disabled]="!form.valid" (click)="searchCars()">Cerca disponibilità</button>

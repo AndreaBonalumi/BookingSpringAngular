@@ -8,6 +8,6 @@ export interface Booking {
   start ?: Moment;
   end ?: Moment;
   status ?: any;
-  user: User;
+  userId: number;
   car ?: Car;
 }
