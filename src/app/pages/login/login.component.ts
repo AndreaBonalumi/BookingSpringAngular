@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     if ((localStorage.getItem("jwtToken") != null ||
       localStorage.getItem("jwtToken") != "" ||
-      localStorage.getItem("jwtToken") != undefined) && sessionStorage.getItem("username"))
+      localStorage.getItem("jwtToken") != undefined))
     {
       this.route.navigate(['home'])
     }
@@ -28,13 +28,8 @@ export class LoginComponent implements OnInit {
     this.userService.authenticate(this.auth).subscribe({
       next: response => {
         localStorage.setItem('jwtToken', response.jwt)
-        this.userService.getUsername().subscribe({
-          next: user => {
-            sessionStorage.setItem("username", user.username)
-            this.route.navigate(['home'])
-          }
-      })
+        this.route.navigate(['home'])
       }
-  });
+    });
   }
 }

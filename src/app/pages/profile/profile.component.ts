@@ -22,10 +22,9 @@ export class ProfileComponent implements OnInit{
   constructor(private userService: UserService, private router: Router) {
   }
   ngOnInit() {
-    let username = sessionStorage.getItem("username")
-    this.userService.getByUsername(username ? username : "").subscribe({
+    this.userService.getUsername().subscribe({
       next: user => this.user = user,
-      error: err => sessionStorage.clear()
+      error: err => localStorage.clear()
     })
   }
   emit() {

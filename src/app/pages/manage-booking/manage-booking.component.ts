@@ -32,7 +32,7 @@ export class ManageBookingComponent implements OnInit{
     if(idBooking != null) {
       this.bookingService.getBookingById(Number(idBooking!)).subscribe(booking => this.booking = booking)
     } else {
-      this.userService.getByUsername(localStorage.getItem("username") ? localStorage.getItem("username")! : "")
+      this.userService.getUsername()
         .subscribe({
           next: user => {
             this.booking = {
@@ -43,7 +43,7 @@ export class ManageBookingComponent implements OnInit{
           },
           error: err => {
             console.log(err)
-            sessionStorage.clear()
+            localStorage.clear()
           }
         }
       )

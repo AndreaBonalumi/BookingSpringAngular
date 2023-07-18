@@ -16,10 +16,6 @@ export class UserService {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get(url)
   }
-  getUsername(): Observable<any> {
-    const url = `${this.apiUrl}/userUsername`
-    return this.http.get(url)
-  }
   getUsers(): Observable<any> {
     const url = `${this.apiUrl}/all`;
     return this.http.get(url)
@@ -28,8 +24,8 @@ export class UserService {
     const url = `${this.apiUrl}/detail/${id}`
     return this.http.get(url)
   }
-  getByUsername(username: string): Observable<any> {
-    const url = `${this.apiUrl}/username/${username}`
+  getUsername(): Observable<any> {
+    const url = `${this.apiUrl}/username`
     return this.http.get(url)
   }
   insertUser(user: User): Observable<any> {

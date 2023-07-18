@@ -9,46 +9,29 @@ import {UserService} from "./services/user.service";
 })
 export class AppComponent implements OnInit, AfterContentChecked{
   title = 'BookingSpringAngular';
-  username: string | null = null
+  token: string | null = null
   user ?: User
   constructor(private userService: UserService) {
   }
   ngAfterContentChecked(): void {
-    if (sessionStorage.getItem("username") != null) {
-      if (this.username == null) {
-        this.username = sessionStorage.getItem("username")
-        this.fetchUser()
-      } else {
-        sessionStorage.clear()
-      }
+    if (localStorage.getItem("jwtToken") != this.token) {
+      this.token = localStorage.getItem("jwtToken")
+      this.fetchUser()
     }
   }
 
   ngOnInit(): void {
 
-    if (!sessionStorage.getItem("username")) {
-      if (localStorage.getItem("jwtToken")){
-
-        this.userService.getUsername().subscribe({
-          next: user => {
-            sessionStorage.setItem("username", user.username)
-            this.username = user.username
-            this.fetchUser()
-          },
-          error: err => {
-            console.log(err)
-            localStorage.clear()
-            sessionStorage.clear()
-          }
-        })
-      }
+    if (localStorage.getItem("jwtToken")){
+      this.token = localStorage.getItem("jwtToken")
+      this.fetchUser()
     }
   }
 
   fetchUser() {
-    if (this.username != null || this.username != "") {
+    if (this.token != null || this.token != "") {
 
-      this.userService.getByUsername(this.username!)
+      this.userService.getUsername()
         .subscribe({
           next: user => {
             this.user = user
@@ -56,7 +39,6 @@ export class AppComponent implements OnInit, AfterContentChecked{
           error: err => {
             console.log(err)
             localStorage.clear()
-            sessionStorage.clear()
           }
         })
     }
@@ -64,6 +46,5 @@ export class AppComponent implements OnInit, AfterContentChecked{
 
   logout() {
     localStorage.clear()
-    sessionStorage.clear()
   }
 }

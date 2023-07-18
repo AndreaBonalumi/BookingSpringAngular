@@ -1,4 +1,4 @@
-<ng-container *ngIf="username">
+<ng-container *ngIf="token">
   <nav style="margin: 20px;">
     <a routerLink="home"> <app-my-button [config]="{icon: 'airplane', class: 'primary', text: 'Home'}"></app-my-button></a>
     <ng-container *ngIf="user">
@@ -14,6 +14,6 @@
 </ng-container>
 
 
-<ng-container *ngIf="!username">
+<ng-container *ngIf="!token">
   <app-login></app-login>
 </ng-container>

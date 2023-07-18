@@ -41,7 +41,6 @@ export class CarsComponent implements OnInit{
       error: err => {
         console.log("errore imprevisto: ", err)
         localStorage.clear()
-        sessionStorage.clear()
       }
     })
   }

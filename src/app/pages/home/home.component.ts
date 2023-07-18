@@ -29,10 +29,8 @@ export class HomeComponent implements OnInit {
               private bookingService: BookingService) {}
   ngOnInit() {
 
-    if (sessionStorage.getItem("username") != null) {
-      this.username = sessionStorage.getItem("username")
-
-      this.userService.getByUsername(this.username!).subscribe({
+    if (localStorage.getItem("jwtToken") != null) {
+      this.userService.getUsername().subscribe({
         next: user => {
           this.userLogger = user
           if (this.userLogger.admin) {
@@ -45,7 +43,7 @@ export class HomeComponent implements OnInit {
         },
         error: err => {
           console.log(err)
-          sessionStorage.clear()
+          localStorage.clear()
         }
       })
     }
