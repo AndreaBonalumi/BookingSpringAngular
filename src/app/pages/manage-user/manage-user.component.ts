@@ -30,7 +30,7 @@ export class ManageUserComponent implements OnInit{
     } else {
       this.userService.getUserById(Number(this.id)!).subscribe({
         next: user => this.user = user,
-        error: err => localStorage.clear()
+        error: err => sessionStorage.clear()
       })
     }
   }

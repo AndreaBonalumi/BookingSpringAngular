@@ -96,7 +96,6 @@ export const formUser: MyHeaders[] = [
   {key: 'username', label: 'Username', required: true},
   {key: 'password', label: 'Password', required: true, type: "password"},
   {key: 'drivingLicense', label: 'Patente'},
-  {key: 'birthday', label: 'Data di nascita', type: "date"},
 ]
 export const TABLEBOOKING : MyTableConfig = {
   headers: bookingHeaders,

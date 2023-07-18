@@ -9,31 +9,54 @@ import {UserService} from "./services/user.service";
 })
 export class AppComponent implements OnInit, AfterContentChecked{
   title = 'BookingSpringAngular';
-  username !: string | null
+  username: string | null = null
   user ?: User
   constructor(private userService: UserService) {
   }
   ngAfterContentChecked(): void {
-    if (localStorage.getItem("username") != this.username) {
-      this.username = localStorage.getItem("username")
-      this.fetchUser()
+    if (sessionStorage.getItem("username") != null) {
+      if (this.username == null) {
+        this.username = sessionStorage.getItem("username")
+        this.fetchUser()
+      } else {
+        sessionStorage.clear()
+      }
     }
   }
 
   ngOnInit(): void {
-    this.username = localStorage.getItem("username")
-    this.fetchUser()
+
+    if (!sessionStorage.getItem("username")) {
+      if (localStorage.getItem("jwtToken")){
+
+        this.userService.getUsername().subscribe({
+          next: user => {
+            sessionStorage.setItem("username", user.username)
+            this.username = user.username
+            this.fetchUser()
+          },
+          error: err => {
+            console.log(err)
+            localStorage.clear()
+            sessionStorage.clear()
+          }
+        })
+      }
+    }
   }
 
   fetchUser() {
-    if (this.username != null || this.username != undefined || this.username ? this.username!.trim() != "" : false) {
+    if (this.username != null || this.username != "") {
 
-      this.userService.getByUsername(localStorage.getItem("username")!)
+      this.userService.getByUsername(this.username!)
         .subscribe({
-          next: user => this.user = user,
+          next: user => {
+            this.user = user
+          },
           error: err => {
+            console.log(err)
             localStorage.clear()
-            this.username = null
+            sessionStorage.clear()
           }
         })
     }
@@ -41,5 +64,6 @@ export class AppComponent implements OnInit, AfterContentChecked{
 
   logout() {
     localStorage.clear()
+    sessionStorage.clear()
   }
 }

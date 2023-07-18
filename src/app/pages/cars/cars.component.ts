@@ -39,8 +39,9 @@ export class CarsComponent implements OnInit{
     this.carService.getCars().subscribe({
       next: cars => this.cars = cars,
       error: err => {
-        console.log(err)
+        console.log("errore imprevisto: ", err)
         localStorage.clear()
+        sessionStorage.clear()
       }
     })
   }

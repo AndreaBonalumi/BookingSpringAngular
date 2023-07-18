@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {User} from "../interfaces/user";
 import {Auth} from "../interfaces/auth";
@@ -14,6 +14,10 @@ export class UserService {
 
   getUserById(id: number): Observable<any> {
     const url = `${this.apiUrl}/${id}`;
+    return this.http.get(url)
+  }
+  getUsername(): Observable<any> {
+    const url = `${this.apiUrl}/userUsername`
     return this.http.get(url)
   }
   getUsers(): Observable<any> {

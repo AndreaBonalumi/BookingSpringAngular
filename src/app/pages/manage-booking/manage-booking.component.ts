@@ -41,8 +41,12 @@ export class ManageBookingComponent implements OnInit{
               user: user
             }
           },
-          error: err => localStorage.clear()
-        })
+          error: err => {
+            console.log(err)
+            sessionStorage.clear()
+          }
+        }
+      )
     }
   }
   searchCars() {
@@ -52,7 +56,6 @@ export class ManageBookingComponent implements OnInit{
   }
   saveBooking(car: Car) {
     this.booking.car = car
-    console.log(this.booking)
     this.bookingService.insertBooking(this.booking).subscribe(() => this.router.navigate(['home']))
   }
 }

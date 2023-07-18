@@ -28,10 +28,11 @@ export class HomeComponent implements OnInit {
               private userService: UserService,
               private bookingService: BookingService) {}
   ngOnInit() {
-    this.username = localStorage.getItem("username") + ""
 
-    this.userService.getByUsername(this.username).subscribe(
-      {
+    if (sessionStorage.getItem("username") != null) {
+      this.username = sessionStorage.getItem("username")
+
+      this.userService.getByUsername(this.username!).subscribe({
         next: user => {
           this.userLogger = user
           if (this.userLogger.admin) {
@@ -43,11 +44,13 @@ export class HomeComponent implements OnInit {
           }
         },
         error: err => {
-          localStorage.clear()
+          console.log(err)
+          sessionStorage.clear()
         }
-      }
-      )
+      })
+    }
   }
+
   goUserBooking(row: any) {
     this.router.navigate(['bookings/' + row.idUser])
   }
