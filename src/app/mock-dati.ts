@@ -93,7 +93,6 @@ export const bookingHeaders: MyHeaders[] = [
 export const formUser: MyHeaders[] = [
   {key: 'firstName', label: 'Nome', required: true},
   {key: 'lastName', label: 'Cognome', required: true},
-  {key: 'username', label: 'Username', required: true},
   {key: 'password', label: 'Password', required: true, type: "password"},
   {key: 'drivingLicense', label: 'Patente'},
 ]

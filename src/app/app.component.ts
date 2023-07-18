@@ -16,7 +16,9 @@ export class AppComponent implements OnInit, AfterContentChecked{
   ngAfterContentChecked(): void {
     if (localStorage.getItem("jwtToken") != this.token) {
       this.token = localStorage.getItem("jwtToken")
-      this.fetchUser()
+      if (this.token != null) {
+        this.fetchUser()
+      }
     }
   }
 

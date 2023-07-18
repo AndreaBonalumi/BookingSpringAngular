@@ -9,5 +9,5 @@ export interface User {
   email: string;
   birthday ?: Moment;
   admin: boolean;
-  drivingLicense: string;
+  drivingLicense ?: string;
 }

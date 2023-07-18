@@ -36,6 +36,7 @@ export class ManageUserComponent implements OnInit{
   }
 
   manageUser(user: User) {
+    console.log(user)
     this.userService.insertUser(user).subscribe({
       next: () => this.router.navigate(['home'])
     })
