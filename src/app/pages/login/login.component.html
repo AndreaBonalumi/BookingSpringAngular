@@ -12,10 +12,10 @@
                    [config]="{icon: 'box-arrow-in-right', class: 'btn btn-primary', text: 'Login'}"></app-my-button>
   </form>
   <div class="alert-success alert banner" *ngIf="logout">
-    <p>Log out avvenuto con successo</p>
+    <p>Logout avvenuto con successo</p>
   </div>
-  <div class="alert-danger alert banner" *ngIf="authFail">
-    <p>Username o Password errati</p>
+  <div class="alert-danger alert banner" *ngIf="authFail != ''">
+    <p>{{authFail}}</p>
   </div>
   <div class="alert-danger alert banner" *ngIf="noAuth">
     <p>Non hai le autorizzazioni per effetuare queste operazioni, riautenticati per verificare la tua identità</p>

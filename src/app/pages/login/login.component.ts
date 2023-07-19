@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Auth} from "../../interfaces/auth";
 import {UserService} from "../../services/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -9,18 +9,16 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  @Input() logout !: boolean
+  @Input() noAuth !: boolean
   auth: Auth = {
     username: '',
     password: ''
   }
-  authFail: boolean = false
-  noAuth: boolean = false
-  logout: boolean = false
+  authFail: string = ''
   constructor(private userService: UserService, private route: Router, private activeRoute: ActivatedRoute) {
   }
   ngOnInit() {
-    this.logout = this.activeRoute.snapshot.paramMap.has("logout")
-    this.noAuth = this.activeRoute.snapshot.paramMap.has("noAuth")
     if ((localStorage.getItem("jwtToken") != null ||
       localStorage.getItem("jwtToken") != "" ||
       localStorage.getItem("jwtToken") != undefined))
@@ -35,8 +33,9 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('jwtToken', response.jwt)
         this.route.navigate(['home'])
       },
-      error: () => this.route.navigate(['login?logout=true'])
-
+      error: err => {
+        this.authFail=  err.error
+      }
     });
   }
 }

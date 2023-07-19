@@ -11,9 +11,14 @@ export class AppComponent implements OnInit, AfterContentChecked{
   title = 'BookingSpringAngular';
   token: string | null = null
   user ?: User
+  logoutFlag: boolean = false
+  noAuthFlag: boolean = false
   constructor(private userService: UserService) {
   }
   ngAfterContentChecked(): void {
+    if (localStorage.getItem("jwtToken") == null && this.token != null) {
+      this.noAuthFlag = true
+    }
     if (localStorage.getItem("jwtToken") != this.token) {
       this.token = localStorage.getItem("jwtToken")
       if (this.token != null) {
@@ -31,6 +36,9 @@ export class AppComponent implements OnInit, AfterContentChecked{
   }
 
   fetchUser() {
+    this.logoutFlag = false;
+    this.noAuthFlag = false;
+
     if (this.token != null || this.token != "") {
 
       this.userService.getUsername()
@@ -47,6 +55,8 @@ export class AppComponent implements OnInit, AfterContentChecked{
   }
 
   logout() {
+    this.logoutFlag = true
+    this.token = null
     localStorage.clear()
   }
 }

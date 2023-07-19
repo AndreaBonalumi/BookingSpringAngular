@@ -15,5 +15,5 @@
 
 
 <ng-container *ngIf="!token">
-  <app-login></app-login>
+  <app-login [logout]="logoutFlag" [noAuth]="noAuthFlag"></app-login>
 </ng-container>
