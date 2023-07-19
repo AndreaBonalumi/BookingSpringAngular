@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Auth} from "../../interfaces/auth";
 import {UserService} from "../../services/user.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -13,9 +13,14 @@ export class LoginComponent implements OnInit {
     username: '',
     password: ''
   }
-  constructor(private userService: UserService, private route: Router) {
+  authFail: boolean = false
+  noAuth: boolean = false
+  logout: boolean = false
+  constructor(private userService: UserService, private route: Router, private activeRoute: ActivatedRoute) {
   }
   ngOnInit() {
+    this.logout = this.activeRoute.snapshot.paramMap.has("logout")
+    this.noAuth = this.activeRoute.snapshot.paramMap.has("noAuth")
     if ((localStorage.getItem("jwtToken") != null ||
       localStorage.getItem("jwtToken") != "" ||
       localStorage.getItem("jwtToken") != undefined))
@@ -29,7 +34,9 @@ export class LoginComponent implements OnInit {
       next: response => {
         localStorage.setItem('jwtToken', response.jwt)
         this.route.navigate(['home'])
-      }
+      },
+      error: () => this.route.navigate(['login?logout=true'])
+
     });
   }
 }

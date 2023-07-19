@@ -2,11 +2,22 @@
   <h1>Accedi per entrare</h1>
   <form #form="ngForm" method="post">
     <label for="username">Username: </label>
-    <input id="username" type="text" name="username" [(ngModel)]="auth.username" required /><br/><br/>
+    <input [style]="authFail ?  ' border-color: #f00;' : ''"
+           id="username" type="text" name="username" [(ngModel)]="auth.username" required /><br/><br/>
     <label for="password">Password: </label>
-    <input id="password" type="password" name="password" [(ngModel)]="auth.password" required /><br/><br/>
+    <input [style]="authFail ?  ' border-color: #f00;' : ''"
+           id="password" type="password" name="password" [(ngModel)]="auth.password" required /><br/><br/>
     <app-my-button [isDisabled]="!form.valid"
                    (emitter)="login()"
                    [config]="{icon: 'box-arrow-in-right', class: 'btn btn-primary', text: 'Login'}"></app-my-button>
   </form>
+  <div class="alert-success alert banner" *ngIf="logout">
+    <p>Log out avvenuto con successo</p>
+  </div>
+  <div class="alert-danger alert banner" *ngIf="authFail">
+    <p>Username o Password errati</p>
+  </div>
+  <div class="alert-danger alert banner" *ngIf="noAuth">
+    <p>Non hai le autorizzazioni per effetuare queste operazioni, riautenticati per verificare la tua identità</p>
+  </div>
 </div>

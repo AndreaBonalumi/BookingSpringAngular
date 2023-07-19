@@ -17,7 +17,7 @@ import {MyTableActionEnum} from "../../interfaces/my-table-action-enum";
   templateUrl: './my-table.component.html',
   styleUrls: ['./my-table.component.css']
 })
-export class MyTableComponent implements OnInit, AfterContentChecked, OnChanges {
+export class MyTableComponent implements OnInit, AfterContentChecked {
   @Output() emitButton: EventEmitter<any> = new EventEmitter<any>()
   @Output() emitRow: EventEmitter<any> = new EventEmitter<any>()
   @Input() data !: any[];
@@ -29,7 +29,6 @@ export class MyTableComponent implements OnInit, AfterContentChecked, OnChanges 
   searchColumn: string = '';
   start : number = 0;
   end !: number;
-  totalItems !: number;
   getValue = (obj: any, key: string) => {
     const keys = key.split(".");
     let value = obj;
@@ -45,7 +44,6 @@ export class MyTableComponent implements OnInit, AfterContentChecked, OnChanges 
   ngOnInit() {
     this.tableConfig.headers = this.headers;
     this.tableConfig.search.columns = this.headers;
-    this.totalItems = this.data.length
     this.end = this.start + this.tableConfig.pagination.itemPerPage
     if (this.tableConfig.order.verso == 'asc') {
       this.iconaOrdinamento = '↓'
@@ -81,10 +79,6 @@ export class MyTableComponent implements OnInit, AfterContentChecked, OnChanges 
   }
   ngAfterContentChecked(): void {
     this.cdr.detectChanges()
-  }
-
-  ngOnChanges(): void {
-    this.totalItems = this.data.length
   }
 }
 

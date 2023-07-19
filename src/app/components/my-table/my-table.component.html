@@ -44,4 +44,4 @@
   </tbody>
 </table>
 
- <app-tool-pagination [table]="tableConfig" [totalItems]="totalItems" [start]="start" (emit)="changePagination($event)"></app-tool-pagination>
+ <app-tool-pagination [table]="tableConfig" [totalItems]="(data | filter: searchText: searchColumn).length" [start]="start" (emit)="changePagination($event)"></app-tool-pagination>
