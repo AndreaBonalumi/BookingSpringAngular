@@ -13,6 +13,7 @@ export class ManageCarComponent implements OnInit{
 
   carFields = carHeaders;
   car !: Car
+  error: string = ''
   constructor(private router: Router, private carService: CarService, private activeRoute: ActivatedRoute, private userService: UserService) {
   }
   ngOnInit() {
@@ -41,8 +42,7 @@ export class ManageCarComponent implements OnInit{
     this.carService.insertCar(car).subscribe({
       next: () => this.router.navigate(['cars']),
       error: err => {
-        console.log(err)
-        localStorage.clear()
+        this.error = err.error
       }
     })
   }

@@ -3,4 +3,7 @@
     <h1>Gestisci auto</h1>
     <app-manage [fields]="carFields" [item]="car" (emit)="manageCar($event)"></app-manage>
   </div>
+  <div class="alert alert-danger banner" *ngIf="error != ''">
+    <p>{{error}}</p>
+  </div>
 </ng-container>

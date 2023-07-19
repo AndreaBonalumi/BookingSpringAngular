@@ -2,7 +2,6 @@ import {MyTableConfig} from "./interfaces/my-table-config";
 import {MyTableActionEnum} from "./interfaces/my-table-action-enum";
 import {MyHeaders} from "./interfaces/my-headers";
 import * as dayjs from "dayjs";
-import {Booking} from "./interfaces/booking";
 
 export const TABLE : MyTableConfig = {
   headers: [],
@@ -63,7 +62,7 @@ export const carHeaders: MyHeaders[] = [
   {key: "brand", label: "Marca", required: true},
   {key: "model", label: "Modello", required: true},
   {key: "color", label: "Colore", required: true},
-  {key: "description", label: "Descrizione", required: true},
+  {key: "description", label: "Descrizione *", required: true},
   {key: "link", label: "Link foto", required: false},
   {key: "year", label: "Anno"},
 ];
@@ -77,10 +76,10 @@ export const bookingHeaders: MyHeaders[] = [
 ];
 
 export const formUser: MyHeaders[] = [
-  {key: 'firstName', label: 'Nome', required: true},
-  {key: 'lastName', label: 'Cognome', required: true},
-  {key: 'username', label: 'Username', required: true},
-  {key: 'password', label: 'Password', required: true, type: "password"},
+  {key: 'firstName', label: 'Nome *', required: true},
+  {key: 'lastName', label: 'Cognome *', required: true},
+  {key: 'username', label: 'Username *', required: true},
+  {key: 'password', label: 'Password *', required: true, type: "password"},
   {key: 'drivingLicense', label: 'Patente'},
 ]
 export const TABLEBOOKING : MyTableConfig = {

@@ -2,13 +2,11 @@ import {
   AfterContentChecked,
   ChangeDetectorRef,
   Component,
-  EventEmitter, Input, OnChanges,
+  EventEmitter, Input,
   OnInit,
   Output,
 } from '@angular/core';
-import {MyTableConfig} from "../../interfaces/my-table-config";
 import {MyHeaders} from "../../interfaces/my-headers";
-import { DatiService } from "../../services/dati.service";
 import {TABLE} from "../../mock-dati";
 import {MyTableActionEnum} from "../../interfaces/my-table-action-enum";
 

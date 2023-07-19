@@ -3,4 +3,7 @@
     <h1>Gestisci Utente</h1>
     <app-manage [fields]="formUser" [item]="user" (emit)="manageUser($event)"></app-manage>
   </div>
+  <div class="alert alert-danger banner" *ngIf="error != ''">
+    <p>{{error}}</p>
+  </div>
 </ng-container>

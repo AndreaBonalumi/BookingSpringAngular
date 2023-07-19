@@ -2,8 +2,8 @@ import {
   AfterContentChecked,
   Component,
   EventEmitter,
-  Input, OnChanges,
-  Output
+  Input, OnChanges, OnInit,
+  Output, SimpleChanges
 } from '@angular/core';
 import {MyTableConfig} from "../../interfaces/my-table-config";
 import {ConfigButton} from "../../interfaces/config-button";
@@ -12,12 +12,13 @@ import {ConfigButton} from "../../interfaces/config-button";
   templateUrl: './tool-pagination.component.html',
   styleUrls: ['./tool-pagination.component.css']
 })
-export class ToolPaginationComponent implements AfterContentChecked, OnChanges{
+export class ToolPaginationComponent implements AfterContentChecked, OnChanges, OnInit{
   @Input() table !: MyTableConfig;
   @Input() start !: number;
   @Input() totalItems !: number;
   @Output() emit : EventEmitter<number> = new EventEmitter<number>()
 
+  isManipolationData !: number
   end !: number;
   pagination !: number;
   paginaCorrente !: number;
@@ -79,11 +80,17 @@ export class ToolPaginationComponent implements AfterContentChecked, OnChanges{
       this.setUp()
       this.emit.emit(this.paginaCorrente)
     }
-    if(!this.pagination)
+    if(!this.pagination) {
       this.setUp()
+    }
   }
 
-  ngOnChanges(): void {
+  ngOnChanges(changes:SimpleChanges): void {
+    this.setUp()
+  }
+
+  ngOnInit(): void {
+    this.isManipolationData = this.start
     this.setUp()
   }
 }
