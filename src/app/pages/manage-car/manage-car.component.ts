@@ -13,7 +13,7 @@ export class ManageCarComponent implements OnInit{
 
   carFields = carHeaders;
   car !: Car
-  error: string = ''
+  errors: any[] = []
   constructor(private router: Router, private carService: CarService, private activeRoute: ActivatedRoute, private userService: UserService) {
   }
   ngOnInit() {
@@ -42,7 +42,10 @@ export class ManageCarComponent implements OnInit{
     this.carService.insertCar(car).subscribe({
       next: () => this.router.navigate(['cars']),
       error: err => {
-        this.error = err.error
+        for (let fieldName in err.error.errorMap) {
+          let errorMessage = err.error.errorMap[fieldName];
+          this.errors.push({key: fieldName, label: errorMessage});
+        }
       }
     })
   }

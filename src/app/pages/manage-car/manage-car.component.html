@@ -1,9 +1,6 @@
 <ng-container *ngIf="car">
   <div class="container">
     <h1>Gestisci auto</h1>
-    <app-manage [fields]="carFields" [item]="car" (emit)="manageCar($event)"></app-manage>
-  </div>
-  <div class="alert alert-danger banner" *ngIf="error != ''">
-    <p>{{error}}</p>
+    <app-manage [fields]="carFields" [item]="car" (emit)="manageCar($event)" [errors]="errors"></app-manage>
   </div>
 </ng-container>

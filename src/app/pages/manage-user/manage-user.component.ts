@@ -3,6 +3,7 @@ import {formUser} from "../../mock-dati";
 import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../interfaces/user";
 import {UserService} from "../../services/user.service";
+import {MyHeaders} from "../../interfaces/my-headers";
 
 @Component({
   selector: 'app-manage-user',
@@ -14,7 +15,7 @@ export class ManageUserComponent implements OnInit{
   formUser = formUser;
   user !: User
   id !: string | null
-  error: string = ''
+  errors: MyHeaders[] = [];
   constructor(private router: Router, private userService: UserService, private activeRoute: ActivatedRoute) {}
   ngOnInit() {
     this.id = this.activeRoute.snapshot.paramMap.get("id")
@@ -43,7 +44,13 @@ export class ManageUserComponent implements OnInit{
   manageUser(user: User) {
     this.userService.insertUser(user).subscribe({
       next: () => this.router.navigate(['home']),
-      error: err => this.error = err.error
+      error: err => {
+        for (let fieldName in err.error.errorMap) {
+          let errorMessage = err.error.errorMap[fieldName];
+          console.log(fieldName)
+          this.errors.push({key: fieldName, label: errorMessage});
+        }
+      }
     })
   }
 }
