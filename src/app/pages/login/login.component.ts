@@ -20,6 +20,8 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit() {
 
+    console.log("branching1")
+
     console.log("commit main 1")
     console.log("commit main 2")
 
