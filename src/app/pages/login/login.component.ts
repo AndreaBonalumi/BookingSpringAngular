@@ -19,10 +19,9 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService, private route: Router) {
   }
   ngOnInit() {
+    console.log("nuovo ramo")
 
-    console.log("messaggio")
     console.log("messaggio2")
-
     if ((localStorage.getItem("jwtToken") != null ||
       localStorage.getItem("jwtToken") != "" ||
       localStorage.getItem("jwtToken") != undefined))
