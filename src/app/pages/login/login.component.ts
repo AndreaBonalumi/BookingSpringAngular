@@ -19,6 +19,10 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService, private route: Router, private activeRoute: ActivatedRoute) {
   }
   ngOnInit() {
+
+    console.log("prova di branching e rebasing")
+
+
     if ((localStorage.getItem("jwtToken") != null ||
       localStorage.getItem("jwtToken") != "" ||
       localStorage.getItem("jwtToken") != undefined))
