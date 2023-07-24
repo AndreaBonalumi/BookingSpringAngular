@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
     console.log("branch2")
     console.log("branch3")
 
+    console.log("branch4")
+
     if ((localStorage.getItem("jwtToken") != null ||
       localStorage.getItem("jwtToken") != "" ||
       localStorage.getItem("jwtToken") != undefined))
