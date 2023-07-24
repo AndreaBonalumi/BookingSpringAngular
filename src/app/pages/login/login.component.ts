@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     console.log("commit branch 1")
+    console.log("commit branch 2")
     console.log("commit master 1")
     console.log("commit master 2")
     console.log("commit master 3")
