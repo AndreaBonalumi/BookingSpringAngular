@@ -20,20 +20,7 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit() {
 
-    console.log("branching1")
-    console.log("branching2")
 
-    console.log("commit main 1")
-    console.log("commit main 2")
-
-    console.log("commit main 4")
-    console.log("commit main 5")
-
-    console.log("commit branch 3")
-    console.log("commit branch 4")
-
-    console.log("commit main 1")
-    console.log("commit main 2")
 
     if ((localStorage.getItem("jwtToken") != null ||
       localStorage.getItem("jwtToken") != "" ||
