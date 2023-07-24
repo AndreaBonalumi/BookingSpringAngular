@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit() {
 
-
+    console.log("commit master 1")
 
     if ((localStorage.getItem("jwtToken") != null ||
       localStorage.getItem("jwtToken") != "" ||
