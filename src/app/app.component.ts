@@ -45,7 +45,7 @@ export class AppComponent implements OnInit, AfterContentChecked{
           next: user => {
             this.user = user
           },
-          error: err => {
+          error: () => {
             localStorage.clear()
           }
         })
