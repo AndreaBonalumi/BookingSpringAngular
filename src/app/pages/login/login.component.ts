@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit() {
 
-    console.log("prova di branching e rebasing")
+    console.log("prova di branching e rebasing (commit su master)")
     console.log("prova di branching e committing più cose")
     console.log("prova di branching e solo commit, senza push")
 
