@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     console.log("master1")
+    console.log("master2")
 
     console.log("branch1")
     console.log("branch2")
