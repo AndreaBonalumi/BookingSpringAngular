@@ -37,6 +37,9 @@ export class LoginComponent implements OnInit {
     console.log("prova di branching e solo commit, senza push")
 
 
+    console.log("committing sul branch")
+
+
     if ((localStorage.getItem("jwtToken") != null ||
       localStorage.getItem("jwtToken") != "" ||
       localStorage.getItem("jwtToken") != undefined))
