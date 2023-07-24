@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Auth} from "../../interfaces/auth";
 import {UserService} from "../../services/user.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import { Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -16,11 +16,12 @@ export class LoginComponent implements OnInit {
     password: ''
   }
   authFail: string = ''
-  constructor(private userService: UserService, private route: Router, private activeRoute: ActivatedRoute) {
+  constructor(private userService: UserService, private route: Router) {
   }
   ngOnInit() {
 
     console.log("branching1")
+    console.log("branching2")
 
     console.log("commit main 1")
     console.log("commit main 2")
