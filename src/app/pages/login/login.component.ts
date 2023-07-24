@@ -20,23 +20,6 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit() {
 
-    console.log("commit master 1")
-    console.log("commit master 2")
-    console.log("commit master 3")
-    console.log("commit branch 1")
-    console.log("commit branch 2")
-    console.log("commit branch 3")
-    console.log("commit branch 4")
-    console.log("commit master 1")
-    console.log("commit master 2")
-    console.log("commit master 3")
-
-    console.log("commit master 4")
-    console.log("commit master 5")
-
-    console.log("commit master 4")
-    console.log("commit master 5")
-
     if ((localStorage.getItem("jwtToken") != null ||
       localStorage.getItem("jwtToken") != "" ||
       localStorage.getItem("jwtToken") != undefined))
