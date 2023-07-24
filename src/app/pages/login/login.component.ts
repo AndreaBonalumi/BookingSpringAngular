@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     console.log("commit branch 1")
     console.log("commit branch 2")
     console.log("commit branch 3")
+    console.log("commit branch 4")
     console.log("commit master 1")
     console.log("commit master 2")
     console.log("commit master 3")
