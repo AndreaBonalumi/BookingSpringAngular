@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
 
     console.log("last prova 2")
     console.log("last prova 3")
+    console.log("last prova 4")
 
     if ((localStorage.getItem("jwtToken") != null ||
       localStorage.getItem("jwtToken") != "" ||
