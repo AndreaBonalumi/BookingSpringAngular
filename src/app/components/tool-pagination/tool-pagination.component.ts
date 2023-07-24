@@ -18,7 +18,6 @@ export class ToolPaginationComponent implements AfterContentChecked, OnChanges, 
   @Input() totalItems !: number;
   @Output() emit : EventEmitter<number> = new EventEmitter<number>()
 
-  isManipolationData !: number
   end !: number;
   pagination !: number;
   paginaCorrente !: number;
@@ -87,10 +86,10 @@ export class ToolPaginationComponent implements AfterContentChecked, OnChanges, 
 
   ngOnChanges(changes:SimpleChanges): void {
     this.setUp()
+    this.emit.emit(this.paginaCorrente)
   }
 
   ngOnInit(): void {
-    this.isManipolationData = this.start
     this.setUp()
   }
 }

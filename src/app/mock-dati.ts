@@ -80,7 +80,7 @@ export const formUser: MyHeaders[] = [
   {key: 'lastName', label: 'Cognome *', required: true},
   {key: 'username', label: 'Username *', required: true},
   {key: 'password', label: 'Password *', required: true, type: "password"},
-  {key: 'drivingLicense', label: 'Patente'},
+  {key: 'drivingLicense', label: 'Patente', required: true},
 ]
 export const TABLEBOOKING : MyTableConfig = {
   headers: bookingHeaders,

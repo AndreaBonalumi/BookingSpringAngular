@@ -47,7 +47,6 @@ export class ManageUserComponent implements OnInit{
       error: err => {
         for (let fieldName in err.error.errorMap) {
           let errorMessage = err.error.errorMap[fieldName];
-          console.log(fieldName)
           this.errors.push({key: fieldName, label: errorMessage});
         }
       }
