@@ -1,7 +1,6 @@
 import {AfterContentChecked, Component, OnInit} from '@angular/core';
 import {User} from "./interfaces/user";
 import {UserService} from "./services/user.service";
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -47,7 +46,6 @@ export class AppComponent implements OnInit, AfterContentChecked{
             this.user = user
           },
           error: err => {
-            console.log(err)
             localStorage.clear()
           }
         })

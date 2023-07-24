@@ -7,7 +7,6 @@ import {carHeaders, TABLECAR} from "../../mock-dati";
 import {BookingService} from "../../services/booking.service";
 import {UserService} from "../../services/user.service";
 import {CarService} from "../../services/car.service";
-import * as moment from "moment";
 import * as dayjs from "dayjs";
 
 @Component({
@@ -29,7 +28,6 @@ export class ManageBookingComponent implements OnInit{
               private carService: CarService,
               private router: Router, private activeroute: ActivatedRoute) {}
   ngOnInit() {
-    console.log(this.today)
     let idBooking = this.activeroute.snapshot.paramMap.get("idBooking")
     if(idBooking != null) {
       this.bookingService.getBookingById(Number(idBooking!)).subscribe(booking => this.booking = booking)
