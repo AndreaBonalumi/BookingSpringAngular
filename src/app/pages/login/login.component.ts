@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
 
     console.log("commit master 1")
     console.log("commit master 2")
+    console.log("commit master 3")
 
     if ((localStorage.getItem("jwtToken") != null ||
       localStorage.getItem("jwtToken") != "" ||
