@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     console.log("branch1")
+    console.log("branch2")
 
     if ((localStorage.getItem("jwtToken") != null ||
       localStorage.getItem("jwtToken") != "" ||
