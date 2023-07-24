@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit() {
     console.log("nuovo ramo")
+    console.log("nuovo ramo2")
 
     console.log("messaggio2")
     if ((localStorage.getItem("jwtToken") != null ||
