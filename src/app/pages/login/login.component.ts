@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     console.log("prova di branching e rebasing")
+    console.log("prova di branching e committing più cose")
 
 
     if ((localStorage.getItem("jwtToken") != null ||
