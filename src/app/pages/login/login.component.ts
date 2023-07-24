@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
 
     console.log("branch1")
     console.log("branch2")
+    console.log("branch3")
 
     console.log("master1")
     console.log("master2")
