@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {carHeaders} from "../../mock-dati";
 import {Car} from "../../interfaces/car";
 import {MyTableActionEnum} from "../../interfaces/my-table-action-enum";
 import {Router} from "@angular/router";
 import {TableEvent} from "../../components/my-table/my-table.component";
 import {CarService} from "../../services/car.service";
+import {carHeaders} from "../../configurations/headers";
 
 @Component({
   selector: 'app-cars',

@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {User} from "../../interfaces/user";
 import {ConfigButton} from "../../interfaces/config-button";
 import {MyHeaders} from "../../interfaces/my-headers";
-import {userHeaders} from "../../mock-dati";
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
+import {DomSanitizer} from "@angular/platform-browser";
+import {userHeaders} from "../../configurations/headers";
 
 @Component({
   selector: 'app-profile',
@@ -14,18 +15,24 @@ import {UserService} from "../../services/user.service";
 export class ProfileComponent implements OnInit{
   user !: User;
   userField: MyHeaders[] = userHeaders;
+  pathImage: any
   editButton: ConfigButton = {
     icon: "pencil-square",
     class: "btn btn-primary",
     text: "Modifica"
   }
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router, private sanitizer: DomSanitizer) {
   }
   ngOnInit() {
-    this.userService.getUsername().subscribe({
-      next: user => this.user = user,
-      error: err => localStorage.clear()
-    })
+    this.userService.getUser().subscribe(
+      user => {
+        this.user = user;
+        this.userService.getProfileImage(user.idUser).subscribe(blob => {
+          let objectURL = URL.createObjectURL(blob);
+          this.pathImage = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+        });
+      }
+    );
   }
   emit() {
     this.router.navigate(['manageUser/' + this.user.idUser])

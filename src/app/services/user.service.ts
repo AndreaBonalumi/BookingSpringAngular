@@ -24,7 +24,7 @@ export class UserService {
     const url = `${this.apiUrl}/detail/${id}`
     return this.http.get(url)
   }
-  getUsername(): Observable<any> {
+  getUser(): Observable<any> {
     const url = `${this.apiUrl}/username`
     return this.http.get(url)
   }
@@ -50,5 +50,9 @@ export class UserService {
   changePassword(formPassword: any): Observable<any> {
     const url = `${this.apiUrl}/newPassword`
     return this.http.post(url, formPassword)
+  }
+  getProfileImage(idUser: number): Observable<any> {
+    const url = `${this.apiUrl}/image/${idUser}`
+    return this.http.get(url, {responseType: "blob"})
   }
 }

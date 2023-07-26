@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {formUser} from "../../mock-dati";
 import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../interfaces/user";
 import {UserService} from "../../services/user.service";
 import {MyHeaders} from "../../interfaces/my-headers";
+import {forms} from "../../configurations/forms";
 
 @Component({
   selector: 'app-manage-user',
@@ -12,7 +12,7 @@ import {MyHeaders} from "../../interfaces/my-headers";
 })
 export class ManageUserComponent implements OnInit{
 
-  formUser = formUser;
+  formUser = forms;
   user !: User
   id !: string | null
   errors: MyHeaders[] = [];
@@ -20,7 +20,7 @@ export class ManageUserComponent implements OnInit{
   ngOnInit() {
     this.id = this.activeRoute.snapshot.paramMap.get("id")
     if (this.id == null) {
-      this.userService.getUsername().subscribe(user => {
+      this.userService.getUser().subscribe(user => {
         this.user = {
           admin: false,
           email: "",

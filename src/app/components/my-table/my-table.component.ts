@@ -7,8 +7,8 @@ import {
   Output,
 } from '@angular/core';
 import {MyHeaders} from "../../interfaces/my-headers";
-import {TABLE} from "../../mock-dati";
 import {MyTableActionEnum} from "../../interfaces/my-table-action-enum";
+import {TABLE} from "../../configurations/table";
 
 @Component({
   selector: 'app-my-table',

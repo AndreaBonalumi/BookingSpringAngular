@@ -40,7 +40,7 @@ export class AppComponent implements OnInit, AfterContentChecked{
 
     if (this.token != null || this.token != "") {
 
-      this.userService.getUsername()
+      this.userService.getUser()
         .subscribe({
           next: user => {
             this.user = user

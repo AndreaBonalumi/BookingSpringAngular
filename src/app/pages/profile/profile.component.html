@@ -2,6 +2,9 @@
   <div class="container text-primary flex-column">
 
       <div class="form-group span">
+        <div>
+          <img [src]="pathImage"  alt="impossibile caricare l'immagine"/>
+        </div>
         <ng-container *ngFor="let field of userField">
           <span>{{field.label}}: {{user[field.key]}}</span><br/><br/>
         </ng-container>

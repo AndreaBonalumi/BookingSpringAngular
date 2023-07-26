@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../../interfaces/user";
-import {bookingHeaders, TABLEBOOKING} from "../../mock-dati";
 import {ActivatedRoute} from "@angular/router";
 import {Booking} from "../../interfaces/booking";
 import {TableEvent} from "../../components/my-table/my-table.component";
 import {UserService} from "../../services/user.service";
 import {BookingService} from "../../services/booking.service";
+import {TABLEBOOKING} from "../../configurations/table";
+import {bookingHeaders} from "../../configurations/headers";
 
 @Component({
   selector: 'app-user-booking',

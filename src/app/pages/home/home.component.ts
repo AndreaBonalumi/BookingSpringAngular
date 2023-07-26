@@ -4,11 +4,12 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Car} from "../../interfaces/car";
 import {Booking} from "../../interfaces/booking";
 import {MyHeaders} from "../../interfaces/my-headers";
-import {bookingHeaders, TABLE, userHeaders} from "../../mock-dati";
 import {MyTableActionEnum} from "../../interfaces/my-table-action-enum";
 import {TableEvent} from "../../components/my-table/my-table.component";
 import {UserService} from "../../services/user.service";
 import {BookingService} from "../../services/booking.service";
+import {TABLE} from "../../configurations/table";
+import {bookingHeaders, userHeaders} from "../../configurations/headers";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -30,7 +31,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     if (localStorage.getItem("jwtToken") != null) {
-      this.userService.getUsername().subscribe({
+      this.userService.getUser().subscribe({
         next: user => {
           this.userLogger = user
           if (this.userLogger.admin) {

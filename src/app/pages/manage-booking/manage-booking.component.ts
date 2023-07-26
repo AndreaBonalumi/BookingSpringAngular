@@ -3,11 +3,12 @@ import {User} from "../../interfaces/user";
 import {Car} from "../../interfaces/car";
 import {Booking} from "../../interfaces/booking";
 import {ActivatedRoute, Router} from "@angular/router";
-import {carHeaders, TABLECAR} from "../../mock-dati";
 import {BookingService} from "../../services/booking.service";
 import {UserService} from "../../services/user.service";
 import {CarService} from "../../services/car.service";
 import * as dayjs from "dayjs";
+import {TABLECAR} from "../../configurations/table";
+import {carHeaders} from "../../configurations/headers";
 
 @Component({
   selector: 'app-manage-booking',
@@ -32,7 +33,7 @@ export class ManageBookingComponent implements OnInit{
     if(idBooking != null) {
       this.bookingService.getBookingById(Number(idBooking!)).subscribe(booking => this.booking = booking)
     } else {
-      this.userService.getUsername()
+      this.userService.getUser()
         .subscribe({
           next: user => {
             this.booking = {

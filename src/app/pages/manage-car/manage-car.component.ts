@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {carHeaders} from "../../mock-dati";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Car} from "../../interfaces/car";
 import {CarService} from "../../services/car.service";
 import {UserService} from "../../services/user.service";
+import {carHeaders} from "../../configurations/headers";
 @Component({
   selector: 'app-manage-car',
   templateUrl: './manage-car.component.html',
@@ -19,7 +19,7 @@ export class ManageCarComponent implements OnInit{
   ngOnInit() {
     let id = this.activeRoute.snapshot.paramMap.get("id")
     if (id == null) {
-      this.userService.getUsername().subscribe(user => {
+      this.userService.getUser().subscribe(user => {
         this.car = {
           plate: '',
           brand: '',
