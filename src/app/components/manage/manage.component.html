@@ -1,7 +1,7 @@
 <div class="container text-secondary">
   <form #form="ngForm">
     <ng-container *ngFor="let field of fields">
-      <div class="form-group">
+      <div class="form-group" *ngIf="field.type != 'file'">
         <label for="{{field.key}}">{{field.label}}</label>
         <input class="input"
                id="{{field.key}}"
@@ -11,6 +11,12 @@
                [(ngModel)]="item[field.key]"
                [required]="field.required ? field.required : false" />
         <br/><br/>
+      </div>
+      <div class="form-group" *ngIf="field.type == 'file'">
+
+        <label for="{{field.key}}">{{field.label}}</label>
+        <input id="{{field.key}}" type="file" (change)="changeFile($event, field.key)"
+               [required]="field.required ? field.required : false">
       </div>
     </ng-container>
     <app-my-button [config]="{icon: 'pencil-square', class: 'btn btn-primary', text: 'salva'}"

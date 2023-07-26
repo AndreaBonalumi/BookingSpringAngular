@@ -1,12 +1,15 @@
 <ng-container *ngIf="user">
   <div class="container text-primary flex-column">
+
       <div class="form-group span">
         <ng-container *ngFor="let field of userField">
           <span>{{field.label}}: {{user[field.key]}}</span><br/><br/>
         </ng-container>
 
         <app-my-button [config]="editButton" (emitter)="emit()"></app-my-button>
+        <a routerLink="/newPassword" >cambia password</a>
       </div>
   </div>
 </ng-container>
+<router-outlet></router-outlet>
 

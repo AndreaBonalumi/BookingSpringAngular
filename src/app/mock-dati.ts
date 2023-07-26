@@ -55,7 +55,7 @@ export const userHeaders: MyHeaders[] = [
   {key: "lastName", label: "Cognome"},
   {key: "username", label: "Username"},
   {key: "email", label: "E-mail"},
-  {key: "drivingLicense", label: "Patente"},
+  {key: "drivingLicense", label: "Patente"}
 ];
 export const carHeaders: MyHeaders[] = [
   {key: "plate", label: "Targa", required: true},
@@ -64,7 +64,7 @@ export const carHeaders: MyHeaders[] = [
   {key: "color", label: "Colore", required: true},
   {key: "description", label: "Descrizione *", required: true},
   {key: "link", label: "Link foto", required: false},
-  {key: "year", label: "Anno"},
+  {key: "year", label: "Anno"}
 ];
 export const bookingHeaders: MyHeaders[] = [
   {key: "start", label: "Inizio", required: true},
@@ -81,6 +81,7 @@ export const formUser: MyHeaders[] = [
   {key: 'username', label: 'Username *', required: true},
   {key: 'password', label: 'Password *', required: true, type: "password"},
   {key: 'drivingLicense', label: 'Patente', required: true},
+  {key: 'photo', label: 'Foto profilo', type: 'file', required: true}
 ]
 export const TABLEBOOKING : MyTableConfig = {
   headers: bookingHeaders,

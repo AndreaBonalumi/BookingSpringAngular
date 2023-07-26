@@ -40,4 +40,15 @@ export class UserService {
     const url = `${this.apiUrl}/authenticate`
     return this.http.post(url, auth)
   }
+  upload(file: any, idUser: number): Observable<any> {
+    const url = `${this.apiUrl}/upload/${idUser}`
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.http.post(url, formData)
+  }
+  changePassword(formPassword: any): Observable<any> {
+    const url = `${this.apiUrl}/newPassword`
+    return this.http.post(url, formPassword)
+  }
 }

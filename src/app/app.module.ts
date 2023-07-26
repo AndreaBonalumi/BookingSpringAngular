@@ -24,6 +24,7 @@ import { UserBookingComponent } from './pages/user-booking/user-booking.componen
 import { LoginComponent } from './pages/login/login.component';
 import { ManageComponent } from './components/manage/manage.component';
 import { JwtInterceptor } from "./iterceptor/jwt.interceptor";
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { JwtInterceptor } from "./iterceptor/jwt.interceptor";
     UserBookingComponent,
     LoginComponent,
     ManageComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

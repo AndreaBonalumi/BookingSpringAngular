@@ -20,4 +20,8 @@ export class ManageComponent {
     return '';
   }
 
+  changeFile(e: any, key: string) {
+    this.item[key] = e.target.files[0]
+  }
+
 }

@@ -29,6 +29,8 @@ export class ManageUserComponent implements OnInit{
           drivingLicense: "",
           password: "",
           username: "",
+          profilePhoto: null,
+          photo: null,
           createdBy: user.idUser
         }
       })
@@ -42,8 +44,16 @@ export class ManageUserComponent implements OnInit{
   }
 
   manageUser(user: User) {
+    console.log(user)
     this.userService.insertUser(user).subscribe({
-      next: () => this.router.navigate(['home']),
+      next: (userIns: User) => {
+        if (user.photo && userIns.idUser) {
+
+          this.userService.upload(user.photo, userIns.idUser).subscribe({
+            next: () => this.router.navigate(['home'])
+          })
+        }
+      },
       error: err => {
         for (let fieldName in err.error.errorMap) {
           let errorMessage = err.error.errorMap[fieldName];

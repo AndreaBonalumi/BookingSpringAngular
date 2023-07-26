@@ -8,6 +8,7 @@ import {ManageCarComponent} from "./pages/manage-car/manage-car.component";
 import {ManageBookingComponent} from "./pages/manage-booking/manage-booking.component";
 import {UserBookingComponent} from "./pages/user-booking/user-booking.component";
 import {LoginComponent} from "./pages/login/login.component";
+import {ChangePasswordComponent} from "./pages/change-password/change-password.component";
 
 let routes: Routes = [
   {path: '', component: LoginComponent},
@@ -21,7 +22,8 @@ let routes: Routes = [
   {path: ':idUser/manageBooking/:idBooking', component: ManageBookingComponent},
   {path: ':idUser/manageBooking', component: ManageBookingComponent},
   {path: 'bookings/:id', component: UserBookingComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'newPassword', component: ChangePasswordComponent}
   ];
 
 @NgModule({

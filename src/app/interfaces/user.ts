@@ -9,6 +9,8 @@ export interface User {
   email: string;
   birthday ?: Moment;
   admin: boolean;
+  profilePhoto: string | null;
+  photo: File | null;
   drivingLicense ?: string;
   createdBy ?: number;
 }
