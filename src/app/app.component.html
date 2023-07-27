@@ -1,16 +1,29 @@
 <ng-container *ngIf="token">
-  <nav style="margin: 20px;">
-    <a routerLink="home"> <app-my-button [config]="{icon: 'airplane', class: 'primary', text: 'Home'}"></app-my-button></a>
-    <ng-container *ngIf="user">
-      <ng-container *ngIf="user.admin">
-        <a routerLink="cars"><app-my-button [config]="{icon: 'book', class: 'secondary', text: 'Parco Auto'}"></app-my-button></a>
-      </ng-container>
-    </ng-container>
-    <a routerLink="profile"><app-my-button [config]="{icon: 'book', class: 'primary', text: 'Profilo'}"></app-my-button></a>
-    <app-my-button (emitter)="logout()"
-      [config]="{icon: 'box-arrow-right', class: 'secondary', text: 'Logout'}"></app-my-button>
+  <nav class="bg-blue-300 text-white mb-5">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 ">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+          <a routerLink="/" class="font-bold text-xl">
+            <img src="https://intranet.si2001.it/assets/images/LogoFlat.png" alt="SI 2001">
+          </a>
+        </div>
+        <!-- Menu principale -->
+        <div class="hidden md:block">
+          <ul class="flex space-x-4">
+            <li><a routerLink="home" class="text-white">Home</a></li>
+            <li><a routerLink="cars" class="text-white">Parco Auto</a></li>
+            <li><a routerLink="profile" class="text-white">Profilo</a></li>
+          </ul>
+        </div>
+        <!-- Tasto di Logout -->
+        <button class="text-white font-bold text-xl focus:outline-none" (click)="logout()">
+          Logout
+        </button>
+      </div>
+    </div>
   </nav>
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </ng-container>
 
 

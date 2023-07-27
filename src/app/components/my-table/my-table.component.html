@@ -1,47 +1,47 @@
- <div id="search-data">
-   <label for="seleziona-colonna">Seleziona una colonna per la ricerca: </label>
-   <div class="search">
-    <select id="seleziona-colonna" [(ngModel)]="searchColumn" style="margin-right: 10px; width: 25%">
+<div id="search-data" class="my-4 items-center">
+  <label for="seleziona-colonna" class="mr-2">Seleziona una colonna per la ricerca:</label>
+  <div class="flex">
+    <select id="seleziona-colonna" [(ngModel)]="searchColumn" class="border mr-2 w-2/5 px-2 py-1 rounded">
       <ng-container *ngFor="let colonna of tableConfig.search.columns">
-        <option value="{{colonna.key}}">{{colonna.label}}</option>
+        <option [value]="colonna.key">{{colonna.label}}</option>
       </ng-container>
     </select>
-    <input type="text" [(ngModel)]="searchText" placeholder="cerca" style="margin-right: 10px; width: 60%"/>
-   </div>
+    <input type="text" [(ngModel)]="searchText" placeholder="cerca" class="border mr-2 w-3/5 px-2 py-1 rounded"/>
+  </div>
+</div>
 
-   <ng-container *ngFor="let azione of tableConfig.actions">
-     <app-my-button *ngIf="azione.onTop"
-                    (emitter)="emitButton.emit({action: azione.action})"
-                    [config]="azione.buttonAction">
-     </app-my-button>
-   </ng-container>
- </div>
+<ng-container *ngFor="let azione of tableConfig.actions">
+  <app-my-button *ngIf="azione.onTop"
+                 (emitter)="emitButton.emit({action: azione.action})"
+                 [config]="azione.buttonAction">
+  </app-my-button>
+</ng-container>
 
 <table class="table">
   <thead>
   <tr>
     <th class="col" *ngFor="let colonna of tableConfig.headers" (click)="ordinamento(colonna.key)">
       {{colonna.label}}
-      <i *ngIf = "colonna.key === tableConfig.order.colonna">{{iconaOrdinamento}}</i>
+      <i *ngIf="colonna.key === tableConfig.order.colonna" [class]="iconaOrdinamento"></i>
     </th>
   </tr>
   </thead>
 
   <tbody>
-    <tr *ngFor="let riga of data | filter: searchText: searchColumn | order: tableConfig.order.verso: tableConfig.order.colonna | pagination: start: end: tableConfig.pagination.itemPerPage: data[0]"
-        (click)="emitRow.emit(riga)">
-      <td *ngFor="let colonna of tableConfig.headers">
-        {{getValue(riga, colonna.key)}}
-      </td>
-      <td *ngFor="let azione of tableConfig.actions">
-        <app-my-button *ngIf="!azione.onTop"
-                       [hidden]="azione.hidden !== undefined ? azione.hidden(riga) : false"
-                       (emitter)="emitOnlyButton($event, {action: azione.action, value: riga})"
-                       [config]="azione.buttonAction">
-        </app-my-button>
-      </td>
-    </tr>
+  <tr *ngFor="let riga of data | filter: searchText: searchColumn | order: tableConfig.order.verso: tableConfig.order.colonna | pagination: start: end: tableConfig.pagination.itemPerPage: data[0]"
+      (click)="emitRow.emit(riga)">
+    <td *ngFor="let colonna of tableConfig.headers">
+      {{getValue(riga, colonna.key)}}
+    </td>
+    <td *ngFor="let azione of tableConfig.actions">
+      <app-my-button *ngIf="!azione.onTop"
+                     [hidden]="azione.hidden !== undefined ? azione.hidden(riga) : false"
+                     (emitter)="emitOnlyButton($event, {action: azione.action, value: riga})"
+                     [config]="azione.buttonAction">
+      </app-my-button>
+    </td>
+  </tr>
   </tbody>
 </table>
 
- <app-tool-pagination [table]="tableConfig" [totalItems]="(data | filter: searchText: searchColumn).length" [start]="start" (emit)="changePagination($event)"></app-tool-pagination>
+<app-tool-pagination [table]="tableConfig" [totalItems]="(data | filter: searchText: searchColumn).length" [start]="start" (emit)="changePagination($event)"></app-tool-pagination>

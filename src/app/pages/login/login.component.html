@@ -1,23 +1,34 @@
-<div class="container text-secondary">
-  <h1>Accedi per entrare</h1>
+<div class="container text-secondary max-w-md mx-auto mt-8">
+  <h1 class="text-2xl font-bold mb-4">Accedi per entrare</h1>
   <form #form="ngForm" method="post">
-    <label for="username">Username: </label>
-    <input [style]="authFail ?  ' border-color: #f00;' : ''"
-           id="username" type="text" name="username" [(ngModel)]="auth.username" required /><br/><br/>
-    <label for="password">Password: </label>
-    <input [style]="authFail ?  ' border-color: #f00;' : ''"
-           id="password" type="password" name="password" [(ngModel)]="auth.password" required /><br/><br/>
+    <label for="username" class="block text-gray-700 font-bold mb-2">Username:</label>
+    <input [class.border-red-500]="authFail"
+           id="username"
+           type="text"
+           name="username"
+           [(ngModel)]="auth.username"
+           required
+           class="input border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" /><br/><br/>
+    <label for="password" class="block text-gray-700 font-bold mb-2">Password:</label>
+    <input [class.border-red-500]="authFail"
+           id="password"
+           type="password"
+           name="password"
+           [(ngModel)]="auth.password"
+           required
+           class="input border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" /><br/><br/>
     <app-my-button [isDisabled]="!form.valid"
                    (emitter)="login()"
-                   [config]="{icon: 'box-arrow-in-right', class: 'btn btn-primary', text: 'Login'}"></app-my-button>
+                   [config]="{icon: 'box-arrow-in-right', class: 'btn btn-primary', text: 'Login'}"
+                   class="mt-4"></app-my-button>
   </form>
-  <div class="alert-success alert banner" *ngIf="logout">
+  <div class="alert-success alert banner mt-4" *ngIf="logout">
     <p>Logout avvenuto con successo</p>
   </div>
-  <div class="alert-danger alert banner" *ngIf="authFail != ''">
+  <div class="alert-danger alert banner mt-4" *ngIf="authFail">
     <p>{{authFail}}</p>
   </div>
-  <div class="alert-danger alert banner" *ngIf="noAuth">
-    <p>Non hai le autorizzazioni per effetuare queste operazioni, riautenticati per verificare la tua identità</p>
+  <div class="alert-danger alert banner mt-4" *ngIf="noAuth">
+    <p>Non hai le autorizzazioni per effettuare queste operazioni, riautenticati per verificare la tua identità</p>
   </div>
 </div>

@@ -19,7 +19,7 @@ export class ManageUserComponent implements OnInit{
   constructor(private router: Router, private userService: UserService, private activeRoute: ActivatedRoute) {}
   ngOnInit() {
     this.id = this.activeRoute.snapshot.paramMap.get("id")
-    this.userService.getUsers().subscribe((user: User) => {
+    this.userService.getUser().subscribe((user: User) => {
       if (user.admin) {
         this.formUser = formUserAdmin
       } else {
