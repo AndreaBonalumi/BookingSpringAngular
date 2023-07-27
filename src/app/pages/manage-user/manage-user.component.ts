@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../interfaces/user";
 import {UserService} from "../../services/user.service";
 import {MyHeaders} from "../../interfaces/my-headers";
-import {forms} from "../../configurations/forms";
+import {formUser, formUserAdmin} from "../../configurations/forms";
 
 @Component({
   selector: 'app-manage-user',
@@ -12,15 +12,20 @@ import {forms} from "../../configurations/forms";
 })
 export class ManageUserComponent implements OnInit{
 
-  formUser = forms;
+  formUser !: MyHeaders[];
   user !: User
   id !: string | null
   errors: MyHeaders[] = [];
   constructor(private router: Router, private userService: UserService, private activeRoute: ActivatedRoute) {}
   ngOnInit() {
     this.id = this.activeRoute.snapshot.paramMap.get("id")
-    if (this.id == null) {
-      this.userService.getUser().subscribe(user => {
+    this.userService.getUsers().subscribe((user: User) => {
+      if (user.admin) {
+        this.formUser = formUserAdmin
+      } else {
+        this.formUser = formUser
+      }
+      if (this.id == null && user.admin) {
         this.user = {
           admin: false,
           email: "",
@@ -33,14 +38,13 @@ export class ManageUserComponent implements OnInit{
           photo: null,
           createdBy: user.idUser
         }
-      })
-
-    } else {
-      this.userService.getUserById(Number(this.id)!).subscribe({
-        next: user => this.user = user,
-        error: err => localStorage.clear()
-      })
-    }
+      } else {
+        this.userService.getUserById(Number(this.id)!).subscribe({
+          next: user => this.user = user,
+          error: err => localStorage.clear()
+        })
+      }
+    })
   }
 
   manageUser(user: User) {

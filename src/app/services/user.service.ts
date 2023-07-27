@@ -25,7 +25,7 @@ export class UserService {
     return this.http.get(url)
   }
   getUser(): Observable<any> {
-    const url = `${this.apiUrl}/username`
+    const url = `${this.apiUrl}/user`
     return this.http.get(url)
   }
   insertUser(user: User): Observable<any> {
