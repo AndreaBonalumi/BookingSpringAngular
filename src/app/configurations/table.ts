@@ -16,8 +16,8 @@ export const TABLE: MyTableConfig = {
       onTop: true,
       buttonAction: {
         text: 'Nuovo',
-        icon: 'postcard',
-        class: 'primary'
+        icon: 'bi bi-postcard',
+        class: 'btn btn-primary'
       },
       action: MyTableActionEnum.NEW_ROW
     },
@@ -25,8 +25,8 @@ export const TABLE: MyTableConfig = {
       onTop: false,
       buttonAction: {
         text: 'Modifica',
-        icon: 'pencil',
-        class: 'secondary'
+        icon: 'bi bi-pencil',
+        class: 'btn btn-secondary'
       },
       action: MyTableActionEnum.EDIT,
       hidden: (booking: any): boolean => {
@@ -40,8 +40,8 @@ export const TABLE: MyTableConfig = {
       onTop: false,
       buttonAction: {
         text: 'Cancella',
-        icon: 'trash3',
-        class: 'secondary'
+        icon: 'bi bi-trash3',
+        class: 'btn btn-secondary'
       },
       action: MyTableActionEnum.DELETE,
       hidden: (booking: any): boolean => {
@@ -66,8 +66,8 @@ export const TABLEBOOKING: MyTableConfig = {
       onTop: false,
       buttonAction: {
         text: 'Approva',
-        icon: 'postcard',
-        class: 'primary'
+        icon: 'bi bi-postcard',
+        class: 'btn btn-primary'
       },
       action: MyTableActionEnum.APPROVE
     },
@@ -75,8 +75,8 @@ export const TABLEBOOKING: MyTableConfig = {
       onTop: false,
       buttonAction: {
         text: 'Rifiuta',
-        icon: 'pencil',
-        class: 'secondary'
+        icon: 'bi bi-pencil',
+        class: 'btn btn-secondary'
       },
       action: MyTableActionEnum.DECLINE
     },

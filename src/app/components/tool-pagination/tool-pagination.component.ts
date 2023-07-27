@@ -24,13 +24,13 @@ export class ToolPaginationComponent implements AfterContentChecked, OnChanges, 
   arrayPagine : number[] = [];
   button_next: ConfigButton = {
     text: 'Next',
-    icon: 'map',
-    class: 'primary'
+    icon: 'bi bi-map',
+    class: 'btn btn-primary'
   }
   button_back: ConfigButton = {
     text: 'Back',
-    icon: 'map',
-    class: 'primary'
+    icon: 'bi bi-map',
+    class: 'btn btn-primary'
   }
 
   setUp() {
