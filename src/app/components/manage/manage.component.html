@@ -1,31 +1,45 @@
-<div class="container text-secondary">
-  <form #form="ngForm">
-    <ng-container *ngFor="let field of fields">
-      <div class="mb-4" *ngIf="field.type != 'file'">
-        <label for="{{field.key}}" class="block text-gray-700 font-bold mb-2">{{field.label}}</label>
-        <input class="input border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-               id="{{field.key}}"
-               [type]="field.type ? field.type : 'text'"
+<form #form="ngForm">
+  <ng-container *ngFor="let field of fields">
+    <ng-container *ngIf="field.type != 'file'">
+
+      <div class="relative z-0 w-full mb-6 group">
+        <input [type]="field.type ? field.type : 'text'"
                name="{{field.key}}"
-               [class.border-red-500]="getErrorBorderColor(field.key)"
+               id="{{field.key}}"
+               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+               placeholder=" "
                [(ngModel)]="item[field.key]"
                [required]="field.required ? field.required : false" />
+        <label for="{{field.key}}"
+               class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+          {{field.label}}</label>
       </div>
-      <div class="mb-4" *ngIf="field.type == 'file'">
-        <label for="{{field.key}}" class="block text-gray-700 font-bold mb-2">{{field.label}}</label>
+
+    </ng-container>
+    <ng-container *ngIf="field.type == 'file'">
+
+      <div class="relative z-0 w-full mb-6 group flex flex-row">
+        <label for="{{field.key}}"
+               class="block py-2.5 px-0 w-40 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+          {{field.label}}</label>
         <input id="{{field.key}}" type="file" (change)="changeFile($event, field.key)"
                [required]="field.required ? field.required : false"
-               class="block text-gray-700 font-bold mb-2">
+               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
       </div>
+
     </ng-container>
-    <app-my-button [config]="{icon: 'pencil-square', class: 'btn btn-primary', text: 'Salva'}"
-                   [isDisabled]="!form.valid"
-                   class="mt-4"
-                   (emitter)="emit.emit(item)"></app-my-button>
-  </form>
-  <div class="alert alert-danger banner mt-4" *ngIf="errors.length > 0">
-    <ng-container *ngFor="let error of errors">
-      <p class="text-red-600">{{error.label}}</p>
-    </ng-container>
-  </div>
+  </ng-container>
+
+  <app-my-button [config]="{icon: 'pencil-square', class: 'btn btn-primary', text: 'Salva'}"
+                 [isDisabled]="!form.valid"
+                 class="mt-4"
+                 (emitter)="emit.emit(item)"></app-my-button>
+</form>
+
+<div *ngIf="errors.length > 0">
+  <ng-container *ngFor="let error of errors">
+    <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+      <span class="font-medium">{{error.label}}</span>
+    </div>
+  </ng-container>
 </div>
