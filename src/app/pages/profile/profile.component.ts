@@ -5,7 +5,7 @@ import {MyHeaders} from "../../interfaces/my-headers";
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {DomSanitizer} from "@angular/platform-browser";
-import {profileUser, userHeaders} from "../../configurations/headers";
+import {profileUser} from "../../configurations/headers";
 
 @Component({
   selector: 'app-profile',

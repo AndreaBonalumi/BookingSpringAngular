@@ -1,4 +1,4 @@
-<ng-container *ngIf="token">
+<ng-container *ngIf="token && user">
   <nav class="bg-gray-800">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
@@ -11,7 +11,9 @@
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
               <a routerLink="home" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
-              <a routerLink="cars" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Parco Auto</a>
+              <ng-container *ngIf="user.admin">
+                <a routerLink="cars" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Parco Auto</a>
+              </ng-container>
               <a routerLink="profile" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Profilo</a>
             </div>
           </div>
