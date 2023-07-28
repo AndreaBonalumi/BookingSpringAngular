@@ -1,4 +1,4 @@
-<div id="search-data" class="my-4 items-center">
+<div id="search-data" class="my-4 items-center text-xs text-gray-700">
   <label for="seleziona-colonna" class="mr-2">Seleziona una colonna per la ricerca:</label>
   <div class="flex">
     <select id="seleziona-colonna" [(ngModel)]="searchColumn" class="border mr-2 w-2/5 px-2 py-1 rounded">
@@ -17,31 +17,44 @@
   </app-my-button>
 </ng-container>
 
-<table class="table">
-  <thead>
-  <tr>
-    <th class="col" *ngFor="let colonna of tableConfig.headers" (click)="ordinamento(colonna.key)">
-      {{colonna.label}}
-      <i *ngIf="colonna.key === tableConfig.order.colonna" [class]="iconaOrdinamento"></i>
-    </th>
-  </tr>
-  </thead>
+<br/><br/>
 
-  <tbody>
-  <tr *ngFor="let riga of data | filter: searchText: searchColumn | order: tableConfig.order.verso: tableConfig.order.colonna | pagination: start: end: tableConfig.pagination.itemPerPage: data[0]"
-      (click)="emitRow.emit(riga)">
-    <td *ngFor="let colonna of tableConfig.headers">
-      {{getValue(riga, colonna.key)}}
-    </td>
-    <td *ngFor="let azione of tableConfig.actions">
-      <app-my-button *ngIf="!azione.onTop"
-                     [hidden]="azione.hidden !== undefined ? azione.hidden(riga) : false"
-                     (emitter)="emitOnlyButton($event, {action: azione.action, value: riga})"
-                     [config]="azione.buttonAction">
-      </app-my-button>
-    </td>
-  </tr>
-  </tbody>
-</table>
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
-<app-tool-pagination [table]="tableConfig" [totalItems]="(data | filter: searchText: searchColumn).length" [start]="start" (emit)="changePagination($event)"></app-tool-pagination>
+    <tr>
+      <th scope="col" class="px-6 py-3" *ngFor="let colonna of tableConfig.headers" (click)="ordinamento(colonna.key)">
+        {{colonna.label}}
+        <i *ngIf="colonna.key === tableConfig.order.colonna" [class]="iconaOrdinamento"></i>
+      </th>
+    </tr>
+
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let riga of data | filter: searchText: searchColumn | order: tableConfig.order.verso: tableConfig.order.colonna | pagination: start: end: tableConfig.pagination.itemPerPage: data[0]"
+        (click)="emitRow.emit(riga)"
+        class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+      <td *ngFor="let colonna of tableConfig.headers"
+          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        {{getValue(riga, colonna.key)}}
+      </td>
+      <td *ngFor="let azione of tableConfig.actions">
+        <app-my-button *ngIf="!azione.onTop"
+                       [hidden]="azione.hidden !== undefined ? azione.hidden(riga) : false"
+                       (emitter)="emitOnlyButton($event, {action: azione.action, value: riga})"
+                       [config]="azione.buttonAction">
+        </app-my-button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<br/>
+
+<app-tool-pagination class="text-xs text-gray-700"
+                     [table]="tableConfig"
+                     [totalItems]="(data | filter: searchText: searchColumn).length" [start]="start"
+                     (emit)="changePagination($event)"></app-tool-pagination>

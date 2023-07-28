@@ -22,13 +22,18 @@
                    [config]="{icon: 'box-arrow-in-right', class: 'btn btn-primary', text: 'Login'}"
                    class="mt-4"></app-my-button>
   </form>
-  <div class="alert-success alert banner mt-4" *ngIf="logout">
-    <p>Logout avvenuto con successo</p>
-  </div>
-  <div class="alert-danger alert banner mt-4" *ngIf="authFail">
-    <p>{{authFail}}</p>
-  </div>
-  <div class="alert-danger alert banner mt-4" *ngIf="noAuth">
-    <p>Non hai le autorizzazioni per effettuare queste operazioni, riautenticati per verificare la tua identità</p>
+  <div class="w-1/3">
+
+    <div class="alert-success alert banner mt-4" *ngIf="logout">
+      <p>Logout avvenuto con successo</p>
+    </div>
+
+    <div class="alert-danger alert banner mt-4" *ngIf="authFail">
+      <p>{{authFail}}</p>
+    </div>
+
+    <div class="alert-danger alert banner mt-4" *ngIf="noAuth">
+      <p>Non hai le autorizzazioni per effettuare queste operazioni, riautenticati per verificare la tua identità</p>
+    </div>
   </div>
 </div>
