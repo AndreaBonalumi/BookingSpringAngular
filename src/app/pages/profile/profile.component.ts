@@ -5,7 +5,7 @@ import {MyHeaders} from "../../interfaces/my-headers";
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {DomSanitizer} from "@angular/platform-browser";
-import {userHeaders} from "../../configurations/headers";
+import {profileUser, userHeaders} from "../../configurations/headers";
 
 @Component({
   selector: 'app-profile',
@@ -14,11 +14,11 @@ import {userHeaders} from "../../configurations/headers";
 })
 export class ProfileComponent implements OnInit{
   user !: User;
-  userField: MyHeaders[] = userHeaders;
+  userFields: MyHeaders[] = profileUser;
   pathImage: any
   editButton: ConfigButton = {
-    icon: "pencil-square",
-    class: "btn btn-primary",
+    icon: "bi bi-pencil-square",
+    class: "btn btn-secondary",
     text: "Modifica"
   }
   constructor(private userService: UserService, private router: Router, private sanitizer: DomSanitizer) {
