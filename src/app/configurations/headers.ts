@@ -22,7 +22,7 @@ export const userHeaders: MyHeaders[] = [
   {key: "lastName", label: "Cognome"},
   {key: "username", label: "Username"},
   {key: "email", label: "E-mail"},
-  {key: "drivingLicense", label: "Patente"}
+  {key: "drivingLicense", label: "Patente"},
 ];
 export const profileUser: MyHeaders[] = [
   {key: "username", label: "Username"},

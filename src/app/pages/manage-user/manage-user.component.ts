@@ -53,10 +53,9 @@ export class ManageUserComponent implements OnInit{
       next: (userIns: User) => {
         if (user.photo && userIns.idUser) {
 
-          this.userService.upload(user.photo, userIns.idUser).subscribe({
-            next: () => this.router.navigate(['home'])
-          })
+          this.userService.upload(user.photo, userIns.idUser).subscribe()
         }
+        this.router.navigate(['home'])
       },
       error: err => {
         for (let fieldName in err.error.errorMap) {
