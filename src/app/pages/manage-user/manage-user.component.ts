@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../interfaces/user";
 import {UserService} from "../../services/user.service";
 import {MyHeaders} from "../../interfaces/my-headers";
-import {formUser, formUserAdmin} from "../../configurations/forms";
+import {formUser} from "../../configurations/forms";
 
 @Component({
   selector: 'app-manage-user',
@@ -12,19 +12,16 @@ import {formUser, formUserAdmin} from "../../configurations/forms";
 })
 export class ManageUserComponent implements OnInit{
 
-  formUser !: MyHeaders[];
+  formUser: MyHeaders[] = formUser;
   user !: User
   id !: string | null
   errors: MyHeaders[] = [];
+  error: string = '';
+  showPasswordForm: boolean = false;
   constructor(private router: Router, private userService: UserService, private activeRoute: ActivatedRoute) {}
   ngOnInit() {
     this.id = this.activeRoute.snapshot.paramMap.get("id")
     this.userService.getUser().subscribe((user: User) => {
-      if (user.admin) {
-        this.formUser = formUserAdmin
-      } else {
-        this.formUser = formUser
-      }
       if (this.id == null && user.admin) {
         this.user = {
           admin: false,
@@ -47,17 +44,37 @@ export class ManageUserComponent implements OnInit{
     })
   }
 
-  manageUser(user: User) {
-    console.log(user)
-    this.userService.insertUser(user).subscribe({
-      next: (userIns: User) => {
-        if (user.photo && userIns.idUser) {
+  onEmit(user: User) {
+    this.user = user
+    this.showPasswordForm = true;
+  }
 
-          this.userService.upload(user.photo, userIns.idUser).subscribe()
+  manageUser() {
+    if (this.user.idUser != null && this.user.idUser != 0) {
+      this.userService.checkUser(this.user.username, this.user.password).subscribe({
+        next: () => {
+          this.insertUser()
+        },
+        error: err => {
+          this.error = err.error.message
+        }
+      })
+    } else {
+      this.insertUser()
+    }
+  }
+
+  insertUser() {
+    this.userService.insertUser(this.user).subscribe({
+      next: (userIns: User) => {
+        if (this.user.photo && userIns.idUser) {
+
+          this.userService.upload(this.user.photo, userIns.idUser).subscribe()
         }
         this.router.navigate(['home'])
       },
       error: err => {
+        this.showPasswordForm = false
         for (let fieldName in err.error.errorMap) {
           let errorMessage = err.error.errorMap[fieldName];
           this.errors.push({key: fieldName, label: errorMessage});

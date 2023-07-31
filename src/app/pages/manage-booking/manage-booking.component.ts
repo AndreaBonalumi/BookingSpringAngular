@@ -56,6 +56,7 @@ export class ManageBookingComponent implements OnInit{
     })
   }
   saveBooking(car: Car) {
+    console.log("save")
     this.booking.car = car
     this.bookingService.insertBooking(this.booking).subscribe(() => this.router.navigate(['home']))
   }

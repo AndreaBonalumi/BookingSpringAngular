@@ -55,4 +55,8 @@ export class UserService {
     const url = `${this.apiUrl}/image/${idUser}`
     return this.http.get(url, {responseType: "blob"})
   }
+  checkUser(username: string, password: string): Observable<any> {
+    const url = `${this.apiUrl}/checkUser`
+    return this.http.post(url, {username: username, password: password})
+  }
 }
